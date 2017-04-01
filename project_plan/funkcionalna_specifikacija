@@ -1,0 +1,35 @@
+- Uvodni ekran nudi:
+	- Prijavi se. Zahteva se ime korisnika i ime zadruge.
+	- Otvori nalog kao clan postojece  zadruge. Zahteva se ime zadruge.
+	- Oformi novu zadrugu.
+	- Zasto i kako o zadrugama.
+- Kontrolna tabla nudi:
+	Na vrhu ekrana, nalazi se statusna tabla, koja prikazuje logo programa i ime korisnika. Klikom na logo programa odlazi se na podrazumevani izgled kontrolnu table, kao sa pocetka koriscenja programa, a klikom na ime korisnika ide se na licni korisnicki ekran, koji sadrzi sve licne podatke kao i izabrana podesavanja programa za tog korisnika. Osim logoa programa i imena korisnika, statusna tabla s vremena na vreme prikazuje obavestenja o trenutnoj aktivnosti aplikacije.
+	Ispod statusne table nalazi se meni tabla koja sadrzi cetiri opcije:
+	- Imovina
+	- Aktivnosti
+	- Grafikoni
+	- Zabeleske
+	Ispod meni table prikazuju se vesti i informacije iz agro sveta, prilagodjene imovini i do sada zabelezenim aktivnostima ulogovanog korisnika.
+	Svaka od meni opcija vodi ka posebnom ekranu sa daljim opcijama. Sva ceitri ekrana se skroluju gore-dole i podeljena su po sekcijama.
+- Sekcije za ekran Imovina, odozgo na dole:
+	- Njive;
+	- Masine: traktori, kombajni, motokultivatori, prskalice za navodnjavanje, sejac, drugo;
+	- Skladista;
+	- Djubrivo;
+	- Pesticidi;
+	- Ostala imovina.
+	Klikom na neku od imovina ide se na detaljni prikaz, u slucaju njive na mapu. Ovde se moze editovati, dodati ili izbrisati imovina.
+	Moze se selektovati dali da se prikazuje i zadruzna imovina.
+- Sekcije za ekran Aktivnosti su:
+	- Njive: navodnjavanje, oranje, sejanje, prskanje, zetva ili djubrenje, kupovina, iznajmljivanje, prodaja;
+	- Masine: opravka i dosipanje goriva, kupovina, iznajmljivanje, prodaja;
+	- Skladista: punjenje, prodaja, opravka, kupovina, iznajmljivanje, prodaja;
+	- Ostale aktivnosti.
+	Svaka aktivnost moze da ima cenu, dobit, vreme trajanja, upotrebljenu masinu i datum.
+- Grafikoni vode na ekran sa velikim dugmadima koja vode ka razlicitim vizuelizacijama podataka.
+- Zabeleske vode na ekran sa ikonama unetih belezaka i ikonom za novu belesku. Klik na ikonu vodi na ekran sa tekst
+ editorom.
+- Pored svake opcije postoji dugme pomoc koje otvara modalni prozor sa jasnim objasnjenjem opcije.
+
+- Ako je ulogovani korisnik clan upravnog odbora, postoji i opcija knjiga zadrugara koja prikazuje listu svih clanova zadruge.

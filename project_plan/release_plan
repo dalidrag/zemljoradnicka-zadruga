@@ -1,0 +1,33 @@
+Sprint 1
+	- Izrada uvodnog ekrana , izrada ekrana kontrolna tabla
+	---------------------------------------------------------------
+	EKRAN IMOVINA:
+	- Dodavanje njive.
+	- Pregled njiva na mapi.
+	- Editovanje, brisanje njive.
+	---------------------------------------------------------------
+	- Pregled masina i skladista.
+	- Dodavanje, editovanje, brisanje masina i skladista.
+	---------------------------------------------------------------
+	- Pregled ostale imovine.
+	- Dodavanje, editovanje, brisanje ostale imovine.
+Sprint 2
+	EKRAN AKTIVNOSTI:
+	- Pregled do sada unesenih i planiranih aktivnosti.
+	- Dodavanje, editovanje i brisanje aktivnosti opisanih u user stories.
+	- Izrada kalendara.
+	- Definisanje izgleda sajta pomocu CSS-a i implementacija responsive design-a.
+Sprint 3
+	- Dodavanje pravog back-end-a.
+	- Implementacija prijavljivanja na sajt.
+	EKRAN GRAFIKONI:
+	- Izrada vizuelizacija opisanih u user stories.
+?
+	- Osnivanje nove zadruge.
+	- Sastavljanje ugovora o osnivanju zadruge.
+	- Zapisnik o osnivanju zadruge.
+	---------------------------------------------------------------
+	- Izrada opcija za clanove upravnog odbora zadruge.
+?
+	- Skrolujuca lista otkupnih cena razlicitih proizvoda
+	- Slanje poruka drugim clanovima zadruge
