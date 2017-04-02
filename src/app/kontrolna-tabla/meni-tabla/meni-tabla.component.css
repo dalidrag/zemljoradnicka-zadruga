@@ -1,0 +1,10 @@
+#meni-tabla {
+	display: flex;
+	justify-content: space-between;
+	color: white;
+	background-color: green;
+}
+a {
+	color: white;
+	text-decoration: none;
+}

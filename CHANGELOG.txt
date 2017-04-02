@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Kosturi svih pet pogleda kontrolne table implementirani
+- Statusna i meni table dodate na ekran
 - Pocetna strana cetiri dugmeta, 'pijavi se' implementirano
 - AuthGuard
 - AuthService

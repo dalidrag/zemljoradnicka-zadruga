@@ -1,0 +1,17 @@
+#logo {
+	float: left;
+}
+#korisnik {
+	float: right;
+}
+#clearfix {
+	clear: both;
+}
+#statusna-tabla {
+	color: white;
+	background-color: green;
+}
+a {
+	color: white;
+	text-decoration: none;
+}
