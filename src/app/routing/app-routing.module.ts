@@ -8,12 +8,14 @@ import { ImovinaPogledComponent} from '../kontrolna-tabla/imovina/imovina-pogled
 import { AkcijePogledComponent } from '../kontrolna-tabla/akcije/akcije-pogled/akcije-pogled.component';
 import { GrafikoniPogledComponent } from '../kontrolna-tabla/grafikoni/grafikoni-pogled/grafikoni-pogled.component';
 import { ZabeleskePogledComponent } from '../kontrolna-tabla/zabeleske/zabeleske-pogled/zabeleske-pogled.component';
+import { KorisnickiEkranComponent } from '../korisnik/korisnicki-ekran/korisnicki-ekran.component';
 
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
  { path: '', redirectTo: '/kontrolna-tabla', pathMatch: 'full' },
  { path: 'pocetna-strana', component: PocetnaStranaEkranComponent },
+ { path: 'korisnik', component: KorisnickiEkranComponent },
  { path: 'kontrolna-tabla', component: KontrolnaTablaEkranComponent,
   canActivate: [AuthGuard], children: [
    { path: '', component: KontrolnaTablaPogledComponent },

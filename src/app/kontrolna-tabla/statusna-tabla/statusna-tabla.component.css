@@ -1,13 +1,6 @@
-#logo {
-	float: left;
-}
-#korisnik {
-	float: right;
-}
-#clearfix {
-	clear: both;
-}
 #statusna-tabla {
+	display: flex;
+	justify-content: space-between;
 	color: white;
 	background-color: green;
 }

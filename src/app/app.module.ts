@@ -8,6 +8,7 @@ import { ImovinaModule } from './kontrolna-tabla/imovina/imovina.module';
 import { AkcijeModule } from './kontrolna-tabla/akcije/akcije.module';
 import { GrafikoniModule } from './kontrolna-tabla/grafikoni/grafikoni.module';
 import { ZabeleskeModule } from './kontrolna-tabla/zabeleske/zabeleske.module';
+import { KorisnikModule } from './korisnik/korisnik.module';
 
 import { AuthService } from './deljeno/auth.service';
 
@@ -32,7 +33,8 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
     ImovinaModule,
     AkcijeModule,
     GrafikoniModule,
-    ZabeleskeModule
+    ZabeleskeModule,
+    KorisnikModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
