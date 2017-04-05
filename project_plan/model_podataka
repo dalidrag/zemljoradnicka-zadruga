@@ -40,12 +40,12 @@ Vrsta useva (2)
 	Slika;
 Aktivnost
 	Clan Zadruge: back-reference prema clanu zadruge koji je sproveo aktivnost, ili sama zadruga;
-	Meta Aktivnosti: back-reference prema objektu nad kojim je aktivnost sprovedena;
+	Meta Aktivnosti: Array of back-references prema objektu nad kojim je aktivnost sprovedena;
 	Tip: tip aktivnosti;
-	Cena;
-	Dobit;
 	Datum;
 	Vreme trajanja;
+	Cena;
+	Dobit;
 	Zabeleska;
 	Upotrebljene masine: Array, deo Aktivnosti u MongoDB-u;
 Aktivnosti (1)
@@ -53,12 +53,16 @@ Aktivnosti (1)
 Njiva
 	Ime;
 	Geografske koordinate njive;
+	Katastarska opstina:
+	Osnov koriscenja: vlasnistvo/zakup zemljista;
+	Tip zemljista:
+	Klasa: (1-8)
 	Vrsta useva: Array, posebna kolekcija u MongoDB-u (2);
 	Kolicina useva: Array, deo Njive u MongoDB-u;
 	Aktivnosti: Array, posebna kolekcija u MongoDB-u (1).
 Masina
 	Ime;
-	Tip;
+	Tip: Traktor, Kombajn, Motokultivator, dodatak za Traktor, dodatak za Kombajn, dodatak za Motokultivator, ostalo
 	Godina proizvodnje;
 	Marka;
 	Model;
@@ -73,7 +77,7 @@ Skladiste
 	Kapacitet;
 	Popunjenost;
 	Vrsta useva: Array, posebna kolekcija u MongoDB-u (2);
-	Kolicina useva: Array, deo Skladista u MongoDB-u;
+	Kolicina useva: Array, deo Skladista u MongoDB-u; (kg/ar, kg/hektar)
 Djubrivo
 	Ime;
 	Tip mere: tezina (cvrsto) | zapremina (tecno)
