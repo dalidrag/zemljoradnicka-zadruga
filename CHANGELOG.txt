@@ -5,7 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-- Dodat Data servis za osnovne podatke njiva, testiran. In-memory-db http stub obezbedjuje podatke.
+### Added
+- Prikazivanje detalja za jednu njivu
+- Prikazivanje liste njiva unutar njive router-outlet-a
+- Named router-outlet rute za njive i masine unutar 'imanje' pogleda
+- Data servis za osnovne podatke njiva, testiran. In-memory-db http stub obezbedjuje podatke.
 
 ## [0.1.0] - 2017-04-04
 ### Added

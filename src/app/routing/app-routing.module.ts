@@ -10,6 +10,12 @@ import { GrafikoniPogledComponent } from '../kontrolna-tabla/grafikoni/grafikoni
 import { ZabeleskePogledComponent } from '../kontrolna-tabla/zabeleske/zabeleske-pogled/zabeleske-pogled.component';
 import { KorisnickiEkranComponent } from '../korisnik/korisnicki-ekran/korisnicki-ekran.component';
 
+import { NjiveComponent } from '../kontrolna-tabla/imovina/njive/njive.component';
+import { NjivaComponent } from '../kontrolna-tabla/imovina/njive/njiva/njiva.component';
+import { MasineComponent } from '../kontrolna-tabla/imovina/masine/masine.component';
+
+import { NjiveResolve } from './njive-resolve.service';
+
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -17,9 +23,14 @@ const routes: Routes = [
  { path: 'pocetna-strana', component: PocetnaStranaEkranComponent },
  { path: 'korisnik', component: KorisnickiEkranComponent },
  { path: 'kontrolna-tabla', component: KontrolnaTablaEkranComponent,
-  canActivate: [AuthGuard], children: [
+  /* canActivate: [AuthGuard], canActivateChild: [AuthGuard], */ children: [
    { path: '', component: KontrolnaTablaPogledComponent },
-   { path: 'imovina', component: ImovinaPogledComponent },
+   { path: 'imovina', component: ImovinaPogledComponent, children: [
+    { path: 'njive-prikaz', component: NjiveComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
+    { path: 'njiva-prikaz/:id', component: NjivaComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
+    { path: 'masine-prikaz', component: MasineComponent, outlet: 'masine' },
+    ]
+ 	 },
    { path: 'akcije', component: AkcijePogledComponent },
    { path: 'grafikoni', component: GrafikoniPogledComponent },
    { path: 'zabeleske', component: ZabeleskePogledComponent }
@@ -35,6 +46,6 @@ const routes: Routes = [
 @NgModule({
  imports: [ RouterModule.forRoot(routes) ],
  exports: [ RouterModule ],
- providers: [AuthGuard]
+ providers: [AuthGuard, NjiveResolve]
 })
 export class AppRoutingModule {}

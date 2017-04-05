@@ -1,5 +1,5 @@
 <div id="meni-tabla">
-	<a routerLink="imovina">Имовина</a>
+	<a [routerLink]="['imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]">Имање</a>
 	<a routerLink="akcije">Активности</a>
 	<a routerLink="grafikoni">Графикони</a>
 	<a routerLink="zabeleske">Забелешке</a>

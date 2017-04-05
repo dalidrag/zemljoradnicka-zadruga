@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
@@ -11,6 +12,11 @@ import { ZabeleskeModule } from './kontrolna-tabla/zabeleske/zabeleske.module';
 import { KorisnikModule } from './korisnik/korisnik.module';
 
 import { AuthService } from './deljeno/auth.service';
+import { DataService } from './deljeno/data.service';
+
+// Imports for loading & configuring the in-memory web api
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './deljeno/in-memory-db';
 
 import { PocetnaStranaEkranComponent } from './pocetna-strana/pocetna-strana-ekran/pocetna-strana-ekran.component';
 import { KontrolnaTablaEkranComponent } from './kontrolna-tabla/kontrolna-tabla-ekran/kontrolna-tabla-ekran.component';
@@ -29,6 +35,8 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
     ImovinaModule,
     AkcijeModule,
@@ -36,7 +44,7 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
     ZabeleskeModule,
     KorisnikModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
