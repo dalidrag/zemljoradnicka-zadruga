@@ -1,4 +1,10 @@
 <div id="statusna-tabla">
-  <a id="logo" routerLink="/kontrolna-tabla">Задруга</a>
+	<div id="status">
+		<a *ngIf="!notificationMessage" id="logo" routerLink="/kontrolna-tabla">Задруга</a>
+		<p *ngIf="notificationMessage" [class.error]="notificationType===0 || notificationType===1" [class.success]="notificationType===2" [class.fadingOut]="fadingOut" >
+		  {{notificationMessage}}
+		</p>
+	</div>
+<!--   -->
   <a id="korisnik" routerLink="/korisnik">Произвољни корисник</a>
 </div>

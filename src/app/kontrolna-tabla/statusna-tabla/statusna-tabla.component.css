@@ -8,3 +8,17 @@ a {
 	color: white;
 	text-decoration: none;
 }
+.error {
+	color:  red;
+}
+.success {
+	color:  yellow;
+}
+.fadingOut {
+	opacity: 0;
+}
+p {
+	margin: 0;
+	transition: opacity 1.5s;
+	/* font-size: 1.3em; */
+}

@@ -11,6 +11,7 @@ import { Njiva } from '../../../deljeno/tipovi-podataka/njiva';
 
 import { DataService } from '../../../deljeno/data.service';
 import { UtilitiesService } from '../../../deljeno/utilities.service';
+import { NotificationHubService, HubNotificationType } from '../../../deljeno/event-hub.service';
 /************************************************************************/
 
 /**
@@ -27,7 +28,7 @@ import { UtilitiesService } from '../../../deljeno/utilities.service';
 export class DodajNjivuComponent implements OnInit {
 	dodajNjivuForma: FormGroup;
 
-  constructor(@Inject('AppStore') private appStore: Store<IAppState>, public actionCreators: NjiveActionCreators, private fb: FormBuilder, private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService) { }
+  constructor(@Inject('AppStore') private appStore: Store<IAppState>, public actionCreators: NjiveActionCreators, private fb: FormBuilder, private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService, private notificationHubService: NotificationHubService) { }
 
   ngOnInit() {
   	this.dodajNjivuForma = this.fb.group({  
@@ -51,6 +52,7 @@ export class DodajNjivuComponent implements OnInit {
 		novaNjiva.klasaZemljista = formValues.klasaZemljista;
 
 		this.dataService.dodajNjivu(novaNjiva).then((dodataNjiva) => {
+			this.notificationHubService.emit(HubNotificationType.Success, 'Додата нова њива');
 			this.actionCreators.novaNjiva(dodataNjiva.id);
 			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz']}}]);
 		})

@@ -20,6 +20,7 @@ import { KorisnikModule } from './korisnik/korisnik.module';
 import { AuthService } from './deljeno/auth.service';
 import { DataService } from './deljeno/data.service';
 import { StateService } from './deljeno/state.service';
+import { NotificationHubService } from './deljeno/event-hub.service';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -59,7 +60,7 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
     KorisnikModule
   ],
   providers: [
-    AuthService, DataService, UtilitiesService,
+    AuthService, DataService, UtilitiesService, NotificationHubService,
     { provide: 'AppStore', useValue: appStore },
     NjiveActionCreators, InitActionCreator,
     StateService
