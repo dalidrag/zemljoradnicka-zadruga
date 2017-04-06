@@ -2,6 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
+import { createStore } from 'redux';
+import { rootReducer } from './Redux/index';
+import { NjiveActionCreators } from './Redux/action-creators/njive.action-creators';
+const appStore = createStore(rootReducer);  // ovo mora biti pre importa StateService-a
+
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './routing/app-routing.module';
@@ -13,6 +18,7 @@ import { KorisnikModule } from './korisnik/korisnik.module';
 
 import { AuthService } from './deljeno/auth.service';
 import { DataService } from './deljeno/data.service';
+import { StateService } from './deljeno/state.service';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -26,6 +32,11 @@ import { StatusnaTablaComponent } from './kontrolna-tabla/statusna-tabla/statusn
 import { MeniTablaComponent } from './kontrolna-tabla/meni-tabla/meni-tabla.component';
 import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla-pogled/kontrolna-tabla-pogled.component';
 
+/**
+ * Root modul aplikacije
+ *
+ * @class AppModule
+ */
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +57,12 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
     ZabeleskeModule,
     KorisnikModule
   ],
-  providers: [AuthService, DataService, UtilitiesService],
+  providers: [
+    AuthService, DataService, UtilitiesService,
+    { provide: 'AppStore', useValue: appStore },
+    NjiveActionCreators,
+    StateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

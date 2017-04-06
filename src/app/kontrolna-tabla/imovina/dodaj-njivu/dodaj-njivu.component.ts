@@ -1,7 +1,11 @@
 /************************************************************************/
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
+
+import { Store } from 'redux';
+import { IAppState } from '../../../Redux/index';
+import { NjiveActionCreators } from '../../../Redux/action-creators/njive.action-creators';
 
 import { Njiva } from '../../../deljeno/tipovi-podataka/njiva';
 
@@ -23,7 +27,7 @@ import { UtilitiesService } from '../../../deljeno/utilities.service';
 export class DodajNjivuComponent implements OnInit {
 	dodajNjivuForma: FormGroup;
 
-  constructor(private fb: FormBuilder, private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService) { }
+  constructor(@Inject('AppStore') private appStore: Store<IAppState>, public actionCreators: NjiveActionCreators, private fb: FormBuilder, private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService) { }
 
   ngOnInit() {
   	this.dodajNjivuForma = this.fb.group({  
@@ -46,7 +50,8 @@ export class DodajNjivuComponent implements OnInit {
 		novaNjiva.katOpstina = formValues.katOpstina;
 		novaNjiva.klasaZemljista = formValues.klasaZemljista;
 
-		this.dataService.dodajNjivu(novaNjiva).then(() => {
+		this.dataService.dodajNjivu(novaNjiva).then((dodataNjiva) => {
+			this.actionCreators.novaNjiva(dodataNjiva.id);
 			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz']}}]);
 		})
 		.catch(error => this.utilitiesService.handleError(error));

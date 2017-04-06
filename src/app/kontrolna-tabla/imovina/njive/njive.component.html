@@ -1,7 +1,7 @@
 <p>
   njive works!
 </p>
-<div id="njive" *ngFor="let njiva of njive" (click)="prikaziNjivu(njiva.id)">
+<div *ngFor="let njiva of njive" [class.nova-njiva]="novaNjivaId && novaNjivaId===njiva.id" (click)="prikaziNjivu(njiva.id)" id="njive">
 	<p>Име: {{njiva.ime}}</p>
 </div>
 <a [routerLink]="['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['dodaj-njivu']}}]">Додај њиву</a>

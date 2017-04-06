@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Redux state arhitektura implementirana
 - Dodavanje njive
 - Rukovanje greskama
 - Prikazivanje detalja za jednu njivu
