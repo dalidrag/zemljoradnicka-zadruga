@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -6,7 +7,7 @@ import { createStore } from 'redux';
 import { rootReducer } from './Redux/index';
 import { NjiveActionCreators } from './Redux/action-creators/njive.action-creators';
 import { InitActionCreator } from './Redux/action-creators/init.action-creator';
-const appStore = createStore(rootReducer);  // ovo mora biti pre importa StateService-a
+const appStore = createStore(rootReducer);
 
 import { AppComponent } from './app.component';
 
