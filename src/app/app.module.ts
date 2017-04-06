@@ -1,12 +1,12 @@
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { createStore } from 'redux';
 import { rootReducer } from './Redux/index';
-import { NjiveActionCreators } from './Redux/action-creators/njive.action-creators';
 import { InitActionCreator } from './Redux/action-creators/init.action-creator';
+import { NjiveActionCreators } from './Redux/action-creators/njive.action-creators';
+import { VodicActionCreators } from './Redux/action-creators/vodic.action-creators';
 const appStore = createStore(rootReducer);  // ovo mora biti pre importa StateService-a
 
 import { AppComponent } from './app.component';
@@ -63,7 +63,7 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
   providers: [
     AuthService, DataService, UtilitiesService, NotificationHubService,
     { provide: 'AppStore', useValue: appStore },
-    NjiveActionCreators, InitActionCreator,
+    InitActionCreator, NjiveActionCreators, VodicActionCreators,
     StateService
   ],
   bootstrap: [AppComponent]
