@@ -12,6 +12,7 @@ import { KorisnickiEkranComponent } from '../korisnik/korisnicki-ekran/korisnick
 
 import { NjiveComponent } from '../kontrolna-tabla/imovina/njive/njive.component';
 import { NjivaComponent } from '../kontrolna-tabla/imovina/njive/njiva/njiva.component';
+import { DodajNjivuComponent } from '../kontrolna-tabla/imovina/dodaj-njivu/dodaj-njivu.component';
 import { MasineComponent } from '../kontrolna-tabla/imovina/masine/masine.component';
 
 import { NjiveResolve } from './njive-resolve.service';
@@ -28,6 +29,7 @@ const routes: Routes = [
    { path: 'imovina', component: ImovinaPogledComponent, children: [
     { path: 'njive-prikaz', component: NjiveComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
     { path: 'njiva-prikaz/:id', component: NjivaComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
+    { path: 'dodaj-njivu', component: DodajNjivuComponent, outlet: 'njive' },
     { path: 'masine-prikaz', component: MasineComponent, outlet: 'masine' },
     ]
  	 },

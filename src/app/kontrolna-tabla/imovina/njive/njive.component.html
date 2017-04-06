@@ -4,3 +4,4 @@
 <div id="njive" *ngFor="let njiva of njive" (click)="prikaziNjivu(njiva.id)">
 	<p>Име: {{njiva.ime}}</p>
 </div>
+<a [routerLink]="['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['dodaj-njivu']}}]">Додај њиву</a>

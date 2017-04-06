@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Dodavanje njive
+- Rukovanje greskama
 - Prikazivanje detalja za jednu njivu
 - Prikazivanje liste njiva unutar njive router-outlet-a
 - Named router-outlet rute za njive i masine unutar 'imanje' pogleda

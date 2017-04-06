@@ -1,0 +1,17 @@
+<p>
+  dodaj-njivu works!
+</p>
+<form [formGroup]="dodajNjivuForma" (ngSubmit)="onSubmit(dodajNjivuForma.value)" (keyup)="onKey($event)">
+
+	<input #ime type="text" id="ime" name="ime" [formControl]="dodajNjivuForma.controls['ime']" (blur)="onBlur($event)" autofocus />
+	<div class="error" *ngIf="dodajNjivuForma.controls['ime'].hasError('required') && dodajNjivuForma.controls['ime'].touched">Морате дати име њиви</div>
+	<div class="error" *ngIf="dodajNjivuForma.controls['ime'].hasError('maxlength') && dodajNjivuForma.controls['ime'].touched">Име њиве може бити дугачко највише 30 слова</div>
+
+	<input #katOpstina type="text" id="katOpstina" name="katOpstina" [formControl]="dodajNjivuForma.controls['katOpstina']" (blur)="onBlur($event)" />
+	<div class="error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('required') && dodajNjivuForma.controls['katOpstina'].touched">Морате унети катастарску општину којој њива припада</div>
+	<div class="error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('maxlength') && dodajNjivuForma.controls['katOpstina'].touched">Име катастарске општине може имати највише 30 слова</div>
+
+	<input #klasaZemljista type="text" id="klasaZemljista" name="klasaZemljista" [formControl]="dodajNjivuForma.controls['klasaZemljista']" (blur)="onBlur($event)" />
+	
+	<button type="submit" [disabled]="!dodajNjivuForma.valid">Додај њиву</button>
+</form>

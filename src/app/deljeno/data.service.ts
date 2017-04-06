@@ -31,5 +31,27 @@ export class DataService {
 		  	             .then(response => {
 		  	             		return response.json().data as Njiva[];
 		  	             })
+		  	             .catch(this.handleError)
 	}
+
+	/**
+	 * Dodaje novu njivu
+	 *
+	 * @method dodajNjivu
+	 * @param novaNjiva Njiva koju treba dodati
+	 * @return {Promise<Njiva>} Dodata njiva kao Promise; id polje je automatski dodato
+	 */
+	dodajNjivu(novaNjiva: Njiva): Promise<Njiva> {
+		return this.http
+			.post(this.njiveUrl, JSON.stringify(novaNjiva), {headers: this.headers})
+			.toPromise()
+			.then(response => {
+				return response.json().data as Njiva
+			})
+			.catch(this.handleError);
+	}
+
+	private handleError(error: any): Promise<any> {
+    return Promise.reject(error.message || error.statusText || error);
+  }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule} from '../../routing/app-routing.module';
 
@@ -7,17 +8,20 @@ import { ImovinaPogledComponent } from './imovina-pogled/imovina-pogled.componen
 import { NjiveComponent } from './njive/njive.component';
 import { MasineComponent } from './masine/masine.component';
 import { NjivaComponent } from './njive/njiva/njiva.component';
+import { DodajNjivuComponent } from './dodaj-njivu/dodaj-njivu.component';
 
 /**
- * Ovaj modul sadzi svu funkcionalost pogleda 'imovina'
+ * Sadzi svu funkcionalost pogleda 'imovina'
  *
  * @class ImovinaModule
  */
 @NgModule({
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  declarations: [ImovinaPogledComponent, NjiveComponent, MasineComponent, NjivaComponent]
+  declarations: [ImovinaPogledComponent, NjiveComponent, MasineComponent, NjivaComponent, DodajNjivuComponent]
 })
 export class ImovinaModule { }

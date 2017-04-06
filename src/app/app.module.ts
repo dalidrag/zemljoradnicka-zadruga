@@ -18,6 +18,8 @@ import { DataService } from './deljeno/data.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './deljeno/in-memory-db';
 
+import { UtilitiesService } from './deljeno/utilities.service';
+
 import { PocetnaStranaEkranComponent } from './pocetna-strana/pocetna-strana-ekran/pocetna-strana-ekran.component';
 import { KontrolnaTablaEkranComponent } from './kontrolna-tabla/kontrolna-tabla-ekran/kontrolna-tabla-ekran.component';
 import { StatusnaTablaComponent } from './kontrolna-tabla/statusna-tabla/statusna-tabla.component';
@@ -44,7 +46,7 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
     ZabeleskeModule,
     KorisnikModule
   ],
-  providers: [AuthService, DataService],
+  providers: [AuthService, DataService, UtilitiesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

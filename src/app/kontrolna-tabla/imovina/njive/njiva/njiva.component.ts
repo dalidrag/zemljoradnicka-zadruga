@@ -3,6 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Njiva } from '../../../../deljeno/tipovi-podataka/njiva';
 
+/**
+ * Prikazuje detalje jedne njive
+ *
+ * @class NjivaComponent
+ */
 @Component({
   selector: 'app-njiva',
   templateUrl: './njiva.component.html',
@@ -10,7 +15,7 @@ import { Njiva } from '../../../../deljeno/tipovi-podataka/njiva';
 })
 export class NjivaComponent implements OnInit, OnDestroy {
 	njive: Njiva[];
-	njivaId: number;
+	njiva: Njiva;
 	unsubscribe;
 
   constructor(private route: ActivatedRoute) { }
@@ -19,7 +24,13 @@ export class NjivaComponent implements OnInit, OnDestroy {
   	this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[] }) => {
   		this.njive = data.njive;
   	});
-  	this.njivaId = +this.route.snapshot.params['id'];
+  	let njivaId = +this.route.snapshot.params['id'];
+    for (let njiva of this.njive) {
+      if (+njiva.id === njivaId) {
+        this.njiva = njiva;
+        break;
+      }
+    }
   }
 
   ngOnDestroy() {
