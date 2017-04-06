@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { createStore } from 'redux';
 import { rootReducer } from './Redux/index';
 import { NjiveActionCreators } from './Redux/action-creators/njive.action-creators';
+import { InitActionCreator } from './Redux/action-creators/init.action-creator';
 const appStore = createStore(rootReducer);  // ovo mora biti pre importa StateService-a
 
 import { AppComponent } from './app.component';
@@ -60,7 +61,7 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
   providers: [
     AuthService, DataService, UtilitiesService,
     { provide: 'AppStore', useValue: appStore },
-    NjiveActionCreators,
+    NjiveActionCreators, InitActionCreator,
     StateService
   ],
   bootstrap: [AppComponent]

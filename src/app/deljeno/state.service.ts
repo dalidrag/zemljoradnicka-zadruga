@@ -3,6 +3,8 @@ import { Injectable, Inject } from '@angular/core';
 import { Store } from 'redux';
 import { IAppState } from '../Redux/index';
 
+import { InitActionCreator } from '../Redux/action-creators/init.action-creator';
+
 /**
  * Reaguje na promene Redux storea i nudi public properties
  * iz kojih ostale komponente mogu videti ove promene
@@ -12,15 +14,16 @@ import { IAppState } from '../Redux/index';
  */
 @Injectable()
 export class StateService {
-	public novaNjivaId: string = '0';
+	public state: any;
 
-  constructor(@Inject('AppStore') private appStore: Store<IAppState>) { }
+  constructor(@Inject('AppStore') private appStore: Store<IAppState>, private initActionCreator: InitActionCreator) { }
 
   inicijalizuj() {
   	//subscribe to Redux store state changes
   	this.appStore.subscribe(() => {
-  	  let state = this.appStore.getState();
-  	  this.novaNjivaId = state.njive.novaNjivaId;
+  	  this.state = this.appStore.getState();
   	});
+  	// Okini akciju koja ce jednostavno inicijalizovati Redux store
+  	this.initActionCreator.inicijalizuj();
   }
 }

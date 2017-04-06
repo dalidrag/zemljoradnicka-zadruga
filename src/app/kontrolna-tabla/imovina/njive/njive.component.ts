@@ -31,8 +31,8 @@ export class NjiveComponent implements OnInit, OnDestroy {
     this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[] }) => {
   		this.njive = data.njive;
   	});
-    if (this.stateService.novaNjivaId !== '0') {  // ako je upravo dodata nova njiva
-      this.novaNjivaId = this.stateService.novaNjivaId;
+    if (this.stateService.state.njive.novaNjivaId !== '0') {  // ako je upravo dodata nova njiva
+      this.novaNjivaId = this.stateService.state.njive.novaNjivaId;
       this.actionCreators.novaNjivaPrikazana();
     }
   }
