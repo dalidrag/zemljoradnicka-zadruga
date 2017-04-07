@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -34,6 +35,8 @@ import { KontrolnaTablaEkranComponent } from './kontrolna-tabla/kontrolna-tabla-
 import { StatusnaTablaComponent } from './kontrolna-tabla/statusna-tabla/statusna-tabla.component';
 import { MeniTablaComponent } from './kontrolna-tabla/meni-tabla/meni-tabla.component';
 import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla-pogled/kontrolna-tabla-pogled.component';
+import { BrojAriComponent } from './vodic/broj-ari/broj-ari.component';
+import { PrvaNjivaComponent } from './vodic/prva-njiva/prva-njiva.component';
 
 /**
  * Root modul aplikacije
@@ -47,7 +50,9 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
     KontrolnaTablaEkranComponent,
     StatusnaTablaComponent,
     MeniTablaComponent,
-    KontrolnaTablaPogledComponent
+    KontrolnaTablaPogledComponent,
+    BrojAriComponent,
+    PrvaNjivaComponent
   ],
   imports: [
     BrowserModule,

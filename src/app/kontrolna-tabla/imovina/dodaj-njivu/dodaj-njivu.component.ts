@@ -3,8 +3,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
 
-import { Store } from 'redux';
-import { IAppState } from '../../../Redux/index';
 import { NjiveActionCreators } from '../../../Redux/action-creators/njive.action-creators';
 
 import { Njiva } from '../../../deljeno/tipovi-podataka/njiva';
@@ -28,7 +26,7 @@ import { NotificationHubService, HubNotificationType } from '../../../deljeno/ev
 export class DodajNjivuComponent implements OnInit {
 	dodajNjivuForma: FormGroup;
 
-  constructor(@Inject('AppStore') private appStore: Store<IAppState>, public actionCreators: NjiveActionCreators, private fb: FormBuilder, private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService, private notificationHubService: NotificationHubService) { }
+  constructor(public actionCreators: NjiveActionCreators, private fb: FormBuilder, private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService, private notificationHubService: NotificationHubService) { }
 
   ngOnInit() {
   	this.dodajNjivuForma = this.fb.group({  

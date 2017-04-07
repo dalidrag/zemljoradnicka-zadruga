@@ -9,6 +9,8 @@ import { AkcijePogledComponent } from '../kontrolna-tabla/akcije/akcije-pogled/a
 import { GrafikoniPogledComponent } from '../kontrolna-tabla/grafikoni/grafikoni-pogled/grafikoni-pogled.component';
 import { ZabeleskePogledComponent } from '../kontrolna-tabla/zabeleske/zabeleske-pogled/zabeleske-pogled.component';
 import { KorisnickiEkranComponent } from '../korisnik/korisnicki-ekran/korisnicki-ekran.component';
+import { BrojAriComponent } from '../vodic/broj-ari/broj-ari.component';
+import { PrvaNjivaComponent } from '../vodic/prva-njiva/prva-njiva.component';
 
 import { NjiveComponent } from '../kontrolna-tabla/imovina/njive/njive.component';
 import { NjivaComponent } from '../kontrolna-tabla/imovina/njive/njiva/njiva.component';
@@ -23,8 +25,10 @@ const routes: Routes = [
  { path: '', redirectTo: '/kontrolna-tabla', pathMatch: 'full' },
  { path: 'pocetna-strana', component: PocetnaStranaEkranComponent },
  { path: 'korisnik', component: KorisnickiEkranComponent },
+ { path: 'vodic-broj-ari', component: BrojAriComponent },
+ { path: 'vodic-prva-njiva', component: PrvaNjivaComponent },
  { path: 'kontrolna-tabla', component: KontrolnaTablaEkranComponent,
-  /* canActivate: [AuthGuard], canActivateChild: [AuthGuard], */ children: [
+   /* canActivate: [AuthGuard], canActivateChild: [AuthGuard], */ children: [
    { path: '', component: KontrolnaTablaPogledComponent },
    { path: 'imovina', component: ImovinaPogledComponent, children: [
     { path: 'njive-prikaz', component: NjiveComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },

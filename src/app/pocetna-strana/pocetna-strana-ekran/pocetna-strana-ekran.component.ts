@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../deljeno/auth.service';
-
+import { NotificationHubService, HubNotificationType } from '../../deljeno/event-hub.service';
 /**
  * Sadrzi pocetni ekran
  *
@@ -15,16 +15,19 @@ import { AuthService } from '../../deljeno/auth.service';
 })
 export class PocetnaStranaEkranComponent implements OnInit {
 
-  constructor( private authService: AuthService, private router: Router ) { }
+  constructor( private authService: AuthService, private notificationHubService: NotificationHubService, private router: Router ) { }
 
   ngOnInit() {
   }
 
   prijava() {
   	if ( this.authService.prijaviSe() )
-  		this.router.navigate(['']);
+  		// if broj ari undefined:
+      this.router.navigate(['/vodic-broj-ari']);
+      // else if nema njiva
+      
   	else
-  		window.alert('Doslo je do greske prilikom prijavljivanja na aplikaciju!'); // TODO
+  		this.notificationHubService.emit(HubNotificationType.Error, 'Грешка приликом пријављивања на апликацију!');
   }
 
 }

@@ -1,6 +1,8 @@
 <p>
   kontrolna-tabla-ekran works!
 </p>
+<button *ngIf="vodicFaza===1" (click)="vodicAktivnosti()">Имање је фина опција.</button>
+<button *ngIf="vodicFaza===2">Активности су кул.</button>
 <app-statusna-tabla></app-statusna-tabla>
 <app-meni-tabla></app-meni-tabla>
 <router-outlet></router-outlet>

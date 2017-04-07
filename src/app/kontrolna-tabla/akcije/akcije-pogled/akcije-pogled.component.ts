@@ -17,5 +17,4 @@ export class AkcijePogledComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

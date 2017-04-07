@@ -1,5 +1,5 @@
 /****************************************************************************/
-import { Component, OnInit, OnDestroy, Inject  } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
 
 import { NjiveActionCreators } from '../../../Redux/action-creators/njive.action-creators';
@@ -22,8 +22,7 @@ import { StateService } from '../../../deljeno/state.service';
 export class NjiveComponent implements OnInit, OnDestroy {
 	njive: Njiva[];
   novaNjivaId: string;  // sluzi da aktivira fade-in efekat za novododatu njivu
-  unsubscribeStore;
-	unsubscribe;
+  unsubscribe;
 
   constructor(private route: ActivatedRoute, private router: Router, private stateService: StateService, private actionCreators: NjiveActionCreators) { }
 
