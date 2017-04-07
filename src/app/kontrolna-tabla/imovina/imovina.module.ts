@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule} from '../../routing/app-routing.module';
+import { GmapsModule } from '../../gmaps/gmaps.module';
 
 import { ImovinaPogledComponent } from './imovina-pogled/imovina-pogled.component';
 import { NjiveComponent } from './njive/njive.component';
@@ -18,9 +19,10 @@ import { DodajNjivuComponent } from './dodaj-njivu/dodaj-njivu.component';
 @NgModule({
   imports: [
     CommonModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    AppRoutingModule,
+    GmapsModule,
   ],
   declarations: [ImovinaPogledComponent, NjiveComponent, MasineComponent, NjivaComponent, DodajNjivuComponent]
 })

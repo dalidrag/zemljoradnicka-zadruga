@@ -7,6 +7,8 @@ import { NjiveActionCreators } from '../../../Redux/action-creators/njive.action
 
 import { Njiva } from '../../../deljeno/tipovi-podataka/njiva';
 
+import { NjivaMapComponent } from '../../../gmaps/njiva-map/njiva-map.component';
+
 import { DataService } from '../../../deljeno/data.service';
 import { UtilitiesService } from '../../../deljeno/utilities.service';
 import { NotificationHubService, HubNotificationType } from '../../../deljeno/event-hub.service';
