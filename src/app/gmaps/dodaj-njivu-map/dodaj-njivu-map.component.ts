@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { GmapsService } from '../gmaps.service';
 
 @Component({
-  selector: 'app-njiva-map',
-  templateUrl: './njiva-map.component.html',
-  styleUrls: ['./njiva-map.component.css']
+  selector: 'app-dodaj-njivu-map',
+  templateUrl: './dodaj-njivu-map.component.html',
+  styleUrls: ['./dodaj-njivu-map.component.css']
 })
-export class NjivaMapComponent implements OnInit {
+export class DodajNjivuMapComponent implements OnInit {
 
   constructor(private gmapsService: GmapsService) { }
 
   ngOnInit() {
   	if (!this.gmapsService.google) {
-  		this.gmapsService.initGoogleMaps([]).then(() => {
+  		this.gmapsService.initGoogleMaps(['drawing']).then(() => {
   			this.inicijalizujMapu()
   		});
   	}
@@ -36,6 +36,15 @@ export class NjivaMapComponent implements OnInit {
 		let mapElement = document.getElementById('mapDiv') as HTMLElement;
 
 		this.gmapsService.initMap(mapElement, mapOptions);
+
+		let drawingManager = new this.gmapsService.google.maps.drawing.DrawingManager({
+	    drawingMode: this.gmapsService.google.maps.drawing.OverlayType.POLYGON,
+	    drawingControl: true,
+	    drawingControlOptions: {
+	      drawingModes: ['polygon', 'rectangle']
+	    },
+	  });
+		drawingManager.setMap(this.gmapsService.map);
   }
 
 }

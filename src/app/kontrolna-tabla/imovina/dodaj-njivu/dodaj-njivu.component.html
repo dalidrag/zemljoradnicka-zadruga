@@ -1,4 +1,4 @@
-<app-njiva-map></app-njiva-map> 
+<app-dodaj-njivu-map></app-dodaj-njivu-map> 
 <form [formGroup]="dodajNjivuForma" (ngSubmit)="onSubmit(dodajNjivuForma.value)" (keyup)="onKey($event)">
 
 	<input #ime type="text" id="ime" name="ime" [formControl]="dodajNjivuForma.controls['ime']" (blur)="onBlur($event)" autofocus />
