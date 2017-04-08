@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GmapsService } from '../gmaps.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { GmapsService } from '../gmaps.service';
   styleUrls: ['./dodaj-njivu-map.component.css']
 })
 export class DodajNjivuMapComponent implements OnInit {
+	@Output() onShapeDrawn = new EventEmitter<boolean>();
 
   constructor(private gmapsService: GmapsService) { }
 
@@ -16,20 +17,22 @@ export class DodajNjivuMapComponent implements OnInit {
   			this.inicijalizujMapu()
   		});
   	}
-  	else {
-//  		if (!this.gmapsService.map)
-  			this.inicijalizujMapu();
-  	}
+  	else
+  		this.inicijalizujMapu();
   }
 
+  /**
+	 * Inicijalizuje mapu za crtanje jedne njive, kao poligona
+	 *
+	 * @method inicijalizujMapu
+   */
   inicijalizujMapu() {
-  	//Setting starting options of map
+  	// Pocetne opcije za mapu, koje prikazuju celu Srbiju
   	let mapOptions = {
   		center: new this.gmapsService.google.maps.LatLng(44.404551, 20.877572), 
   		zoom: 7,
   		minZoom: 7,
-  		mapTypeId: this.gmapsService.google.maps.MapTypeId.HYBRID,
-  		disableDefaultUI: true
+  		mapTypeId: this.gmapsService.google.maps.MapTypeId.HYBRID
 		};
 
 		//Getting map DOM element
@@ -41,10 +44,26 @@ export class DodajNjivuMapComponent implements OnInit {
 	    drawingMode: this.gmapsService.google.maps.drawing.OverlayType.POLYGON,
 	    drawingControl: true,
 	    drawingControlOptions: {
-	      drawingModes: ['polygon', 'rectangle']
+	      drawingModes: ['polygon']
 	    },
 	  });
 		drawingManager.setMap(this.gmapsService.map);
-  }
+  
+  	let self = this;
+		// dodaj event listener koji ce se aktivirati kada je crtanje poligona zavrseno
+		this.gmapsService.google.maps.event.addListener(drawingManager, 'overlaycomplete', function(e) {
+      // Prebaci se u mod bez crtackih opcija
+      drawingManager.setDrawingMode(null);
+      // Sakrij crtacke ikone na mapi
+      drawingManager.setOptions({
+        drawingControl: false
+      });
+
+      let oblikNjiveNaMapi = e.overlay;
+      oblikNjiveNaMapi.type = e.type;
+
+      self.onShapeDrawn.emit(true);
+	  });
+  } // kraj metoda
 
 }

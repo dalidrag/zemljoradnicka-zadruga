@@ -6,6 +6,8 @@ export class GmapsService {
 	public google;
 	public map;
 
+	public dodataNjivaOblik;
+
   constructor() { }
 
   /**

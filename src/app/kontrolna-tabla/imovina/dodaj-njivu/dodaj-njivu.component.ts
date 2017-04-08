@@ -15,7 +15,8 @@ import { NotificationHubService, HubNotificationType } from '../../../deljeno/ev
 /************************************************************************/
 
 /**
- * Forma za dodavanje njive
+ * Komponenta za dodavanje njive. Sastoji se od dva delja: pod-komponente za
+ * crtanje njive na mapi, i HTML forme za unosenje ostalih informacija o njivi
  *
  * @class DodajNjivuComponent
  */
@@ -37,14 +38,25 @@ export class DodajNjivuComponent implements OnInit {
   		'klasaZemljista': [''] // TODO: Write custom validator for number range 1-7
     });
   }
-	
-	/**
+  /**
+	 * Nakon sto je njiva iscrtana, prikazuje formu za unosenje ostalih podataka
+	 *
+	 * @param drawn Boolean, true ako je njiva nacrtana
+	 * @method onShapeDrawn
+   */
+  onShapeDrawn(njivaNacrtana) {
+  	if (njivaNacrtana) {
+  		let forma = document.getElementsByTagName('form')[0] as HTMLElement;
+  		forma.style.display = 'block';
+  	}
+  }
+
+  /**
 	 * Upisuje pokupljene vrednosti iz forme u bazu podataka
 	 *
 	 * @param formValues
 	 * @method onSubmit
 	 */
-
 	onSubmit(formValues: any): void { 
 		let novaNjiva = new Njiva();
 		novaNjiva.ime = formValues.ime;
