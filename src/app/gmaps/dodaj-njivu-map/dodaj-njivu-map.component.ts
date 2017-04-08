@@ -7,7 +7,7 @@ import { GmapsService } from '../gmaps.service';
   styleUrls: ['./dodaj-njivu-map.component.css']
 })
 export class DodajNjivuMapComponent implements OnInit {
-	@Output() onShapeDrawn = new EventEmitter<boolean>();
+	@Output() onShapeDrawn = new EventEmitter<any>();
 
   constructor(private gmapsService: GmapsService) { }
 
@@ -60,9 +60,9 @@ export class DodajNjivuMapComponent implements OnInit {
       });
 
       let oblikNjiveNaMapi = e.overlay;
-      oblikNjiveNaMapi.type = e.type;
+      // oblikNjiveNaMapi.type = e.type;
 
-      self.onShapeDrawn.emit(true);
+      self.onShapeDrawn.emit(oblikNjiveNaMapi);
 	  });
   } // kraj metoda
 

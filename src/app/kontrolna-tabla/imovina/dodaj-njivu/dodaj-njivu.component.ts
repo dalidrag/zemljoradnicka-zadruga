@@ -41,11 +41,16 @@ export class DodajNjivuComponent implements OnInit {
   /**
 	 * Nakon sto je njiva iscrtana, prikazuje formu za unosenje ostalih podataka
 	 *
-	 * @param drawn Boolean, true ako je njiva nacrtana
+	 * @param oblikNjiveNaMapi Gmaps poligon koji predstavlja njivu na mapi
 	 * @method onShapeDrawn
    */
-  onShapeDrawn(njivaNacrtana) {
-  	if (njivaNacrtana) {
+  onShapeDrawn(oblikNjiveNaMapi) {
+  	if (oblikNjiveNaMapi) {
+  		oblikNjiveNaMapi.getPath().forEach((element, index) => {
+  			console.log('p' + index + ': ' + element.lat());
+  			console.log('p' + index + ': ' + element.lng());
+  		});
+			// console.log(oblikNjiveNaMapi.getPath().getAt(1).lat());
   		let forma = document.getElementsByTagName('form')[0] as HTMLElement;
   		forma.style.display = 'block';
   	}
