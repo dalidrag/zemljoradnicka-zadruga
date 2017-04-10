@@ -8,9 +8,14 @@
 		<div class="slika-njive"></div>
 		<p>{{njiva.ime}}</p>
 	</div>
-	<div *ngFor="let usev of njiva.usevi" [class.novi-usev]="noviUsevId && noviUsevId===usev.id">
-		<p>{{usev.vrsta_useva}}</p>
+	<div class="usevi">
+		<div *ngFor="let usev of njiva.usevi" [class.novi-usev]="noviUsevId && noviUsevId===usev.id" class="usev">
+			<div class="okvir-useva">
+				<div class="slika-useva"></div>
+				<p>{{usev.vrsta_useva}}</p>
+			</div>
+		</div>
 	</div>
 </div>
-<button (click)="prikaziInformacije()" data-tema="pasulj_osnovno" id="info-dugme">Informacije</button>
-<a [routerLink]="['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['dodaj-njivu']}}]">Додај њиву</a>
+<!--<button (click)="prikaziInformacije()" data-tema="pasulj_osnovno" id="info-dugme">Informacije</button>-->
+<button class="dugme-dodaj-njivu" [routerLink]="['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['dodaj-njivu']}}]">Додај њиву</button>

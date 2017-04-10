@@ -5,11 +5,36 @@ body, p {
 
 @font-face {
   font-family: "naturalFont";
-  src: url("assets/fonts/Gabriela-Regular.ttf");
+  src: url("assets/fonts/JustBreatheBd.otf");
 }
 
 * {
   font-family: naturalFont, serif;
+}
+
+/* Stilovi za liniju razdvajanja sekcija */
+.section-header {
+  display:  flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  color: white;
+}
+.section-header-last {
+  flex-grow: 1;
+}
+.inset-line {
+  height: 1px;
+  background-color: blue;
+  box-shadow: 0px 1px 0px 0px white;
+}
+.inset-line-left {
+  height: 1px;
+  width: 2rem;
+  background-color: blue;
+  box-shadow: 0px 1px 0px 0px white;
+}
+.header-text {
+  text-shadow: 1px 1px blue;
 }
 
 /* Stilovi za modalni pop-up implementiran u okviru ModalPopupService serivsa */
