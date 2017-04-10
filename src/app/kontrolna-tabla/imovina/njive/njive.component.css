@@ -3,9 +3,44 @@
 	to { opacity: 1;  }
 }
 
-#njive {
-	border: 1px solid red;
+.njiva {
+	display: inline-block;
+	margin: 0.5rem;
 }
+.okvir-njive {
+	width: 8rem;
+}
+.slika-njive {
+	height: 8rem;
+	border: 9px solid brown;
+	border-radius: 9px;
+	background-color: green;
+}
+
+.section-header {
+	display:  flex;
+	align-items: center;
+	margin-top: 0.5rem;
+	color: white;
+}
+.section-header-last {
+	flex-grow: 1;
+}
+.inset-line {
+	height: 1px;
+	background-color: blue;
+	box-shadow: 0px 1px 0px 0px white;
+}
+.inset-line-left {
+	height: 1px;
+	width: 2rem;
+	background-color: blue;
+	box-shadow: 0px 1px 0px 0px white;
+}
+.header-text {
+	text-shadow: 1px 1px blue;
+}
+
 .nova-njiva {
 	animation-name: fade-in;
 	animation-duration: 0.5s;
@@ -15,4 +50,8 @@
 	animation-name: fade-in;
 	animation-duration: 0.5s;
 	animation-timing-function: ease-in;
+}
+
+#info-dugme {
+	display: block;
 }
