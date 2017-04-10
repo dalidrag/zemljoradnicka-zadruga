@@ -22,6 +22,7 @@ import { StateService } from '../../../deljeno/state.service';
 export class NjiveComponent implements OnInit, OnDestroy {
 	njive: Njiva[];
   novaNjivaId: string;  // sluzi da aktivira fade-in efekat za novododatu njivu
+  noviUsevId: string;  // sluzi da aktivira fade-in efekat za novododati usev
   unsubscribe;
 
   constructor(private route: ActivatedRoute, private router: Router, private stateService: StateService, private actionCreators: NjiveActionCreators) { }
@@ -33,6 +34,10 @@ export class NjiveComponent implements OnInit, OnDestroy {
     if (this.stateService.state.njive.novaNjivaId !== '0') {  // ako je upravo dodata nova njiva
       this.novaNjivaId = this.stateService.state.njive.novaNjivaId;
       this.actionCreators.novaNjivaPrikazana();
+    }
+    if (this.stateService.state.njive.noviUsevId !== '0') {  // ako je upravo dodata nova njiva
+      this.noviUsevId = this.stateService.state.njive.noviUsevId;
+      this.actionCreators.noviUsevPrikazan();
     }
   }
 

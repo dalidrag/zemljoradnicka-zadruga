@@ -1,3 +1,7 @@
 <p>
   akcije-pogled works!
 </p>
+<div *ngFor="let aktivnost of aktivnosti">
+	<p>{{aktivnost.tip}}: {{aktivnost.meta2}}</p>
+</div>
+<a routerLink="../posej">Посеј</a>

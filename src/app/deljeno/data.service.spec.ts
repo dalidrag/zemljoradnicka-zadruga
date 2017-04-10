@@ -76,6 +76,34 @@ describe('DataService', () => {
     });
   });
 
+  it('should have azurirajNjivu() method', () => {
+    expect(service.azurirajNjivu).toBeDefined();
+  });
+  describe('azurirajNjivu() method', () => {
+    it('should return a Promise', () => {
+      let azuriranaNjiva = new Njiva();
+      azuriranaNjiva.id="1";
+      expect(service.azurirajNjivu(azuriranaNjiva) instanceof Promise).toBeTruthy();
+    });
+    it('should update njiva', (done) => {
+      service.preuzmiNjive()
+      .then((njive) => {
+        let azuriranaNjiva = new Njiva();
+        azuriranaNjiva.id = njive[0].id;
+        azuriranaNjiva.ime = "Novo ime";
+        service.azurirajNjivu(azuriranaNjiva);
+      })
+      .then(() => service.preuzmiNjive())
+      .then((njive) => {
+        expect(njive[0].ime).toBe("Novo ime");
+        done();
+      })
+      .catch((error) => {
+        console.log('Azuriraj njivu poziv nije uspeo: ' + error);
+      });
+    });
+  });
+
   it('should have preuzmiAktivnosti() method', () => {
     expect(service.preuzmiAktivnosti).toBeDefined();
   });

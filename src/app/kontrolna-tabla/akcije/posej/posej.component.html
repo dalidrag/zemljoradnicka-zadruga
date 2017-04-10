@@ -1,0 +1,16 @@
+<p>
+  posej works!
+</p>
+<form [formGroup]="posejForma" (ngSubmit)="onSubmit(posejForma.value)">
+	<input #usev type="text" id="usev" name="usev" [formControl]="posejForma.controls['usev']" autofocus />
+	<div class="error" *ngIf="posejForma.controls['usev'].hasError('required') && posejForma.controls['usev'].touched">Морате унети име усева</div>
+	<div class="error" *ngIf="posejForma.controls['usev'].hasError('maxlength') && posejForma.controls['usev'].touched">Име усева може имати највише 30 слова</div>
+
+	<select [formControl]="posejForma.controls['njiva']">
+		<option *ngFor="let njiva of njive" label="{{njiva.ime}}" value="{{njiva.id}}">
+		</option>
+	</select>
+	<div class="error" *ngIf="posejForma.controls['njiva'].hasError('required') && posejForma.controls['njiva'].touched">Морате изабрати њиву</div>
+
+<button type="submit" [disabled]="!posejForma.valid">Додај усев</button>
+</form>

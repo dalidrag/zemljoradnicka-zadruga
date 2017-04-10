@@ -54,6 +54,23 @@ export class DataService {
 	}
 
 	/**
+	 * Azurira postojecu njivu
+	 *
+	 * @method azurirajNjivu
+	 * @param azuriranaNjiva Novi sadzaj njive
+	 * @return {Promise<any>}
+	 */
+	azurirajNjivu(azuriranaNjiva: Njiva): Promise<any> {
+		return this.http
+			.put(this.njiveUrl + '/' + azuriranaNjiva.id, JSON.stringify(azuriranaNjiva), {headers: this.headers})
+			.toPromise()
+			.then(response => {
+				return response;
+			})
+			.catch(this.handleError);
+	}
+
+	/**
 	 * Preuzima sve aktivnosti prijavljenog clana zadruge
 	 *
 	 * @method preuzmiAktivnosti

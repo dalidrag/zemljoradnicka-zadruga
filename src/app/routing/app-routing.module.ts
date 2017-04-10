@@ -17,8 +17,11 @@ import { NjiveComponent } from '../kontrolna-tabla/imovina/njive/njive.component
 import { NjivaComponent } from '../kontrolna-tabla/imovina/njive/njiva/njiva.component';
 import { DodajNjivuComponent } from '../kontrolna-tabla/imovina/dodaj-njivu/dodaj-njivu.component';
 import { MasineComponent } from '../kontrolna-tabla/imovina/masine/masine.component';
+import { PosejComponent } from '../kontrolna-tabla/akcije/posej/posej.component';
 
 import { NjiveResolve } from './njive-resolve.service';
+import { AkcijeResolve } from './akcije-resolve.service';
+
 
 import { AuthGuard } from './auth.guard';
 
@@ -38,7 +41,8 @@ const routes: Routes = [
     { path: 'masine-prikaz', component: MasineComponent, outlet: 'masine' },
     ]
  	 },
-   { path: 'akcije', component: AkcijePogledComponent },
+   { path: 'akcije', component: AkcijePogledComponent, resolve: {aktivnosti: AkcijeResolve} },
+   { path: 'posej', component: PosejComponent, resolve: {njive: NjiveResolve} },
    { path: 'grafikoni', component: GrafikoniPogledComponent },
    { path: 'zabeleske', component: ZabeleskePogledComponent }
   ]
@@ -53,6 +57,6 @@ const routes: Routes = [
 @NgModule({
  imports: [ RouterModule.forRoot(routes) ],
  exports: [ RouterModule ],
- providers: [AuthGuard, NjiveResolve]
+ providers: [AuthGuard, NjiveResolve, AkcijeResolve]
 })
 export class AppRoutingModule {}
