@@ -7,6 +7,7 @@ import { NjiveActionCreators } from '../../../Redux/action-creators/njive.action
 import { Njiva } from '../../../deljeno/tipovi-podataka/njiva';
 
 import { StateService } from '../../../deljeno/state.service';
+import { ModalPopupService} from '../../../deljeno/modal-popup.service';
 /****************************************************************************/
 
 /**
@@ -25,7 +26,7 @@ export class NjiveComponent implements OnInit, OnDestroy {
   noviUsevId: string;  // sluzi da aktivira fade-in efekat za novododati usev
   unsubscribe;
 
-  constructor(private route: ActivatedRoute, private router: Router, private stateService: StateService, private actionCreators: NjiveActionCreators) { }
+  constructor(private route: ActivatedRoute, private router: Router, private stateService: StateService, private actionCreators: NjiveActionCreators, private modalPopupService: ModalPopupService) { }
 
   ngOnInit() {
     this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[] }) => {
@@ -43,6 +44,13 @@ export class NjiveComponent implements OnInit, OnDestroy {
 
   prikaziNjivu(njivaId) {
   	this.router.navigate(['kontrolna-tabla', 'imovina', {outlets: {'njive': ['njiva-prikaz', njivaId]}}]);
+  }
+
+  prikaziInformacije() {
+    this.modalPopupService.open();
+    let infoButton = document.getElementById('info-dugme') as HTMLElement;
+    let dataSet = infoButton.dataset as any;
+    this.modalPopupService.insertHTML(`<h1>Naslov</h1><p>${dataSet.tema}</p>`);
   }
 
   ngOnDestroy() {

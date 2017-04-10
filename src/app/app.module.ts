@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -22,6 +23,7 @@ import { AuthService } from './deljeno/auth.service';
 import { DataService } from './deljeno/data.service';
 import { StateService } from './deljeno/state.service';
 import { NotificationHubService } from './deljeno/event-hub.service';
+import { ModalPopupService } from './deljeno/modal-popup.service';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -66,6 +68,7 @@ import { PrvaNjivaComponent } from './vodic/prva-njiva/prva-njiva.component';
   ],
   providers: [
     AuthService, DataService, UtilitiesService, NotificationHubService,
+    ModalPopupService,
     { provide: 'AppStore', useValue: appStore },
     InitActionCreator, NjiveActionCreators, VodicActionCreators,
     StateService
