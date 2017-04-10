@@ -27,7 +27,13 @@
 	- Skladista: punjenje, prodaja, opravka, kupovina, iznajmljivanje, prodaja;
 	- Ostale aktivnosti.
 	Svaka aktivnost moze da ima cenu, dobit, vreme trajanja, upotrebljenu masinu i datum.
-- Grafikoni vode na ekran sa velikim dugmadima koja vode ka razlicitim vizuelizacijama podataka.
+- Grafikoni vode na ekran sa velikim dugmadima koja vode ka razlicitim vizuelizacijama podataka. Prisutne su i cetiri tabele vezane za celu zadrugu:
+	- Ulozena sredstva po aktivnostima,  ostvarena dobit po aktivnostima, prelom
+	- Ulozeni rad po aktivnostima
+	- Ulozeni rad po clanovima
+	- Ocekivani ukupni prinos, i prinos po vrst useva
+	- Ukupna imovina zadruge, ukupna vrednost imovine zadruge
+
 - Zabeleske vode na ekran sa ikonama unetih belezaka i ikonom za novu belesku. Klik na ikonu vodi na ekran sa tekst
  editorom.
 - Pored svake opcije postoji dugme pomoc koje otvara modalni prozor sa jasnim objasnjenjem opcije.

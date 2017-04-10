@@ -3,5 +3,8 @@
 </p>
 <div *ngFor="let njiva of njive" [class.nova-njiva]="novaNjivaId && novaNjivaId===njiva.id" (click)="prikaziNjivu(njiva.id)" id="njive">
 	<p>Име: {{njiva.ime}}</p>
+	<div *ngFor="let usev of njiva.usevi">
+		<p>{{usev.vrsta_useva}}</p>
+	</div>
 </div>
 <a [routerLink]="['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['dodaj-njivu']}}]">Додај њиву</a>

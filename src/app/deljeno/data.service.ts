@@ -4,6 +4,7 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Njiva } from './tipovi-podataka/njiva';
+import { Aktivnost } from './tipovi-podataka/aktivnost';
 
 /**
  * Omogucuje razmenu podataka sa HTTP serverom
@@ -15,7 +16,8 @@ import { Njiva } from './tipovi-podataka/njiva';
 export class DataService {
 	private headers = new Headers({'Content-Type': 'application/json'});
 	// URLs to web api
-	private njiveUrl = 'http://localhost:4200/api/njive';  
+	private njiveUrl = 'http://localhost:4200/api/njive';
+	private aktivnostiUrl = 'http://localhost:4200/api/aktivnosti';  
   
   constructor(private http: Http) { }
 
@@ -47,6 +49,38 @@ export class DataService {
 			.toPromise()
 			.then(response => {
 				return response.json().data as Njiva
+			})
+			.catch(this.handleError);
+	}
+
+	/**
+	 * Preuzima sve aktivnosti prijavljenog clana zadruge
+	 *
+	 * @method preuzmiAktivnosti
+	 * @return {Promise<Aktivnost[]>} Vraca preuzete aktivnosti kao Promise
+	 */
+	 preuzmiAktivnosti() {
+	 	return this.http.get(this.aktivnostiUrl)
+	 	  	             .toPromise()		// Because Angular http service returns observable
+	 	  	             .then(response => {
+	 	  	             		return response.json().data as Aktivnost[];
+	 	  	             })
+	 	  	             .catch(this.handleError)
+	 }
+
+	 /**
+	 * Dodaje aktivnost
+	 *
+	 * @method dodajAktivnost
+	 * @param novaAktinovst Aktivnost koju treba dodati
+	 * @return {Promise<Aktivnost>} Dodata aktivnost kao Promise; id polje je automatski dodato
+	 */
+	dodajAktivnost(novaAktivnost: Aktivnost): Promise<Aktivnost> {
+		return this.http
+			.post(this.aktivnostiUrl, JSON.stringify(novaAktivnost), {headers: this.headers})
+			.toPromise()
+			.then(response => {
+				return response.json().data as Aktivnost
 			})
 			.catch(this.handleError);
 	}

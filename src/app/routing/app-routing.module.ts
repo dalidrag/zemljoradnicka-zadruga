@@ -1,3 +1,4 @@
+
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -28,7 +29,7 @@ const routes: Routes = [
  { path: 'vodic-broj-ari', component: BrojAriComponent },
  { path: 'vodic-prva-njiva', component: PrvaNjivaComponent },
  { path: 'kontrolna-tabla', component: KontrolnaTablaEkranComponent,
-   /* canActivate: [AuthGuard], canActivateChild: [AuthGuard], */ children: [
+    /* canActivate: [AuthGuard], canActivateChild: [AuthGuard], */ children: [
    { path: '', component: KontrolnaTablaPogledComponent },
    { path: 'imovina', component: ImovinaPogledComponent, children: [
     { path: 'njive-prikaz', component: NjiveComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },

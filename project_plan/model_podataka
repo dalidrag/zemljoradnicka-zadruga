@@ -5,7 +5,7 @@ Clan Zadruge
 	Iznos novcanog uloga ili clanarine, odnosno opis vrste i vrednost nenovcanog uloga
 	Vreme uplate, odnosno nacin i vreme unošenja nenovcanog uloga	
 	Njive, Masine, Skladista, Djubrivo, Pesticidi, Ostala imovina -  svi Array, deo Clana Zadruge u MongoDB-u.
-	Aktivnosti - Array, posebna kolekcija u MongoDB-u (1).
+	Aktivnosti - (1).
 	Slika;
 	Zabeleske - Array, deo Clana Zadruge u MongoDB-u.
 Zadruga
@@ -35,31 +35,36 @@ Zadruga
 	Ime prvog direktora zadruge ili vrsioca duznosti direktora;
 	Podatak da li zadruga posluje sa ulozima ili članarinama;
 	Slika;
+	Aktivnosti - Array[Aktivnost].
 Vrsta useva (2)
 	Ime;
 	Slika;
-Aktivnost
-	Clan Zadruge: back-reference prema clanu zadruge koji je sproveo aktivnost, ili sama zadruga;
-	Meta Aktivnosti: Array of back-references prema objektu nad kojim je aktivnost sprovedena;
-	Tip: tip aktivnosti;
+Aktivnost - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija
+	Tip: tip aktivnosti;	
+	Meta Aktivnosti 1: reference to objekat u bazi
+	Meta Aktivnosti 2: reference to objekat u bazi
+	Meta Aktivnosti 3: reference to objekat u bazi
+	Meta Aktivnosti 4: reference to objekat u bazi
+	Meta Aktivnosti 5: reference to objekat u bazi
 	Datum;
 	Vreme trajanja;
 	Cena;
 	Dobit;
 	Zabeleska;
-	Upotrebljene masine: Array, deo Aktivnosti u MongoDB-u;
-Aktivnosti (1)
-	Array Aktivnosti.
+Usev - ova struktura je deo Njive, ne postoji kao posebna kolekcija
+	Vrsta useva (2);
+	Kolicina useva;
+	Datum sejanja?;
+	Ocekivani datum prinosa?;
+	Ocekivani prinos?;
 Njiva
 	Ime;
 	Geografske koordinate njive;
 	Katastarska opstina:
 	Osnov koriscenja: vlasnistvo/zakup zemljista;
 	Tip zemljista:
-	Klasa: (1-8)
-	Vrsta useva: Array, posebna kolekcija u MongoDB-u (2);
-	Kolicina useva: Array, deo Njive u MongoDB-u;
-	Aktivnosti: Array, posebna kolekcija u MongoDB-u (1).
+	Klasa: (1-8);
+	Usevi: Array[Usev];
 Masina
 	Ime;
 	Tip: Traktor, Kombajn, Motokultivator, dodatak za Traktor, dodatak za Kombajn, dodatak za Motokultivator, ostalo
@@ -69,7 +74,6 @@ Masina
 	Konjske snage;
 	Kapacitet goriva;
 	Posedovan ili iznajmljivan;
-	Aktivnosti: Array, posebna kolekcija u MongoDB-u (1);
 	Slika;
 	Zabeleske;
 Skladiste

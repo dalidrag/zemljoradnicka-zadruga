@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- DataService za aktivnosti
 - Vodic arhitektura
+### Changed
+- Funkcionalna specikacija u delu 'grafikoni'
+- Model podataka aktivnosti, njive; dodata stuktura usevi
 
 ##[0.2.0] - 2017-04-06
 ### Added
