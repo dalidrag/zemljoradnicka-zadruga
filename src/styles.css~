@@ -1,16 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  margin: 0;
-}
-
-@font-face {
-  font-family: "naturalFont";
-  src: url("assets/fonts/Gabriela-Regular.ttf");
-}
-
-* {
-  font-family: naturalFont, serif;
-}
 
 /* Stilovi za modalni pop-up implementiran u okviru ModalPopupService serivsa */
 .modal-backdrop {

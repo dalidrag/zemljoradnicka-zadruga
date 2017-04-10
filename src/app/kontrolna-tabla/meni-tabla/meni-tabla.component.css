@@ -1,10 +1,20 @@
 #meni-tabla {
 	display: flex;
-	justify-content: space-between;
+	1justify-content: space-between;
 	color: white;
 	background-color: green;
 }
 a {
+	flex-grow: 1;
 	color: white;
 	text-decoration: none;
+}
+.srednja {
+	text-align: center;
+}
+#poslednja {
+	text-align: right;
+}
+.izabrana {
+	background-color: darkgreen;
 }

@@ -5,8 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-- Servis za prikazivanje modalnog pop-up-a
 
+
+[0.4.0] - 2017-04-10
+### Added
+- Servis za prikazivanje modalnog pop-up-a
 
 [0.3.0] - 2017-04-10
 ### Added

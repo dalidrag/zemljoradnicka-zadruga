@@ -1,6 +1,6 @@
 <div id="meni-tabla">
-	<a [routerLink]="['imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]">Имање</a>
-	<a routerLink="akcije">Активности</a>
-	<a routerLink="grafikoni">Графикони</a>
-	<a routerLink="zabeleske">Забелешке</a>
+	<a [routerLink]="['imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]" [class.izabrana]="izabranaOpcija===1">Имање</a>
+	<a routerLink="akcije" class="srednja" [class.izabrana]="izabranaOpcija===2">Активности</a>
+	<a routerLink="grafikoni" class="srednja" [class.izabrana]="izabranaOpcija===3">Графикони</a>
+	<a routerLink="zabeleske" id="poslednja" [class.izabrana]="izabranaOpcija===4">Забелешке</a>
 </div>

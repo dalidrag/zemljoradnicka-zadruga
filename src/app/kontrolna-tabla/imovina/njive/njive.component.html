@@ -1,6 +1,3 @@
-<p>
-  njive works!
-</p>
 <div *ngFor="let njiva of njive" [class.nova-njiva]="novaNjivaId && novaNjivaId===njiva.id" (click)="prikaziNjivu(njiva.id)" id="njive">
 	<p>Име: {{njiva.ime}}</p>
 	<div *ngFor="let usev of njiva.usevi" [class.novi-usev]="noviUsevId && noviUsevId===usev.id">
