@@ -1,6 +1,3 @@
-<p>
-  posej works!
-</p>
 <form [formGroup]="posejForma" (ngSubmit)="onSubmit(posejForma.value)">
 	<input #usev type="text" id="usev" name="usev" [formControl]="posejForma.controls['usev']" autofocus />
 	<div class="error" *ngIf="posejForma.controls['usev'].hasError('required') && posejForma.controls['usev'].touched">Морате унети име усева</div>
@@ -12,5 +9,29 @@
 	</select>
 	<div class="error" *ngIf="posejForma.controls['njiva'].hasError('required') && posejForma.controls['njiva'].touched">Морате изабрати њиву</div>
 
-<button type="submit" [disabled]="!posejForma.valid">Додај усев</button>
+	<button type="submit" [disabled]="!posejForma.valid">Додај усев</button>
 </form>
+
+	<span class="input input--sae">
+		<input class="input__field input__field--sae" type="text" id="input-17" />
+		<label class="input__label input__label--sae" for="input-17">
+			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+			<span class="input__label-content input__label-content--sae">Email Address</span>
+		</label>
+	</span>
+	<span class="input input--sae">
+		<input class="input__field input__field--sae" type="text" id="input-18" />
+		<label class="input__label input__label--sae" for="input-18">
+			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+			<span class="input__label-content input__label-content--sae">Invitation Code</span>
+		</label>
+	</span>
+	
+	<span class="input input--sae">
+		<input class="input__field input__field--sae" type="text" id="input-19" />
+		<label class="input__label input__label--sae" for="input-19">
+			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+			<span class="input__label-content input__label-content--sae">Full Name</span>
+		</label>
+	</span>
+
