@@ -6,6 +6,7 @@ import { AppRoutingModule} from '../../routing/app-routing.module';
 
 import { AkcijePogledComponent } from './akcije-pogled/akcije-pogled.component';
 import { PosejComponent } from './posej/posej.component';
+import { AkcijeListaComponent } from './akcije-lista/akcije-lista.component';
 
 /**
  * Ovaj modul sadzi svu funkcionalost pogleda 'akcije'
@@ -18,6 +19,6 @@ import { PosejComponent } from './posej/posej.component';
     AppRoutingModule,
     FormsModule, ReactiveFormsModule
   ],
-  declarations: [AkcijePogledComponent, PosejComponent]
+  declarations: [AkcijePogledComponent, PosejComponent, AkcijeListaComponent]
 })
 export class AkcijeModule { }

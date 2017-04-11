@@ -1,11 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'
-
-import { Aktivnost } from '../../../deljeno/tipovi-podataka/aktivnost';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 /**
- * Ovaj pogled prikazuje sve akcije clana zadruge
- * ako je selektovano, kombinovano sa zajednickim akcijama zadruge
+ * Ovaj pogled prikazuje ikone za selektovanje akcija
  *
  * @class AkcijePogledComponent
  */
@@ -15,18 +12,13 @@ import { Aktivnost } from '../../../deljeno/tipovi-podataka/aktivnost';
   styleUrls: ['./akcije-pogled.component.css']
 })
 export class AkcijePogledComponent implements OnInit {
-	aktivnosti: Aktivnost[];
-	unsubscribe;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-	  this.unsubscribe = this.route.data.subscribe((data: { aktivnosti: Aktivnost[] }) => {
-			this.aktivnosti = data.aktivnosti;
-		});
   }
 
-  // ngOnDestroy() {
-  //   this.unsubscribe.unsubscribe();
-  // }
+  posej() {
+    this.router.navigate(['/kontrolna-tabla/posej']);
+  }
 }

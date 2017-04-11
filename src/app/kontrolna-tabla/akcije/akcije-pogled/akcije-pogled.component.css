@@ -1,6 +1,7 @@
-.aktivnosti-ikone {
+.aktivnosti {
 	display: flex;
 	justify-content: center;
+	margin-top: 1rem;
 }
 .aktivnost-slika {
 	position: relative;
@@ -13,6 +14,7 @@
 	border-radius: 4px;
 	background-color: gold;
 	background-size: 100% 100%;
+	cursor: pointer;
 }
 .aktivnost-tekst {
 	position: relative;

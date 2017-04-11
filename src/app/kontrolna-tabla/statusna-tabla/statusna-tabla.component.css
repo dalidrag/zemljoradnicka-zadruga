@@ -5,8 +5,12 @@
 	background-color: darkgreen;
 }
 a {
+	font-family: "Gabriela", serif;
 	color: white;
 	text-decoration: none;
+}
+#korisnik {
+	font-family: "naturalFont", serif;
 }
 .error {
 	color:  red;

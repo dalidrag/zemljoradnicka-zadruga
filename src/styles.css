@@ -7,6 +7,10 @@ body, p {
   font-family: "naturalFont";
   src: url("assets/fonts/JustBreatheBd.otf");
 }
+@font-face {
+  font-family: "Gabriela";
+  src: url("assets/fonts/Gabriela-Regular.ttf");
+}
 
 * {
   font-family: naturalFont, serif;
@@ -17,6 +21,12 @@ body, p {
   html {
     font-size: 24px;
   }
+}
+
+/* Globalni stil za dugmad */
+button {
+  font-family: "Gabriela", serif;
+  cursor: pointer;
 }
 
 /* Stilovi za liniju razdvajanja sekcija */
