@@ -1,4 +1,29 @@
+<div class="section-header">
+	<div class="inset-line-left"></div>
+	<div class="header-text">Њиве</div>
+	<div class="section-header-last inset-line"></div>
+</div>
+<div class="aktivnosti-ikone">
+	<div class="aktivnost-slika" id="slika-oranje">
+		<span class="aktivnost-tekst">Орање</span>
+	</div>
+	<div class="aktivnost-slika" id="slika-sejanje">
+		<span class="aktivnost-tekst">Сејање</span>
+	</div>
+	<!-- <a class="aktivnost-text" routerLink="../posej">Посеј</a> -->
+	<div class="aktivnost-slika" id="slika-navodnjavanje">
+		<span class="aktivnost-tekst-mali">Наводњавање</span>
+	</div>
+	<div class="aktivnost-slika" id="slika-djubrenje">
+		<span class="aktivnost-tekst">Ђубрење</span>
+	</div>
+	<div class="aktivnost-slika" id="slika-prskanje">
+		<span class="aktivnost-tekst">Прскање</span>
+	</div>
+	<div class="aktivnost-slika" id="slika-zetva">
+		<span class="aktivnost-tekst">Жетва</span>
+	</div>
+</div>
 <div *ngFor="let aktivnost of aktivnosti">
 	<p>{{aktivnost.tip}}: {{aktivnost.meta2}}</p>
 </div>
-<a routerLink="../posej">Посеј</a>

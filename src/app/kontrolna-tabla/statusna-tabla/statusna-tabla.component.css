@@ -22,3 +22,9 @@ p {
 	transition: opacity 1.5s;
 	/* font-size: 1.3em; */
 }
+
+@media screen and (min-width: 760px) {
+  #logo {
+    font-size: 32px;
+  }
+}

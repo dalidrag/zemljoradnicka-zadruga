@@ -6,13 +6,13 @@
 .njiva {
 	display: inline-block;
 	vertical-align: top;
-	width: 9rem;
+	width: 11rem;
 	margin: 0.5rem;
 }
 .slika-njive {
-	height: 8rem;
-	border: 9px solid brown;
-	border-radius: 9px;
+	height: 10rem;
+	border: 12px solid brown;
+	border-radius: 12px;
 	background-color: green;
 }
 .usev {
@@ -20,10 +20,10 @@
 	margin: 0.2rem;
 }
 .okvir-useva {
-	width: 4rem;
+	width: 5rem;
 }
 .slika-useva {
-	height: 4rem;
+	height: 5rem;
 	border: 4px solid gold;
 	border-radius: 4px;
 	background-color: green;
