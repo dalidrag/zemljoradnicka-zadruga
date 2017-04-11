@@ -1,15 +1,33 @@
 <app-dodaj-njivu-map (onShapeDrawn)="onShapeDrawn($event)"></app-dodaj-njivu-map> 
-<form [formGroup]="dodajNjivuForma" (ngSubmit)="onSubmit(dodajNjivuForma.value)" (keyup)="onKey($event)">
+<form [formGroup]="dodajNjivuForma" (ngSubmit)="onSubmit(dodajNjivuForma.value)" (keyup)="onKey($event)" class="form-container">
 
-	<input #ime type="text" id="ime" name="ime" [formControl]="dodajNjivuForma.controls['ime']" (blur)="onBlur($event)" autofocus />
-	<div class="error" *ngIf="dodajNjivuForma.controls['ime'].hasError('required') && dodajNjivuForma.controls['ime'].touched">Морате дати име њиви</div>
-	<div class="error" *ngIf="dodajNjivuForma.controls['ime'].hasError('maxlength') && dodajNjivuForma.controls['ime'].touched">Име њиве може бити дугачко највише 30 слова</div>
+	<span class="input input--sae">
+		<input #imeNjive type="text" id="ime-njive" [formControl]="dodajNjivuForma.controls['ime']" class="input__field input__field--sae" autofocus />
+		<label class="input__label input__label--sae" for="ime-njive">
+			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+			<span class="input__label-content input__label-content--sae ilcs">Име њиве</span>
+		</label>
+	</span>
+	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['ime'].hasError('required') && dodajNjivuForma.controls['ime'].touched">Морате дати име њиви</div>
+	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['ime'].hasError('maxlength') && dodajNjivuForma.controls['ime'].touched">Име њиве може бити дугачко највише 30 слова</div>
 
-	<input #katOpstina type="text" id="katOpstina" name="katOpstina" [formControl]="dodajNjivuForma.controls['katOpstina']" (blur)="onBlur($event)" />
-	<div class="error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('required') && dodajNjivuForma.controls['katOpstina'].touched">Морате унети катастарску општину којој њива припада</div>
-	<div class="error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('maxlength') && dodajNjivuForma.controls['katOpstina'].touched">Име катастарске општине може имати највише 30 слова</div>
+	<span class="input input--sae">
+		<input #katOpstina type="text" id="katOpstina" [formControl]="dodajNjivuForma.controls['katOpstina']" class="input__field input__field--sae"/>
+		<label class="input__label input__label--sae" for="katOpstina">
+			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+			<span class="input__label-content input__label-content--sae ilcs">Катастарска општина</span>
+		</label>
+	</span>
+	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('required') && dodajNjivuForma.controls['katOpstina'].touched">Морате унети катастарску општину којој њива припада</div>
+	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('maxlength') && dodajNjivuForma.controls['katOpstina'].touched">Име катастарске општине може имати највише 30 слова</div>
 
-	<input #klasaZemljista type="text" id="klasaZemljista" name="klasaZemljista" [formControl]="dodajNjivuForma.controls['klasaZemljista']" (blur)="onBlur($event)" />
+	<span class="input input--sae">
+		<input #klasaZemljista type="text" id="klasaZemljista" [formControl]="dodajNjivuForma.controls['klasaZemljista']" class="input__field input__field--sae" />
+		<label class="input__label input__label--sae" for="klasaZemljista">
+			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+			<span class="input__label-content input__label-content--sae ilcs">Класа земљишта</span>
+		</label>
+	</span>
 	
 	<button type="submit" [disabled]="!dodajNjivuForma.valid">Додај њиву</button>
 </form>

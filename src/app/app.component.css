@@ -5,6 +5,7 @@
 	z-index: -10;
 	background: skyblue url("/assets/images/WheatField.jpg") no-repeat center center;
 	background-size: cover;
+	background-attachment: fixed;
 }
 .master-frame {
 	position: absolute;

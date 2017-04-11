@@ -33,6 +33,18 @@ export class PosejComponent implements OnInit, OnDestroy {
 	 		'usev': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
 	 		'njiva': ['', Validators.required]
 	   });
+
+	 	// Dodaje svakom input elementu logiku koja preko CSS klase
+	 	// cuva podatak o tome da li polje sadrzi neki tekst
+	 	[].slice.call( document.querySelectorAll('input.input__field') ).forEach((inputEl) => {
+	 		// ako je input polje vec popunjeno..
+	 		if (inputEl.value.trim() !== '') {
+	 			inputEl.classList.add('input--filled');
+	 		}
+	 		// events:
+	 		inputEl.addEventListener('focus', this.onInputFocus);
+	 		inputEl.addEventListener('blur', this.onInputBlur);
+	 	} );
   }
 
   /**
@@ -70,6 +82,16 @@ export class PosejComponent implements OnInit, OnDestroy {
 		})
 		.catch(error => this.utilitiesService.handleError(error));
 	}
+
+	onInputFocus(ev) {
+	 		ev.target.classList.add('input--filled');
+	 	}
+
+	onInputBlur(ev) {
+	 		if( ev.target.value.trim() === '' ) {
+	 			ev.target.classList.remove('input--filled');
+	 		}
+	 	}
 
 	ngOnDestroy() {
     this.unsubscribe.unsubscribe();

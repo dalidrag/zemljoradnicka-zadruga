@@ -1,9 +1,9 @@
-<form [formGroup]="posejForma" (ngSubmit)="onSubmit(posejForma.value)">
+<form [formGroup]="posejForma" (ngSubmit)="onSubmit(posejForma.value)" class="form-container">
 	<span class="input input--sae">
 		<input #usev [formControl]="posejForma.controls['usev']" class="input__field input__field--sae" type="text" id="vrsta-useva" autofocus/>
 		<label class="input__label input__label--sae" for="vrsta-useva">
 			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
-			<span class="input__label-content input__label-content--sae">Врста усева</span>
+			<span class="input__label-content input__label-content--sae ilcs">Врста усева</span>
 		</label>
 	</span>
 	<div class="form-input-error" *ngIf="posejForma.controls['usev'].hasError('required') && posejForma.controls['usev'].touched">Морате унети име усева</div>
@@ -16,4 +16,6 @@
 	<div class="form-input-error" *ngIf="posejForma.controls['njiva'].hasError('required') && posejForma.controls['njiva'].touched">Морате изабрати њиву</div>
 
 	<button type="submit" [disabled]="!posejForma.valid">Додај усев</button>
+
+	<div class="form-background"></div>
 </form>
