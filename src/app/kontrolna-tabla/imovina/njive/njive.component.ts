@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { NjiveActionCreators } from '../../../Redux/action-creators/njive.action-creators';
 
 import { Njiva } from '../../../deljeno/tipovi-podataka/njiva';
+import { VrstaUseva } from '../../../deljeno/tipovi-podataka/vrsta-useva';
 
 import { StateService } from '../../../deljeno/state.service';
 import { ModalPopupService} from '../../../deljeno/modal-popup.service';
@@ -22,6 +23,8 @@ import { ModalPopupService} from '../../../deljeno/modal-popup.service';
 })
 export class NjiveComponent implements OnInit, OnDestroy {
 	njive: Njiva[];
+  vrsteUseva: VrstaUseva[];
+  vrsteUsevaPoId: VrstaUseva[] = [];
   novaNjivaId: string;  // sluzi da aktivira fade-in efekat za novododatu njivu
   noviUsevId: string;  // sluzi da aktivira fade-in efekat za novododati usev
   unsubscribe;
@@ -29,8 +32,12 @@ export class NjiveComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private router: Router, private stateService: StateService, private actionCreators: NjiveActionCreators, private modalPopupService: ModalPopupService) { }
 
   ngOnInit() {
-    this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[] }) => {
+    this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[], vrsteUseva: VrstaUseva[] }) => {
   		this.njive = data.njive;
+      this.vrsteUseva = data.vrsteUseva;
+      for (let vrstaUseva of this.vrsteUseva) {
+        this.vrsteUsevaPoId[vrstaUseva.id] = vrstaUseva;
+      }
   	});
     if (this.stateService.state.njive.novaNjivaId !== '0') {  // ako je upravo dodata nova njiva
       this.novaNjivaId = this.stateService.state.njive.novaNjivaId;

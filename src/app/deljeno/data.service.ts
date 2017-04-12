@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { Njiva } from './tipovi-podataka/njiva';
 import { Aktivnost } from './tipovi-podataka/aktivnost';
+import { VrstaUseva} from './tipovi-podataka/vrsta-useva';
 
 /**
  * Omogucuje razmenu podataka sa HTTP serverom
@@ -17,9 +18,25 @@ export class DataService {
 	private headers = new Headers({'Content-Type': 'application/json'});
 	// URLs to web api
 	private njiveUrl = 'http://localhost:4200/api/njive';
-	private aktivnostiUrl = 'http://localhost:4200/api/aktivnosti';  
+	private aktivnostiUrl = 'http://localhost:4200/api/aktivnosti';
+	private vrsteUsevaUrl = 'http://localhost:4200/api/vrsteUseva';
   
   constructor(private http: Http) { }
+
+  /**
+	 * Preuzima vrste useva
+	 *
+	 * @method preuzmiVrsteUseva
+	 * @return {Promise<VrstaUseva[]>} Vraca preuzete vrste useva kao Promise
+	 */
+	preuzmiVrsteUseva() {
+		return this.http.get(this.vrsteUsevaUrl)
+		  	             .toPromise()		// Because Angular http service returns observable
+		  	             .then(response => {
+		  	             		return response.json().data as VrstaUseva[];
+		  	             })
+		  	             .catch(this.handleError)
+	}
 
   /**
 	 * Preuzima podatke o njivama prijavljenog clana zadruge

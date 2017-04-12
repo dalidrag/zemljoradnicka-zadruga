@@ -15,7 +15,7 @@ import { NotificationHubService, HubNotificationType } from '../../deljeno/event
   styleUrls: ['./statusna-tabla.component.css']
 })
 export class StatusnaTablaComponent implements OnInit {
-	statusMessage: string = '<a id="logo" routerLink="/kontrolna-tabla">Задруга</a>';
+	statusMessage: string = 'Задруга';
 	notificationMessage: string = '';
 	notificationType: HubNotificationType;
 	fadingOut: boolean = false;
@@ -38,7 +38,9 @@ export class StatusnaTablaComponent implements OnInit {
 			}
       // Persistent message type (AppState)
 			else if (value.eventType === HubNotificationType.AppState) {
-				this.statusMessage = value.message;
+				if (value.message === 'logo')
+          value.message = 'Задруга';
+        this.statusMessage = value.message;
 			}
 		});
   }

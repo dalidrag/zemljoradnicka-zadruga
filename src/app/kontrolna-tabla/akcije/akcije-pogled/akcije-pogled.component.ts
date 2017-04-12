@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 /**
  * Ovaj pogled prikazuje ikone za selektovanje akcija
@@ -13,12 +12,8 @@ import { Router } from '@angular/router';
 })
 export class AkcijePogledComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  posej() {
-    this.router.navigate(['/kontrolna-tabla/posej']);
   }
 }

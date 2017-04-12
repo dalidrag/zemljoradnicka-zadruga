@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 
-import { Aktivnost } from '../deljeno/tipovi-podataka/aktivnost';
+import { VrstaUseva } from '../deljeno/tipovi-podataka/vrsta-useva';
 import { DataService } from '../deljeno/data.service';
 
 import { NotificationHubService, HubNotificationType } from '../deljeno/event-hub.service';
@@ -11,16 +11,16 @@ import { UtilitiesService } from '../deljeno/utilities.service';
 
 
 @Injectable()
-export class AkcijeResolve implements Resolve<Aktivnost[]> {
+export class VrsteUsevaResolve implements Resolve<VrstaUseva[]> {
 	constructor(private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService, private notificationHubService: NotificationHubService) {}
 
-  // preuzima podatke za aktivnosti
-  resolve(route: ActivatedRouteSnapshot): Promise<Aktivnost[]> {
-    return this.dataService.preuzmiAktivnosti().then(aktivnosti => {
-      if (aktivnosti) {
-        return aktivnosti;
+  // preuzima podatke za njive
+  resolve(route: ActivatedRouteSnapshot): Promise<VrstaUseva[]> {
+    return this.dataService.preuzmiVrsteUseva().then(vrsteUseva => {
+      if (vrsteUseva) {
+        return vrsteUseva;
       } else { // greska
-        this.notificationHubService.emit(HubNotificationType.Error, 'Грешка у преузимању активности!');
+        this.notificationHubService.emit(HubNotificationType.Error, 'Грешка у преузимању врста усева!');
         this.router.navigate(['/']); 
         return null; 
       }

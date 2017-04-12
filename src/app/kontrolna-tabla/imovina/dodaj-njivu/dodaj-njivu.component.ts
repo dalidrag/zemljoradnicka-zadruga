@@ -1,5 +1,5 @@
 /************************************************************************/
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
 
@@ -26,13 +26,14 @@ import { NotificationHubService, HubNotificationType } from '../../../deljeno/ev
   templateUrl: './dodaj-njivu.component.html',
   styleUrls: ['./dodaj-njivu.component.css']
 })
-export class DodajNjivuComponent implements OnInit {
+export class DodajNjivuComponent implements OnInit, OnDestroy {
 	dodajNjivuForma: FormGroup;
 
   constructor(public actionCreators: NjiveActionCreators, private fb: FormBuilder, private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService, private notificationHubService: NotificationHubService) { }
 
   ngOnInit() {
-  	this.dodajNjivuForma = this.fb.group({  
+  	this.notificationHubService.emit(HubNotificationType.AppState, 'Додавање њиве');
+    this.dodajNjivuForma = this.fb.group({  
   		'ime': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
   		'katOpstina': ['',  Validators.compose([Validators.required, Validators.maxLength(30)])],
   		'klasaZemljista': [''] // TODO: Write custom validator for number range 1-7
@@ -81,7 +82,8 @@ export class DodajNjivuComponent implements OnInit {
 		novaNjiva.klasaZemljista = formValues.klasaZemljista;
 
 		this.dataService.dodajNjivu(novaNjiva).then((dodataNjiva) => {
-			this.notificationHubService.emit(HubNotificationType.Success, 'Додата нова њива');
+			this.notificationHubService.emit(HubNotificationType.AppState, 'logo');
+      this.notificationHubService.emit(HubNotificationType.Success, 'Додата нова њива');
 			this.actionCreators.novaNjiva(dodataNjiva.id);
 			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz']}}]);
 		})
@@ -109,5 +111,9 @@ export class DodajNjivuComponent implements OnInit {
 	     // Simply navigate back to njive
        this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz']}}]);
      } 
+   }
+
+   ngOnDestroy() {
+     this.notificationHubService.emit(HubNotificationType.AppState, 'logo');
    }
 }

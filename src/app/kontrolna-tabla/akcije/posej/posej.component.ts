@@ -5,12 +5,14 @@ import { Router, ActivatedRoute } from '@angular/router'
 
 import { Aktivnost } from '../../../deljeno/tipovi-podataka/aktivnost';
 import { Njiva } from '../../../deljeno/tipovi-podataka/njiva';
+import { VrstaUseva } from '../../../deljeno/tipovi-podataka/vrsta-useva';
 import { Usev } from '../../../deljeno/tipovi-podataka/usev';
 
 import { NjiveActionCreators } from '../../../Redux/action-creators/njive.action-creators';
 
 import { DataService } from '../../../deljeno/data.service';
 import { UtilitiesService } from '../../../deljeno/utilities.service';
+import { NotificationHubService, HubNotificationType } from '../../../deljeno/event-hub.service';
 /************************************************************************/
 
 @Component({
@@ -21,16 +23,19 @@ import { UtilitiesService } from '../../../deljeno/utilities.service';
 export class PosejComponent implements OnInit, OnDestroy {
 	posejForma: FormGroup;
 	njive: Njiva[];
+	vrsteUseva: VrstaUseva[];
 	unsubscribe;
 
-  constructor(private fb: FormBuilder, private dataService: DataService, private utilitiesService: UtilitiesService, private router: Router, private route: ActivatedRoute, private actionCreators: NjiveActionCreators) { }
+  constructor(private fb: FormBuilder, private dataService: DataService, private utilitiesService: UtilitiesService, private router: Router, private route: ActivatedRoute, private actionCreators: NjiveActionCreators, private notificationHubService: NotificationHubService) { }
 
   ngOnInit() {
-	  this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[] }) => {
+	  this.notificationHubService.emit(HubNotificationType.AppState, 'Сејање');
+	  this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[], vrsteUseva: VrstaUseva[] }) => {
 			this.njive = data.njive;
+			this.vrsteUseva = data.vrsteUseva;
 		});
 	 	this.posejForma = this.fb.group({  
-	 		'usev': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+	 		'usev': ['', Validators.required],
 	 		'njiva': ['', Validators.required]
 	   });
 
@@ -62,6 +67,7 @@ export class PosejComponent implements OnInit, OnDestroy {
 				break;
 			}
 		}
+		
 		let novi_usev = new Usev();
 		novi_usev.vrsta_useva = formValues.usev;
 		novi_usev.id = (izabrana_njiva.usevi.length + 1).toString();
@@ -74,10 +80,10 @@ export class PosejComponent implements OnInit, OnDestroy {
 			novaAktivnost.tip = "посејано";
 			novaAktivnost.meta2 = formValues.usev;
 
-			this.dataService.dodajAktivnost(novaAktivnost)
+			this.dataService.dodajAktivnost(novaAktivnost);
 		})
 		.then((dodataAktivnost) => {
-			// this.notificationHubService.emit(HubNotificationType.Success, 'Активност додата');
+			this.notificationHubService.emit(HubNotificationType.Success, 'Усев посејан');
 			this.router.navigate(['/kontrolna-tabla/akcije']);
 		})
 		.catch(error => this.utilitiesService.handleError(error));

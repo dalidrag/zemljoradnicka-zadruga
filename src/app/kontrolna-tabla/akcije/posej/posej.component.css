@@ -1,0 +1,9 @@
+.form-container {
+	width: 10rem;
+	margin: auto;
+}
+label {
+	font-family: 'Gabriela', serif;
+	font-size: 0.7rem;
+	color: white;
+}

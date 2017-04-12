@@ -6,8 +6,8 @@
 	<div class="usevi">
 		<div *ngFor="let usev of njiva.usevi" [class.novi-usev]="noviUsevId && noviUsevId===usev.id" class="usev">
 			<div class="okvir-useva">
-				<div class="slika-useva"></div>
-				<p>{{usev.vrsta_useva}}</p>
+				<img src="/assets/images/{{vrsteUsevaPoId[usev.vrsta_useva].srcSlike}}" class="slika-useva"/>
+				<p>{{vrsteUsevaPoId[usev.vrsta_useva].ime}}</p>
 			</div>
 		</div>
 	</div>

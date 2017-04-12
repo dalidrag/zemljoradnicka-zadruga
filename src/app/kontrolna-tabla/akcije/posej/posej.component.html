@@ -1,19 +1,38 @@
 <form [formGroup]="posejForma" (ngSubmit)="onSubmit(posejForma.value)" class="form-container">
-	<span class="input input--sae">
-		<input #usev [formControl]="posejForma.controls['usev']" class="input__field input__field--sae" type="text" id="vrsta-useva" autofocus/>
-		<label class="input__label input__label--sae" for="vrsta-useva">
-			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
-			<span class="input__label-content input__label-content--sae ilcs">Врста усева</span>
-		</label>
-	</span>
-	<div class="form-input-error" *ngIf="posejForma.controls['usev'].hasError('required') && posejForma.controls['usev'].touched">Морате унети име усева</div>
-	<div class="form-input-error" *ngIf="posejForma.controls['usev'].hasError('maxlength') && posejForma.controls['usev'].touched">Име усева може имати највише 30 слова</div>
-
-	<select [formControl]="posejForma.controls['njiva']">
-		<option *ngFor="let njiva of njive" label="{{njiva.ime}}" value="{{njiva.id}}">
-		</option>
-	</select>
-	<div class="form-input-error" *ngIf="posejForma.controls['njiva'].hasError('required') && posejForma.controls['njiva'].touched">Морате изабрати њиву</div>
+	<table>
+		<tr>
+			<td>
+				<label for="usev">Врста усева</label>
+			</td>
+			<td>
+				<select [formControl]="posejForma.controls['usev']" id="usev">
+					<option *ngFor="let vrstaUseva of vrsteUseva" label="{{vrstaUseva.ime}}" value="{{vrstaUseva.id}}">
+					</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="form-input-error" *ngIf="posejForma.controls['usev'].hasError('required') && posejForma.controls['usev'].touched">Морате изабрати врсту усева</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="njiva">Њива</label>
+			</td>
+			<td>
+				<select [formControl]="posejForma.controls['njiva']" id="njiva">
+					<option *ngFor="let njiva of njive" label="{{njiva.ime}}" value="{{njiva.id}}">
+					</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="form-input-error" *ngIf="posejForma.controls['njiva'].hasError('required') && posejForma.controls['njiva'].touched">Морате изабрати њиву</div>
+			</td>
+		</tr>
+	</table>
 
 	<button type="submit" [disabled]="!posejForma.valid">Додај усев</button>
 

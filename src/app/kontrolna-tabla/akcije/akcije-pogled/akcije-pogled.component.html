@@ -3,25 +3,17 @@
 	<div class="header-text">Њиве</div>
 	<div class="section-header-last inset-line"></div>
 </div>
-<div class="aktivnosti">
-	<div class="aktivnost-slika" id="slika-oranje">
-		<span class="aktivnost-tekst">Орање</span>
-	</div>
-	<div (click)="posej()" class="aktivnost-slika" id="slika-sejanje">
-		<span class="aktivnost-tekst">Сејање</span>
-	</div>
-	<div class="aktivnost-slika" id="slika-navodnjavanje">
-		<span class="aktivnost-tekst-mali">Наводњавање</span>
-	</div>
-	<div class="aktivnost-slika" id="slika-djubrenje">
-		<span class="aktivnost-tekst">Ђубрење</span>
-	</div>
-	<div class="aktivnost-slika" id="slika-prskanje">
-		<span class="aktivnost-tekst">Прскање</span>
-	</div>
-	<div class="aktivnost-slika" id="slika-zetva">
-		<span class="aktivnost-tekst">Жетва</span>
-	</div>
+<router-outlet name="akcije-njive"></router-outlet>
+<div class="section-header">
+	<div class="inset-line-left"></div>
+	<div class="header-text">Машинерија</div>
+	<div class="section-header-last inset-line"></div>
+</div>
+<router-outlet name="akcije-masine"></router-outlet>
+<div class="section-header">
+	<div class="inset-line-left"></div>
+	<div class="header-text">Историја активности</div>
+	<div class="section-header-last inset-line"></div>
 </div>
 <div class="aktivnosti">
 	<button routerLink="../akcije-lista">Прикажи историју активности</button>

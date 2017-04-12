@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Vrste useva
+- Akcije meni za masine
+- Notification centar zavrsen
 - Forme i dugmad stilizovani
 - Osnovni stilovi za ekrane i poglede
 ### Fixed

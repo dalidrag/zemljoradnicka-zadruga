@@ -5,7 +5,7 @@
  */
 export class Usev {
 	id: string;
-	vrsta_useva: string; // TODO: bice referenca na vrstu useva
+	vrsta_useva: string; // referenca na vrstu useva (id)
 	kolicina_useva: number; // kg po aru
 	datum_sejanja: Date;
 	ocekivani_datum_prinosa: Date;

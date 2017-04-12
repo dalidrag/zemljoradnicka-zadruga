@@ -7,9 +7,16 @@ import { KontrolnaTablaEkranComponent } from '../kontrolna-tabla/kontrolna-tabla
 import { KontrolnaTablaPogledComponent } from '../kontrolna-tabla/kontrolna-tabla-pogled/kontrolna-tabla-pogled.component';
 
 import { ImovinaPogledComponent} from '../kontrolna-tabla/imovina/imovina-pogled/imovina-pogled.component';
+import { NjiveComponent } from '../kontrolna-tabla/imovina/njive/njive.component';
+import { NjivaComponent } from '../kontrolna-tabla/imovina/njive/njiva/njiva.component';
+import { DodajNjivuComponent } from '../kontrolna-tabla/imovina/dodaj-njivu/dodaj-njivu.component';
+import { MasineComponent } from '../kontrolna-tabla/imovina/masine/masine.component';
 
 import { AkcijePogledComponent } from '../kontrolna-tabla/akcije/akcije-pogled/akcije-pogled.component';
 import { AkcijeListaComponent } from '../kontrolna-tabla/akcije/akcije-lista/akcije-lista.component';
+import { AkcijeNjiveComponent } from '../kontrolna-tabla/akcije/akcije-njive/akcije-njive.component';
+import { PosejComponent } from '../kontrolna-tabla/akcije/posej/posej.component';
+import { AkcijeMasineComponent } from '../kontrolna-tabla/akcije/akcije-masine/akcije-masine.component';
 
 import { GrafikoniPogledComponent } from '../kontrolna-tabla/grafikoni/grafikoni-pogled/grafikoni-pogled.component';
 
@@ -19,14 +26,9 @@ import { KorisnickiEkranComponent } from '../korisnik/korisnicki-ekran/korisnick
 import { BrojAriComponent } from '../vodic/broj-ari/broj-ari.component';
 import { PrvaNjivaComponent } from '../vodic/prva-njiva/prva-njiva.component';
 
-import { NjiveComponent } from '../kontrolna-tabla/imovina/njive/njive.component';
-import { NjivaComponent } from '../kontrolna-tabla/imovina/njive/njiva/njiva.component';
-import { DodajNjivuComponent } from '../kontrolna-tabla/imovina/dodaj-njivu/dodaj-njivu.component';
-import { MasineComponent } from '../kontrolna-tabla/imovina/masine/masine.component';
-import { PosejComponent } from '../kontrolna-tabla/akcije/posej/posej.component';
-
 import { NjiveResolve } from './njive-resolve.service';
 import { AkcijeResolve } from './akcije-resolve.service';
+import { VrsteUsevaResolve } from './vrste-useva-resolve.service';
 
 import { AuthGuard } from './auth.guard';
 
@@ -40,15 +42,19 @@ const routes: Routes = [
     /* canActivate: [AuthGuard], canActivateChild: [AuthGuard], */ children: [
    { path: '', component: KontrolnaTablaPogledComponent },
    { path: 'imovina', component: ImovinaPogledComponent, children: [
-    { path: 'njive-prikaz', component: NjiveComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
+    { path: 'njive-prikaz', component: NjiveComponent, outlet: 'njive', resolve: {njive: NjiveResolve, vrsteUseva: VrsteUsevaResolve} },
     { path: 'njiva-prikaz/:id', component: NjivaComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
     { path: 'dodaj-njivu', component: DodajNjivuComponent, outlet: 'njive' },
     { path: 'masine-prikaz', component: MasineComponent, outlet: 'masine' },
     ]
  	 },
-   { path: 'akcije', component: AkcijePogledComponent },
-   { path: 'akcije-lista', component: AkcijeListaComponent, resolve: {aktivnosti: AkcijeResolve} },
-   { path: 'posej', component: PosejComponent, resolve: {njive: NjiveResolve} },
+   { path: 'akcije', component: AkcijePogledComponent, children: [
+    { path: 'akcije-meni-njive', component: AkcijeNjiveComponent, outlet: 'akcije-njive' },
+    { path: 'sejanje', component: PosejComponent, outlet: 'akcije-njive', resolve: {njive: NjiveResolve, vrsteUseva: VrsteUsevaResolve} },   
+    { path: 'akcije-meni-masine', component: AkcijeMasineComponent, outlet: 'akcije-masine' },
+    { path: 'akcije-lista', component: AkcijeListaComponent, resolve: {aktivnosti: AkcijeResolve} },
+    ]
+   },
    { path: 'grafikoni', component: GrafikoniPogledComponent },
    { path: 'zabeleske', component: ZabeleskePogledComponent }
   ]
@@ -63,6 +69,6 @@ const routes: Routes = [
 @NgModule({
  imports: [ RouterModule.forRoot(routes) ],
  exports: [ RouterModule ],
- providers: [AuthGuard, NjiveResolve, AkcijeResolve]
+ providers: [AuthGuard, NjiveResolve, AkcijeResolve, VrsteUsevaResolve]
 })
 export class AppRoutingModule {}

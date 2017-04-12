@@ -5,14 +5,14 @@ import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Njiva } from '../deljeno/tipovi-podataka/njiva';
 import { DataService } from '../deljeno/data.service';
 
-// import { NotificationHubService, HubNotificationType } from '../common/event-hub.service';
+import { NotificationHubService, HubNotificationType } from '../deljeno/event-hub.service';
 import { UtilitiesService } from '../deljeno/utilities.service';
 /***********************************************************************************/
 
 
 @Injectable()
 export class NjiveResolve implements Resolve<Njiva[]> {
-	constructor(private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService /* , private notificationHubService: NotificationHubService */ ) {}
+	constructor(private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService, private notificationHubService: NotificationHubService) {}
 
   // preuzima podatke za njive
   resolve(route: ActivatedRouteSnapshot): Promise<Njiva[]> {
@@ -20,9 +20,8 @@ export class NjiveResolve implements Resolve<Njiva[]> {
       if (njive) {
         return njive;
       } else { // greska
-/*        this.notificationHubService.emit(HubNotificationType.Error, 'Error while fetching cars!'); */
+        this.notificationHubService.emit(HubNotificationType.Error, 'Грешка у преузимању њива!');
         this.router.navigate(['/']); 
-        window.alert('Greska u preuzimanju njiva!'); // TODO: delete
         return null; 
       }
     })
