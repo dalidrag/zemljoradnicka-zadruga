@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+/**
+ * Prikazuje opcije za aktivnosti na njivama
+ *
+ * @class AkcijeNjiveComponent
+ */
 @Component({
   selector: 'app-akcije-njive',
   templateUrl: './akcije-njive.component.html',

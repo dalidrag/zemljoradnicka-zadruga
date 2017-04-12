@@ -1,0 +1,23 @@
+<form [formGroup]="dodajMasinuForma" (ngSubmit)="onSubmit(dodajMasinuForma.value)" (keyup)="onKey($event)" class="form-container">
+
+	<span class="input input--sae">
+		<input #imeMasine type="text" id="ime-masine" [formControl]="dodajMasinuForma.controls['ime']" class="input__field input__field--sae" autofocus />
+		<label class="input__label input__label--sae" for="ime-masine">
+			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+			<span class="input__label-content input__label-content--sae ilcs">Име машине</span>
+		</label>
+	</span>
+	<div class="form-input-error" *ngIf="dodajMasinuForma.controls['ime'].hasError('required') && dodajMasinuForma.controls['ime'].touched">Морате дати име машини</div>
+	<div class="form-input-error" *ngIf="dodajMasinuForma.controls['ime'].hasError('maxlength') && dodajMasinuForma.controls['ime'].touched">Име машине може бити дугачко највише 30 слова</div>
+
+	<label for="tip-masine">Тип машине</label>
+	<select [formControl]="dodajMasinuForma.controls['tipMasine']" id="tip-masine">
+		<option *ngFor="let tipMasine of tipoviMasina" label="{{tipMasine.naziv}}" value="{{tipMasine.id}}">
+		</option>
+	</select>
+	<div class="form-input-error" *ngIf="dodajMasinuForma.controls['tipMasine'].hasError('required') && dodajMasinuForma.controls['tipMasine'].touched">Морате изабрати тип машине</div>
+
+	<button type="submit" [disabled]="!dodajMasinuForma.valid">Додај машину</button>
+
+	<div class="form-background"></div>
+</form>

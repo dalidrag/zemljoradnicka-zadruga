@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 /**
  * Ovaj pogled prikazuje podrazumevani pogled kontrolne table
- * kada ni jedna meni opcija nije izabrana
+ * kada nijedna meni opcija nije izabrana
  *
  * @class KontrolnaTablaPogledComponent
  */

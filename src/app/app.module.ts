@@ -7,6 +7,7 @@ import { rootReducer } from './Redux/index';
 import { InitActionCreator } from './Redux/action-creators/init.action-creator';
 import { NjiveActionCreators } from './Redux/action-creators/njive.action-creators';
 import { VodicActionCreators } from './Redux/action-creators/vodic.action-creators';
+import { MasineActionCreators } from './Redux/action-creators/masine.action-creators';
 const appStore = createStore(rootReducer);  // ovo mora biti pre importa StateService-a
 
 import { AppComponent } from './app.component';
@@ -69,7 +70,7 @@ import { PrvaNjivaComponent } from './vodic/prva-njiva/prva-njiva.component';
     AuthService, DataService, UtilitiesService, NotificationHubService,
     ModalPopupService,
     { provide: 'AppStore', useValue: appStore },
-    InitActionCreator, NjiveActionCreators, VodicActionCreators,
+    InitActionCreator, NjiveActionCreators, VodicActionCreators, MasineActionCreators,
     StateService
   ],
   bootstrap: [AppComponent]

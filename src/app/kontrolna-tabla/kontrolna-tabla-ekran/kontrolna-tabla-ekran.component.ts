@@ -9,7 +9,7 @@ import { VodicActionCreators } from '../../Redux/action-creators/vodic.action-cr
 /***********************************************************************************/
 
 /**
- * Sadrzi ekran kontrolna tabla
+ * Sadrzi ceo ekran kontrolna tabla
  *
  * @class KontrolnaTablaEkranComponent
  */

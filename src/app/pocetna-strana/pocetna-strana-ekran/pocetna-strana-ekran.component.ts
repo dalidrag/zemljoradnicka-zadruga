@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../../deljeno/auth.service';
 import { NotificationHubService, HubNotificationType } from '../../deljeno/event-hub.service';
+
+
 /**
  * Sadrzi pocetni ekran
  *

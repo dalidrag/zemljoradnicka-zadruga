@@ -15,6 +15,15 @@ export class InMemoryDataService implements InMemoryDbService {
       {id: 2, ime: 'Предња', katOpstina: 'Добрица', klasaZemljista: 5, usevi:[] },
     ];
     let aktivnosti = [];
-    return {njive, aktivnosti, vrsteUseva};
+    let tipoviMasina = [
+      {id: 1, naziv: "Трактор", srcSlike: 'masine/traktor.jpg' },
+      {id: 2, naziv: "Комбајн", srcSlike: 'masine/kombajn.jpg' },
+      {id: 3, naziv: "Мотокултиватор", srcSlike: 'masine/motokultivator.jpg' },
+      {id: 4, naziv: "Додатак за трактор: плуг грабуље за копачицу", srcSlike: 'masine/plug-grabulje-za-kopacicu.jpg'},
+      {id: 5, naziv: "Комбајн сунцокретни адаптер", srcSlike: 'masine/kombajn-suncokretni-adapter.jpg' },
+      {id: 6, naziv: "Прскалица прикључак за мотокултиватор", srcSlike: 'masine/prikljucak-prskalica.jpg' }
+    ];
+    let masine = [];
+    return {njive, aktivnosti, vrsteUseva, tipoviMasina, masine};
   }
 }

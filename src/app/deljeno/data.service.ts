@@ -6,6 +6,8 @@ import 'rxjs/add/operator/toPromise';
 import { Njiva } from './tipovi-podataka/njiva';
 import { Aktivnost } from './tipovi-podataka/aktivnost';
 import { VrstaUseva} from './tipovi-podataka/vrsta-useva';
+import { TipMasine } from './tipovi-podataka/tip-masine';
+import { Masina } from './tipovi-podataka/masina';
 
 /**
  * Omogucuje razmenu podataka sa HTTP serverom
@@ -20,6 +22,8 @@ export class DataService {
 	private njiveUrl = 'http://localhost:4200/api/njive';
 	private aktivnostiUrl = 'http://localhost:4200/api/aktivnosti';
 	private vrsteUsevaUrl = 'http://localhost:4200/api/vrsteUseva';
+	private tipoviMasinaUrl = 'http://localhost:4200/api/tipoviMasina';
+	private masineUrl = 'http://localhost:4200/api/masine';
   
   constructor(private http: Http) { }
 
@@ -34,6 +38,21 @@ export class DataService {
 		  	             .toPromise()		// Because Angular http service returns observable
 		  	             .then(response => {
 		  	             		return response.json().data as VrstaUseva[];
+		  	             })
+		  	             .catch(this.handleError)
+	}
+
+	/**
+	 * Preuzima tipove masina
+	 *
+	 * @method preuzmiTipoveMasina
+	 * @return {Promise<TipMasine[]>} Vraca preuzete tipova masina kao Promise
+	 */
+	preuzmiTipoveMasina() {
+		return this.http.get(this.tipoviMasinaUrl)
+		  	             .toPromise()		// Because Angular http service returns observable
+		  	             .then(response => {
+		  	             		return response.json().data as TipMasine[];
 		  	             })
 		  	             .catch(this.handleError)
 	}
@@ -83,6 +102,37 @@ export class DataService {
 			.toPromise()
 			.then(response => {
 				return response;
+			})
+			.catch(this.handleError);
+	}
+
+/**
+	 * Preuzima sve masine prijavljenog clana zadruge
+	 *
+	 * @method preuzmiMasine
+	 * @return {Promise<Masina[]>} Vraca preuzete masine kao Promise
+	 */
+	preuzmiMasine() {
+		return this.http.get(this.masineUrl)
+		  	             .toPromise()		// Because Angular http service returns observable
+		  	             .then(response => {
+		  	             		return response.json().data as Masina[];
+		  	             })
+		  	             .catch(this.handleError)
+	}
+	/**
+	 * Dodaje novu masinu
+	 *
+	 * @method dodajMasinu
+	 * @param novaMasina Masina koju treba dodati
+	 * @return {Promise<Masina>} Dodata masina kao Promise; id polje je automatski dodato
+	 */
+	dodajMasinu(novaMasina: Masina): Promise<Masina> {
+		return this.http
+			.post(this.masineUrl, JSON.stringify(novaMasina), {headers: this.headers})
+			.toPromise()
+			.then(response => {
+				return response.json().data as Masina
 			})
 			.catch(this.handleError);
 	}

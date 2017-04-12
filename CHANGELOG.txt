@@ -5,7 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+
+[0.5.0] - 2017-04-12
 ### Added
+- Dodavanje i prikazivanje masina
 - Vrste useva
 - Akcije meni za masine
 - Notification centar zavrsen
@@ -13,7 +17,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Osnovni stilovi za ekrane i poglede
 ### Fixed
 - Nekoliko CSS bug-ova
-
 
 [0.4.0] - 2017-04-10
 ### Added

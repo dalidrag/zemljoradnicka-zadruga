@@ -5,7 +5,7 @@ import { Aktivnost } from '../../../deljeno/tipovi-podataka/aktivnost';
 
 /**
  * Prikazuje sve akcije clana zadruge
- * a ako je selektovano, kombinovano sa zajednickim akcijama zadruge
+ * a ako je tako selektovano, kombinovano sa zajednickim akcijama zadruge
  *
  * @class AkcijeListaComponent
  */

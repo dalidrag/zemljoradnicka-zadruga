@@ -15,7 +15,7 @@ import { NotificationHubService, HubNotificationType } from '../../../deljeno/ev
 /************************************************************************/
 
 /**
- * Komponenta za dodavanje njive. Sastoji se od dva delja: pod-komponente za
+ * Komponenta za dodavanje njive. Sastoji se od dva dela: pod-komponente za
  * crtanje njive na mapi, i HTML forme za unosenje ostalih informacija o njivi
  *
  * @class DodajNjivuComponent
@@ -90,6 +90,7 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
 		.catch(error => this.utilitiesService.handleError(error));
 	}
 
+  // Sledeca dva metoda su potrebna zbog specijalnih efekata nad input poljima
   onInputFocus(ev) {
     ev.target.classList.add('input--filled');
   }
@@ -108,12 +109,13 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
    */
    onKey(event:any): void { // without type info
      if (event.key === 'Escape') {  // escape key was pressed
-	     // Simply navigate back to njive
+	     // Simply navigate back to 'njive'
        this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz']}}]);
      } 
    }
 
    ngOnDestroy() {
+     // Izlazak iz ove komponente uvek vodi na osnovni ekran kontrolne table:
      this.notificationHubService.emit(HubNotificationType.AppState, 'logo');
    }
 }

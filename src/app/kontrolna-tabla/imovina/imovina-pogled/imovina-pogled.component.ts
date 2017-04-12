@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 /**
  * Ovaj pogled prikazuje svu imovinu clana zadruge
- * ako je selektovano, kombinovano sa imovinom same zadruge
+ * a ako je tako selektovano, kombinovano sa imovinom same zadruge
  *
  * @class ImovinaPogledComponent
  */

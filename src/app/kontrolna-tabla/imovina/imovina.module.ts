@@ -10,6 +10,7 @@ import { NjiveComponent } from './njive/njive.component';
 import { MasineComponent } from './masine/masine.component';
 import { NjivaComponent } from './njive/njiva/njiva.component';
 import { DodajNjivuComponent } from './dodaj-njivu/dodaj-njivu.component';
+import { DodajMasinuComponent } from './dodaj-masinu/dodaj-masinu.component';
 
 /**
  * Sadzi svu funkcionalost pogleda 'imovina'
@@ -24,6 +25,6 @@ import { DodajNjivuComponent } from './dodaj-njivu/dodaj-njivu.component';
     AppRoutingModule,
     GmapsModule,
   ],
-  declarations: [ImovinaPogledComponent, NjiveComponent, MasineComponent, NjivaComponent, DodajNjivuComponent]
+  declarations: [ImovinaPogledComponent, NjiveComponent, MasineComponent, NjivaComponent, DodajNjivuComponent, DodajMasinuComponent]
 })
 export class ImovinaModule { }

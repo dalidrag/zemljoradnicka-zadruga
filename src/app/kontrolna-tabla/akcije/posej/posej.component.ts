@@ -15,6 +15,11 @@ import { UtilitiesService } from '../../../deljeno/utilities.service';
 import { NotificationHubService, HubNotificationType } from '../../../deljeno/event-hub.service';
 /************************************************************************/
 
+/**
+ * Rukuje formom za sejanje novog useva na nekoj od njiva
+ *
+ * @class PosejComponent
+ */
 @Component({
   selector: 'app-posej',
   templateUrl: './posej.component.html',

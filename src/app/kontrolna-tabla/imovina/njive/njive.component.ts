@@ -12,7 +12,7 @@ import { ModalPopupService} from '../../../deljeno/modal-popup.service';
 /****************************************************************************/
 
 /**
- * Prikazuje listu svih njiva u posedu prijavljenog korisnika
+ * Prikazuje sve njive u posedu prijavljenog korisnika
  *
  * @class NjiveComponent
  */
