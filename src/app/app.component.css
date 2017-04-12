@@ -15,3 +15,7 @@
 	opacity: 0.4;
 	z-index: -5;
 }
+#app-root-element {
+	height: 92vh;
+	overflow: auto;
+}

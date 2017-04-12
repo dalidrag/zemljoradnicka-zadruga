@@ -41,4 +41,32 @@ export class KontrolnaTablaEkranComponent implements OnInit {
     this.vodicActionCreators.aktivnosti();
     this.router.navigate(['/kontrolna-tabla', 'akcije', {outlets: { 'akcije-njive':['akcije-meni-njive'], 'akcije-masine':['akcije-meni-masine']}}]);
   }
+
+  vodicGrafikoni() {
+    this.vodicActionCreators.grafikoni();
+    this.router.navigate(['/kontrolna-tabla', 'grafikoni']);
+  }
+
+  vodicZabeleske() {
+    this.vodicActionCreators.zabeleske();
+    this.router.navigate(['/kontrolna-tabla', 'zabeleske']);
+  }
+
+  vodicZadruga() {
+    this.vodicActionCreators.logo();
+    this.router.navigate(['/kontrolna-tabla']);
+  }
+
+  vodicKorisnik() {
+    this.vodicActionCreators.korisnik();
+  }
+
+  vodicKraj() {
+    this.vodicActionCreators.kraj();
+    this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]);
+  }
+
+  vodicZavrsi() {
+    this.vodicActionCreators.zavrsi();
+  }
 }

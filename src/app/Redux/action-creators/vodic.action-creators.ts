@@ -7,6 +7,12 @@ export class VodicActionCreators {
 
 	static IMANJE = 'IMANJE';
 	static AKTIVNOSTI = 'AKTIVNOSTI';
+	static GRAFIKONI = 'GRAFIKONI';
+	static ZABELESKE = 'ZABELESKE';
+	static LOGO = 'LOGO';
+	static KORISNIK = 'KORISNIK';
+	static KRAJ = 'KRAJ';
+	static ZAVRSI = 'ZAVRSI';
 
 	imanje() {
 		this.appStore.dispatch({
@@ -17,5 +23,35 @@ export class VodicActionCreators {
 		this.appStore.dispatch({
 			type: VodicActionCreators.AKTIVNOSTI
 		});
+	}
+	grafikoni() {
+		this.appStore.dispatch({
+			type: VodicActionCreators.GRAFIKONI
+		})
+	}
+	zabeleske() {
+		this.appStore.dispatch({
+			type: VodicActionCreators.ZABELESKE
+		})
+	}
+	logo() {
+		this.appStore.dispatch({
+			type: VodicActionCreators.LOGO
+		})
+	}
+	korisnik() {
+		this.appStore.dispatch({
+			type: VodicActionCreators.KORISNIK
+		})
+	}
+	kraj() {
+		this.appStore.dispatch({
+			type: VodicActionCreators.KRAJ
+		})
+	}
+	zavrsi() {
+		this.appStore.dispatch({
+			type: VodicActionCreators.ZAVRSI
+		})
 	}
 }

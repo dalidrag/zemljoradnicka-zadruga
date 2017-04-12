@@ -73,7 +73,7 @@ body, p {
 .tekst-balon {
   position:absolute;
   width:fit-content;
-  max-width: 20rem;
+  max-width: 24vw;
   padding:15px;
   margin:1em 0 3em;
   z-index: 500;

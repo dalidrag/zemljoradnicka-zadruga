@@ -1,6 +1,11 @@
-<div class="google-map">
-	<app-dodaj-njivu-map (onShapeDrawn)="onShapeDrawn($event)"></app-dodaj-njivu-map>
-</div> 
+<div class="map-container">
+	<div class="help-text" id="text1">Користите плус и минус дугмиће на мапи, или точкић миша да зумирате мапу. Притисните лево дугме миша, држите га и померајте миша да померите мапу.</div>
+	<div class="google-map" id="g-map">
+		<app-dodaj-njivu-map (onShapeDrawn)="onShapeDrawn($event)"></app-dodaj-njivu-map>
+	</div> 
+	<div class="help-text" id="text2">Да почнете да цртате њиву, једноставно кликните левим дугметом миша (брзо, без држања) и померите миша тамо где желите следећу тачку. Понављајте овај поступак док не нацртате цео оквир њиве. Оквир њиве мора бити затворен—последња тачка мора бити иста као прва, тако да последњу линију нацртајте тако што једноставно кликнете на прву тачку од које сте почели.</div>
+</div>
+
 <form [formGroup]="dodajNjivuForma" (ngSubmit)="onSubmit(dodajNjivuForma.value)" (keyup)="onKey($event)" class="form-container">
 
 	<span class="input input--sae">
@@ -31,7 +36,7 @@
 		</label>
 	</span>
 	
-	<button type="submit" [disabled]="!dodajNjivuForma.valid">Додај њиву</button>
+	<button type="submit" [disabled]="!dodajNjivuForma.valid" id="submit-button">Додај њиву</button>
 
 	<div class="form-background"></div>
 </form>

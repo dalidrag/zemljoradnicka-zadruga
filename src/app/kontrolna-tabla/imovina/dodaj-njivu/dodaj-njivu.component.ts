@@ -66,7 +66,11 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
   		});
 			// console.log(oblikNjiveNaMapi.getPath().getAt(1).lat());
   		let forma = document.getElementsByTagName('form')[0] as HTMLElement;
-  		forma.style.display = 'block';
+  		forma.style.display = 'block';  // prikazi formu
+
+      // skroluj ekran do dna
+      let buttonEl = document.getElementById('submit-button') as HTMLElement;
+      buttonEl.scrollIntoView({behavior: "smooth", block: "start"});
   	}
   }
 

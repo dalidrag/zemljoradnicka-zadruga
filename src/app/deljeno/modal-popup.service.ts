@@ -25,7 +25,7 @@ export class ModalPopupService {
           <div class="modal-content">
         		Loading content...
           </div>
-      		<button id="dismiss">Close</button>
+      		<button id="dismiss">Затвори</button>
         </div>
   			`;
 
