@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { ModalPopupService } from '../../deljeno/modal-popup.service';
+
 @Component({
   selector: 'app-prva-njiva',
   templateUrl: './prva-njiva.component.html',
@@ -8,14 +10,16 @@ import { Router } from '@angular/router';
 })
 export class PrvaNjivaComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private modalPopupService: ModalPopupService, private router: Router) { }
 
   ngOnInit() {
-  	window.alert('Хајде да пронађемо ваше њиве.');
+  	this.modalPopupService.open();
+    this.modalPopupService.insertHTML(`<p>Хајде да пронађемо вашу прву њиву!</p>`);
   }
 
-  vodicPomoc() {
-  	this.router.navigate(['/kontrolna-tabla'], { queryParams: { vodic: 'true' } });
+  njivaDodata(dodata: boolean) {
+  	if (dodata)
+      this.router.navigate(['/kontrolna-tabla'], { queryParams: { vodic: 'true' } });
   }
 
 }

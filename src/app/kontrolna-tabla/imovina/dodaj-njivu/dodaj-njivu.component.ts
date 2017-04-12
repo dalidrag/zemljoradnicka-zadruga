@@ -1,5 +1,5 @@
 /************************************************************************/
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
 
@@ -28,6 +28,7 @@ import { NotificationHubService, HubNotificationType } from '../../../deljeno/ev
 })
 export class DodajNjivuComponent implements OnInit, OnDestroy {
 	dodajNjivuForma: FormGroup;
+  @Output() onNjivaDodata = new EventEmitter<boolean>();
 
   constructor(public actionCreators: NjiveActionCreators, private fb: FormBuilder, private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService, private notificationHubService: NotificationHubService) { }
 
@@ -86,6 +87,7 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
       this.notificationHubService.emit(HubNotificationType.Success, 'Додата нова њива');
 			this.actionCreators.novaNjiva(dodataNjiva.id);
 			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz']}}]);
+      this.onNjivaDodata.emit(true);
 		})
 		.catch(error => this.utilitiesService.handleError(error));
 	}

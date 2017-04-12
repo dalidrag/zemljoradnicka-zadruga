@@ -1,5 +1,10 @@
-<button *ngIf="vodicFaza===1" (click)="vodicAktivnosti()">Имање је фина опција.</button>
-<button *ngIf="vodicFaza===2">Активности су кул.</button>
+<div *ngIf="vodicFaza===1" class="tekst-balon tekst-balon-levi" style="left:0.5rem; top:2.8rem;">
+	<p style="font-family: Gabriela, serif; font-size:0.8rem;">Овде можете прегледати и изменити своју покретну и непокретну имовину.</p>
+	<button (click)="vodicAktivnosti()">Даље</button>
+</div>
+<div *ngIf="vodicFaza===2" class="tekst-balon tekst-balon-levi" style="left:18rem; top:2.8rem;">
+	<p style="font-family: Gabriela, serif; font-size:0.8rem;">На екрану активности можете забележити своје активности на имању и задрузи и прегледати их.</p>
+</div>
 <app-statusna-tabla></app-statusna-tabla>
 <app-meni-tabla></app-meni-tabla>
 <router-outlet></router-outlet>

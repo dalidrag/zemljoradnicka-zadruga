@@ -39,6 +39,6 @@ export class KontrolnaTablaEkranComponent implements OnInit {
 
   vodicAktivnosti() {
     this.vodicActionCreators.aktivnosti();
-    this.router.navigate(['/kontrolna-tabla', 'akcije']);
+    this.router.navigate(['/kontrolna-tabla', 'akcije', {outlets: { 'akcije-njive':['akcije-meni-njive'], 'akcije-masine':['akcije-meni-masine']}}]);
   }
 }

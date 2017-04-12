@@ -25,6 +25,7 @@ import { DodajMasinuComponent } from './dodaj-masinu/dodaj-masinu.component';
     AppRoutingModule,
     GmapsModule,
   ],
-  declarations: [ImovinaPogledComponent, NjiveComponent, MasineComponent, NjivaComponent, DodajNjivuComponent, DodajMasinuComponent]
+  declarations: [ImovinaPogledComponent, NjiveComponent, MasineComponent, NjivaComponent, DodajNjivuComponent, DodajMasinuComponent],
+  exports: [DodajNjivuComponent]
 })
 export class ImovinaModule { }

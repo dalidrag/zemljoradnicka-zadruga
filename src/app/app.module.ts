@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -38,6 +39,8 @@ import { MeniTablaComponent } from './kontrolna-tabla/meni-tabla/meni-tabla.comp
 import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla-pogled/kontrolna-tabla-pogled.component';
 import { BrojAriComponent } from './vodic/broj-ari/broj-ari.component';
 import { PrvaNjivaComponent } from './vodic/prva-njiva/prva-njiva.component';
+
+
 
 /**
  * Root modul aplikacije

@@ -26,6 +26,15 @@ body, p {
   }
 }
 
+/* Za centriranje sadrzaja u odnosu na ceo ekran*/
+.overlay-center {
+  display: flex;
+  flex-direction: column;
+  height: 92vh;
+  justify-content: center;
+  align-items: center;
+}
+
 
 
 /*****************************************/
@@ -58,6 +67,61 @@ body, p {
 
 
 
+/****************************************************/
+/* Stilovi za tekst-balone (by Nicolas Gallagher)   */
+/****************************************************/
+.tekst-balon {
+  position:absolute;
+  width:fit-content;
+  max-width: 20rem;
+  padding:15px;
+  margin:1em 0 3em;
+  z-index: 500;
+  color:#000;
+  background:#f3961c; /* default background for browsers without gradient support */
+  /* css3 */
+  background:linear-gradient(#f3961c, #f9d835);
+  border-radius:10px;
+}
+
+/* creates triangle on the left side */
+.tekst-balon-levi:after {
+  content:"";
+  position:absolute;
+  top:-15px; /* value = - border-top-width - border-bottom-width */
+  left:50px; /* controls horizontal position */
+  left:auto;
+  bottom:auto;
+  z-index: 500;
+
+  border-width:0 15px 15px; /* vary these values to change the angle of the vertex */
+  border-style:solid;
+  border-color:#f3961c transparent;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+/* creates triangle on the right side */
+.tekst-balon-desni:after {
+  content:"";
+  position:absolute;
+  top:-15px; /* value = - border-top-width - border-bottom-width */
+  right:50px; /* controls horizontal position */
+  left:auto;
+  bottom:auto;
+  z-index: 500;
+
+  border-width:0 15px 15px; /* vary these values to change the angle of the vertex */
+  border-style:solid;
+  border-color:#f3961c transparent;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+
+
 /************************************/
 /* Stilovi za modalni pop-up        */
 /* implementiran u okviru           */
@@ -76,6 +140,12 @@ body, p {
   semi-opaque */
   z-index: 2147483647; /* Ensure the box is on top of z
   stacking order */
+}
+.modal-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .modal-content {
   color: #fff;

@@ -1,1 +1,15 @@
-<button (click)="unosPrveNjive()">Колико ари имате?</button>
+<div class="overlay-center">
+	<div class="tekst-balon">
+		<p style="font-family: Gabriela, sans-serif; font-size:0.8rem;">Колико ари имате?</p>
+		<span class="input input--sae">
+			<input #brojAri type="text" id="broj-ari" class="input__field input__field--sae" autofocus />
+			<!-- [formControl]="dodajNjivuForma.controls['ime']" -->
+			<label class="input__label input__label--sae" for="broj-ari">
+				<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+				<span class="input__label-content input__label-content--sae ilcs">Број ари</span>
+			</label>
+		</span>
+		<button (click)="unosPrveNjive()">Прескочи</button>
+		<button (click)="unosPrveNjive()">Уреду</button>
+	</div>
+</div>
