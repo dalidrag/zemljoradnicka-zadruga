@@ -93,7 +93,6 @@ body, p {
 /************************/
 .form-container {
   position: relative;
-  width: fit-content;
   border-top: 1px solid white;
   border-left: 1px solid white;
   border-right: 1px solid black;
@@ -119,6 +118,8 @@ body, p {
   margin-bottom: 0.5rem;
 }
 button {
+  display: block;
+  margin-top: 1rem;
   font-family: "Gabriela", serif;
   background-color: brown;
   color: white;
@@ -147,7 +148,7 @@ option {
   display: block;
   /* margin: 1em; */
   max-width: 30rem;
-  /* width: calc(100% - 2em); */
+  width: calc(100% - 2em);
   width: 30rem;
 }
 
@@ -206,9 +207,9 @@ option {
 
 .input--sae {
   overflow: hidden;
-  width: 200px;
+  width: 95%;
   padding-bottom: 0.3rem;
-  margin: 2rem 0 0;
+  margin: 1rem 0 0;
 }
 
 .input__field--sae {
@@ -243,14 +244,13 @@ option {
 
 .icon--sae {
   position: absolute;
-  bottom: 0;
+  right: 0;
+  top: 1.35rem;
   font-size: 0.9rem;
   opacity: 0.8;
-  left: -30px;
-  top: 1.35rem;
   color: wheat;
   pointer-events: none;
-  transform: translate3d(205px, 0, 0);
+  transform: translate3d(0, 0, 0);
   transition: transform 0.3s;
 }
 
@@ -279,5 +279,5 @@ option {
 .input__field--sae:focus + .input__label--sae .icon--sae,
 .input--filled + .input__label--sae .icon--sae {
   transition-delay: 0.01s;
-  transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -90deg);
+  transform: translate(-20rem, 0) rotate3d(0, 0, 1, -90deg);
 }

@@ -1,4 +1,6 @@
-<app-dodaj-njivu-map (onShapeDrawn)="onShapeDrawn($event)"></app-dodaj-njivu-map> 
+<div class="google-map">
+	<app-dodaj-njivu-map (onShapeDrawn)="onShapeDrawn($event)"></app-dodaj-njivu-map>
+</div> 
 <form [formGroup]="dodajNjivuForma" (ngSubmit)="onSubmit(dodajNjivuForma.value)" (keyup)="onKey($event)" class="form-container">
 
 	<span class="input input--sae">
@@ -30,4 +32,6 @@
 	</span>
 	
 	<button type="submit" [disabled]="!dodajNjivuForma.valid">Додај њиву</button>
+
+	<div class="form-background"></div>
 </form>

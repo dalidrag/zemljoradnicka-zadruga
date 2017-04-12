@@ -37,6 +37,18 @@ export class DodajNjivuComponent implements OnInit {
   		'katOpstina': ['',  Validators.compose([Validators.required, Validators.maxLength(30)])],
   		'klasaZemljista': [''] // TODO: Write custom validator for number range 1-7
     });
+
+    // Dodaje svakom input elementu logiku koja preko CSS klase
+    // cuva podatak o tome da li polje sadrzi neki tekst
+    [].slice.call( document.querySelectorAll('input.input__field') ).forEach((inputEl) => {
+      // ako je input polje vec popunjeno..
+      if (inputEl.value.trim() !== '') {
+        inputEl.classList.add('input--filled');
+      }
+      // events:
+      inputEl.addEventListener('focus', this.onInputFocus);
+      inputEl.addEventListener('blur', this.onInputBlur);
+    });
   }
   /**
 	 * Nakon sto je njiva iscrtana, prikazuje formu za unosenje ostalih podataka
@@ -76,14 +88,14 @@ export class DodajNjivuComponent implements OnInit {
 		.catch(error => this.utilitiesService.handleError(error));
 	}
 
-	/**
-	 * Trimuje input polja kada izgube fokus
-	 *
-	 * @param event:any
-	 * @method onBlur
-	 */
-	onBlur(event: any) {
-    event.target.value = event.target.value.trim();
+  onInputFocus(ev) {
+    ev.target.classList.add('input--filled');
+  }
+
+  onInputBlur(ev) {
+     if (ev.target.value.trim() === '') {
+       ev.target.classList.remove('input--filled');
+     }
   }
 
   /**

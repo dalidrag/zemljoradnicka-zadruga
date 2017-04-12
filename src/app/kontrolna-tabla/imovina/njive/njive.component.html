@@ -1,8 +1,3 @@
-<div class="section-header">
-	<div class="inset-line-left"></div>
-	<div class="header-text">Њиве</div>
-	<div class="section-header-last inset-line"></div>
-</div>
 <div *ngFor="let njiva of njive" [class.nova-njiva]="novaNjivaId && novaNjivaId===njiva.id" (click)="prikaziNjivu(njiva.id)" class="njiva">
 	<div class="okvir-njive">
 		<div class="slika-njive"></div>

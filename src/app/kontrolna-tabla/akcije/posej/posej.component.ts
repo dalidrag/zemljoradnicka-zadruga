@@ -44,7 +44,7 @@ export class PosejComponent implements OnInit, OnDestroy {
 	 		// events:
 	 		inputEl.addEventListener('focus', this.onInputFocus);
 	 		inputEl.addEventListener('blur', this.onInputBlur);
-	 	} );
+	 	});
   }
 
   /**
@@ -84,14 +84,14 @@ export class PosejComponent implements OnInit, OnDestroy {
 	}
 
 	onInputFocus(ev) {
-	 		ev.target.classList.add('input--filled');
-	 	}
+		ev.target.classList.add('input--filled');
+	}
 
 	onInputBlur(ev) {
-	 		if( ev.target.value.trim() === '' ) {
-	 			ev.target.classList.remove('input--filled');
-	 		}
-	 	}
+ 		if( ev.target.value.trim() === '' ) {
+ 			ev.target.classList.remove('input--filled');
+ 		}
+	}
 
 	ngOnDestroy() {
     this.unsubscribe.unsubscribe();
