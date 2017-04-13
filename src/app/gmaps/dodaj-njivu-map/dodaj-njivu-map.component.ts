@@ -46,6 +46,13 @@ export class DodajNjivuMapComponent implements OnInit {
 	    drawingControlOptions: {
 	      drawingModes: ['polygon']
 	    },
+      polygonOptions: {
+        strokeColor: '#A52A2A',
+        strokeOpacity: 0.9,
+        strokeWeight: 3,
+        fillColor: '#A52A2A',
+        fillOpacity: 0.25
+      }
 	  });
 		drawingManager.setMap(this.gmapsService.map);
   

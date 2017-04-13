@@ -7,7 +7,7 @@ import { Usev } from './usev';
  */
 export class Njiva {
 	id: string;
-	oblikNaMapi;
+	oblikNaMapi = [];
 	ime: string;
 	katOpstina: string;
 	klasaZemljista: number;

@@ -29,6 +29,7 @@ import { NotificationHubService, HubNotificationType } from '../../../deljeno/ev
 export class DodajNjivuComponent implements OnInit, OnDestroy {
 	dodajNjivuForma: FormGroup;
   @Output() onNjivaDodata = new EventEmitter<boolean>();
+  njivaCoords = [];
 
   constructor(public actionCreators: NjiveActionCreators, private fb: FormBuilder, private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService, private notificationHubService: NotificationHubService) { }
 
@@ -60,13 +61,13 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
    */
   onShapeDrawn(oblikNjiveNaMapi) {
   	if (oblikNjiveNaMapi) {
-  		oblikNjiveNaMapi.getPath().forEach((element, index) => {
-  			console.log('p' + index + ': ' + element.lat());
-  			console.log('p' + index + ': ' + element.lng());
+  		oblikNjiveNaMapi.getPath().forEach((element) => {
+  			this.njivaCoords.push([element.lat(), element.lng()]);
   		});
-			// console.log(oblikNjiveNaMapi.getPath().getAt(1).lat());
-  		let forma = document.getElementsByTagName('form')[0] as HTMLElement;
-  		forma.style.display = 'block';  // prikazi formu
+
+  		// prikazi formu
+      let forma = document.getElementsByTagName('form')[0] as HTMLElement;
+  		forma.style.display = 'block';  
 
       // skroluj ekran do dna
       let buttonEl = document.getElementById('submit-button') as HTMLElement;
@@ -85,6 +86,7 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
 		novaNjiva.ime = formValues.ime;
 		novaNjiva.katOpstina = formValues.katOpstina;
 		novaNjiva.klasaZemljista = formValues.klasaZemljista;
+    novaNjiva.oblikNaMapi = this.njivaCoords;
 
 		this.dataService.dodajNjivu(novaNjiva).then((dodataNjiva) => {
 			this.notificationHubService.emit(HubNotificationType.AppState, 'logo');

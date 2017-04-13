@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
+- Google maps prikaz njive na pogledu 'detalji mape'
 - Vodic zavrsen
 ###Changed
 - DodajNjivu je sad fleksibilniji i ukljucuje pomoc
