@@ -19,6 +19,13 @@ body, p {
   font-family: naturalFont, serif;
 }
 
+.info-text {
+  font-family: Gabriela, serif;
+  font-size:0.8rem;
+  color: yellowgreen;
+  text-shadow: 1px 1px black;
+}
+
 /* Responsive */
 @media screen and (min-width: 760px) {
   html {

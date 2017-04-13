@@ -10,10 +10,7 @@ export class InMemoryDataService implements InMemoryDbService {
     	{id: 5, ime: "Мак", srcSlike: 'vrste-useva/mak.jpg' },
     	{id: 6, ime: "Сунцокрет", srcSlike: 'vrste-useva/suncokret.jpg' }
     ];
-    let njive = [
-      {id: 1, ime: 'Задња', katOpstina: 'Добрица', klasaZemljista: 7, usevi:[] },
-      {id: 2, ime: 'Предња', katOpstina: 'Добрица', klasaZemljista: 5, usevi:[] },
-    ];
+    let njive = [];
     let aktivnosti = [];
     let tipoviMasina = [
       {id: 1, naziv: "Трактор", srcSlike: 'masine/traktor.jpg' },
