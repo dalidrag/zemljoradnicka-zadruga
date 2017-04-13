@@ -25,6 +25,13 @@ body, p {
   color: yellowgreen;
   text-shadow: 1px 1px black;
 }
+.info-box {
+  background-color: #314645;
+  border-radius: 5px;
+  border-color: #314645;
+  border-width: 5px;
+  padding: 5px;
+}
 
 /* Responsive */
 @media screen and (min-width: 760px) {
@@ -153,6 +160,8 @@ body, p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background:#f3961c; /* default background for browsers without gradient support */
+  background:linear-gradient(#f3961c, #f9d835);
 }
 .modal-content {
   color: #fff;

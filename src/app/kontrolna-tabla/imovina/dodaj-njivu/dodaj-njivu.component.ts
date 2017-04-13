@@ -10,6 +10,8 @@ import { Njiva } from '../../../deljeno/tipovi-podataka/njiva';
 import { DodajNjivuMapComponent } from '../../../gmaps/dodaj-njivu-map/dodaj-njivu-map.component';
 
 import { DataService } from '../../../deljeno/data.service';
+import { StateService } from '../../../deljeno/state.service';
+import { ModalPopupService } from '../../../deljeno/modal-popup.service';
 import { UtilitiesService } from '../../../deljeno/utilities.service';
 import { NotificationHubService, HubNotificationType } from '../../../deljeno/event-hub.service';
 /************************************************************************/
@@ -30,11 +32,18 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
 	dodajNjivuForma: FormGroup;
   @Output() onNjivaDodata = new EventEmitter<boolean>();
   njivaCoords = [];
+  vodicFaza = 0;
 
-  constructor(public actionCreators: NjiveActionCreators, private fb: FormBuilder, private dataService: DataService, private router: Router, private utilitiesService: UtilitiesService, private notificationHubService: NotificationHubService) { }
+  constructor(public actionCreators: NjiveActionCreators, private stateService: StateService,
+              private fb: FormBuilder, private dataService: DataService,
+              private router: Router, private utilitiesService: UtilitiesService,
+              private notificationHubService: NotificationHubService, private modalPopupService: ModalPopupService) { }
 
   ngOnInit() {
   	this.notificationHubService.emit(HubNotificationType.AppState, 'Додавање њиве');
+    
+    this.vodicFaza = this.stateService.state.vodic.faza;
+
     this.dodajNjivuForma = this.fb.group({  
   		'ime': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
   		'katOpstina': ['',  Validators.compose([Validators.required, Validators.maxLength(30)])],
@@ -53,6 +62,13 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
       inputEl.addEventListener('blur', this.onInputBlur);
     });
   }
+
+  vodicCrtanjeMape() {
+    this.vodicFaza = 11;
+  }
+  pocniSaCrtanjem() {
+    this.vodicFaza = 0; 
+  }
   /**
 	 * Nakon sto je njiva iscrtana, prikazuje formu za unosenje ostalih podataka
 	 *
@@ -69,9 +85,9 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
       let forma = document.getElementsByTagName('form')[0] as HTMLElement;
   		forma.style.display = 'block';  
 
-      // skroluj ekran do dna
-      let buttonEl = document.getElementById('submit-button') as HTMLElement;
-      buttonEl.scrollIntoView({behavior: "smooth", block: "start"});
+      // skroluj formu u vidno polje
+      let inputEl = document.getElementById('ime-njive') as HTMLElement;
+      inputEl.scrollIntoView({behavior: "smooth", block: "start"});
   	}
   }
 

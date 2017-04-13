@@ -105,6 +105,7 @@ export class PosejComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
+		this.notificationHubService.emit(HubNotificationType.AppState, 'logo');		
     this.unsubscribe.unsubscribe();
   }
 }

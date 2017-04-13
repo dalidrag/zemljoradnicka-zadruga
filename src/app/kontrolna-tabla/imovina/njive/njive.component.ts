@@ -39,6 +39,14 @@ export class NjiveComponent implements OnInit, OnDestroy {
         this.vrsteUsevaPoId[vrstaUseva.id] = vrstaUseva;
       }
   	});
+    if (this.stateService.state.vodic.faza === 1) {
+      this.modalPopupService.open(true);
+      this.modalPopupService.insertHTML(`<p style="font-family: Gabriela, sans-serif;">
+                        Хајде да се кратко упознамо са програмом.
+                        Обратите пажњу на низ наранџастих стрип-балона који ће се појављивати на екрану.
+                        </p>
+                        `);
+    }
     if (this.stateService.state.njive.novaNjivaId !== '0') {  // ako je upravo dodata nova njiva
       this.novaNjivaId = this.stateService.state.njive.novaNjivaId;
       this.actionCreators.novaNjivaPrikazana();

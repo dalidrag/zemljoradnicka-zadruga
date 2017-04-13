@@ -51,6 +51,10 @@ export class DodajMasinuComponent implements OnInit, OnDestroy {
       inputEl.addEventListener('focus', this.onInputFocus);
       inputEl.addEventListener('blur', this.onInputBlur);
     });
+
+    // skroluj formu u vidno polje
+    let inputEl = document.getElementById('ime-masine') as HTMLElement;
+    inputEl.scrollIntoView({behavior: "smooth", block: "start"});
   }
  
   /**

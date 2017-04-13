@@ -26,6 +26,8 @@ export const VodicReducer = (state = INITIAL_STATE, action: any) => {
 			return Object.assign({}, state, { faza: 7 });
 		case VodicActionCreators.ZAVRSI:
 			return Object.assign({}, state, { faza: 0 });
+		case VodicActionCreators.GMAPSZOOM:
+			return Object.assign({}, state, { faza: 10 });
 		default:
 			return state;
 	}

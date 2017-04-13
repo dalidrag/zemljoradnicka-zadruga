@@ -1,9 +1,16 @@
 <div class="map-container">
-	<div class="help-text" id="text1">Користите плус и минус дугмиће на мапи, или точкић миша да зумирате мапу. Притисните лево дугме миша, држите га и померајте миша да померите мапу.</div>
+	<div *ngIf="vodicFaza===10" class="help-text" id="text1">
+		<p style="font-family: Gabriela, sans-serif;">Користите плус и минус дугмиће на мапи, или точкић миша да зумирате мапу. Притисните лево дугме миша, држите га и померајте миша да померите мапу.</p>
+		<button (click)="vodicCrtanjeMape()" >Даље</button>
+	</div>
 	<div class="google-map" id="g-map">
 		<app-dodaj-njivu-map (onShapeDrawn)="onShapeDrawn($event)"></app-dodaj-njivu-map>
 	</div> 
-	<div class="help-text" id="text2">Да почнете да цртате њиву, једноставно кликните левим дугметом миша (брзо, без држања) и померите миша тамо где желите следећу тачку. Понављајте овај поступак док не нацртате цео оквир њиве. Оквир њиве мора бити затворен—последња тачка мора бити иста као прва, тако да последњу линију нацртајте тако што једноставно кликнете на прву тачку од које сте почели.</div>
+	<div *ngIf="vodicFaza===11" class="help-text" id="text2">
+		<p style="font-family: Gabriela, sans-serif;">Да почнете да цртате њиву, једноставно кликните левим дугметом миша (брзо, без држања) и померите миша тамо где желите следећу тачку. Понављајте овај поступак док не нацртате цео оквир њиве. Оквир њиве мора бити затворен—последња тачка мора бити иста као прва, тако да последњу линију нацртајте тако што једноставно кликнете на прву тачку од које сте почели.
+		</p>
+		<button (click)="pocniSaCrtanjem()">Даље</button>
+	</div>
 </div>
 
 <form [formGroup]="dodajNjivuForma" (ngSubmit)="onSubmit(dodajNjivuForma.value)" (keyup)="onKey($event)" class="form-container">

@@ -14,6 +14,8 @@ export class VodicActionCreators {
 	static KRAJ = 'KRAJ';
 	static ZAVRSI = 'ZAVRSI';
 
+	static GMAPSZOOM = 'GMAPSZOOM';
+	
 	imanje() {
 		this.appStore.dispatch({
 			type: VodicActionCreators.IMANJE
@@ -52,6 +54,11 @@ export class VodicActionCreators {
 	zavrsi() {
 		this.appStore.dispatch({
 			type: VodicActionCreators.ZAVRSI
+		})
+	}
+	gMapsZoom() {
+		this.appStore.dispatch({
+			type: VodicActionCreators.GMAPSZOOM
 		})
 	}
 }

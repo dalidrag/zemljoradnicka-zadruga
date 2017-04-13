@@ -1,11 +1,11 @@
 <div *ngFor="let njiva of njive" [class.nova-njiva]="novaNjivaId && novaNjivaId===njiva.id" class="njiva">
-	<div (click)="prikaziNjivu(njiva.id)" class="okvir-njive">
+	<div (click)="prikaziNjivu(njiva.id)" class="okvir-njive" title="кликните да видите детаље о овој њиви">
 		<div class="slika-njive"></div>
 		<p class="ime-njive">{{njiva.ime}}</p>
 	</div>
 	<div class="usevi">
 		<div *ngFor="let usev of njiva.usevi" [class.novi-usev]="noviUsevId && noviUsevId===usev.id" class="usev">
-			<div class="okvir-useva">
+			<div class="okvir-useva" title="кликните да видите детаље о овом засаду">
 				<img src="/assets/images/{{vrsteUsevaPoId[usev.vrsta_useva].srcSlike}}" class="slika-useva"/>
 				<p>{{vrsteUsevaPoId[usev.vrsta_useva].ime}}</p>
 			</div>
