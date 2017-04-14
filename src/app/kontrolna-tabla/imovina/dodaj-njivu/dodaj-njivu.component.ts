@@ -1,7 +1,7 @@
 /************************************************************************/
 import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 
 import { NjiveActionCreators } from '../../../Redux/action-creators/njive.action-creators';
 
@@ -32,15 +32,23 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
 	dodajNjivuForma: FormGroup;
   @Output() onNjivaDodata = new EventEmitter<boolean>();
   njivaCoords = [];
+
+  njive: Njiva[];
   vodicFaza = 0;
+  unsubscribe;
 
   constructor(public actionCreators: NjiveActionCreators, private stateService: StateService,
               private fb: FormBuilder, private dataService: DataService,
-              private router: Router, private utilitiesService: UtilitiesService,
-              private notificationHubService: NotificationHubService, private modalPopupService: ModalPopupService) { }
+              private router: Router, private route: ActivatedRoute,
+              private utilitiesService: UtilitiesService, private notificationHubService: NotificationHubService,
+              private modalPopupService: ModalPopupService) { }
 
   ngOnInit() {
-  	this.notificationHubService.emit(HubNotificationType.AppState, 'Додавање њиве');
+  	this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[] }) => {
+      this.njive = data.njive;
+    });
+
+    this.notificationHubService.emit(HubNotificationType.AppState, 'Додавање њиве');
     
     this.vodicFaza = this.stateService.state.vodic.faza;
 
@@ -75,9 +83,9 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
 	 * @param oblikNjiveNaMapi Gmaps poligon koji predstavlja njivu na mapi
 	 * @method onShapeDrawn
    */
-  onShapeDrawn(oblikNjiveNaMapi) {
-  	if (oblikNjiveNaMapi) {
-  		oblikNjiveNaMapi.getPath().forEach((element) => {
+  onShapeDrawn(nacrtanaNjiva) {
+  	if (nacrtanaNjiva.oblikNjiveNaMapi) {
+  		nacrtanaNjiva.oblikNjiveNaMapi.getPath().forEach((element) => {
   			this.njivaCoords.push([element.lat(), element.lng()]);
   		});
 
@@ -103,12 +111,13 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
 		novaNjiva.katOpstina = formValues.katOpstina;
 		novaNjiva.klasaZemljista = formValues.klasaZemljista;
     novaNjiva.oblikNaMapi = this.njivaCoords;
+    // novaNjiva.povrsina = this.povrsina;  // TODO
 
 		this.dataService.dodajNjivu(novaNjiva).then((dodataNjiva) => {
 			this.notificationHubService.emit(HubNotificationType.AppState, 'logo');
       this.notificationHubService.emit(HubNotificationType.Success, 'Додата нова њива');
 			this.actionCreators.novaNjiva(dodataNjiva.id);
-			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz']}}]);
+			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njiva-prikaz', dodataNjiva.id]}}]);
       this.onNjivaDodata.emit(true);
 		})
 		.catch(error => this.utilitiesService.handleError(error));
@@ -140,6 +149,7 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
 
    ngOnDestroy() {
      // Izlazak iz ove komponente uvek vodi na osnovni ekran kontrolne table:
+     this.unsubscribe.unsubscribe();
      this.notificationHubService.emit(HubNotificationType.AppState, 'logo');
    }
 }

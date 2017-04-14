@@ -10,12 +10,10 @@ export class ModalPopupService {
     this.body = document.getElementsByTagName('body')[0] as HTMLElement;
   }
 
-  open(blurBackground?: boolean) {
+  open() {
     ModalPopupService.appRootElement = ModalPopupService.appRootElement || document.getElementById('app-root-element') as HTMLElement;
-    if (blurBackground) {
-      // add 'modal-de-emphasised' class to <app-root>
-      ModalPopupService.appRootElement.classList.add('modal-de-emphasised');
-    }
+    // add 'modal-de-emphasised' class to <app-root>
+    ModalPopupService.appRootElement.classList.add('modal-de-emphasised');
 
  		this.modalPopup = document.createElement('div') as HTMLElement;
  		this.modalPopup.className = "modal-backdrop";

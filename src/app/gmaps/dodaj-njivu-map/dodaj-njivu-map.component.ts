@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { GmapsService } from '../gmaps.service';
 
 @Component({
@@ -8,12 +8,15 @@ import { GmapsService } from '../gmaps.service';
 })
 export class DodajNjivuMapComponent implements OnInit {
 	@Output() onShapeDrawn = new EventEmitter<any>();
+  @Input() njive;
+  static gmaps;
 
   constructor(private gmapsService: GmapsService) { }
 
   ngOnInit() {
   	if (!this.gmapsService.google) {
-  		this.gmapsService.initGoogleMaps(['drawing']).then(() => {
+  		this.gmapsService.initGoogleMaps(['drawing', 'geometry']).then(() => {
+        DodajNjivuMapComponent.gmaps = this.gmapsService;
   			this.inicijalizujMapu()
   		});
   	}
@@ -40,6 +43,13 @@ export class DodajNjivuMapComponent implements OnInit {
 
 		this.gmapsService.initMap(mapElement, mapOptions);
 
+    // Ako ima vec unetih njiva, zumiraj mapu na poslednju njivu korisnika
+    if (this.njive) {
+      let njiveCoords = this.njive.map((njiva) => njiva.oblikNaMapi);
+      this.gmapsService.zumirajNjivu(njiveCoords[njiveCoords.length-1]);
+      this.gmapsService.prikaziNjive(njiveCoords);
+    }
+
 		let drawingManager = new this.gmapsService.google.maps.drawing.DrawingManager({
 	    drawingMode: this.gmapsService.google.maps.drawing.OverlayType.POLYGON,
 	    drawingControl: true,
@@ -59,6 +69,17 @@ export class DodajNjivuMapComponent implements OnInit {
   	let self = this;
 		// dodaj event listener koji ce se aktivirati kada je crtanje poligona zavrseno
 		this.gmapsService.google.maps.event.addListener(drawingManager, 'overlaycomplete', function(e) {
+      let oblikNjiveNaMapi = e.overlay;
+
+      // konvertuj oblik njive u niz LatLng Google maps objekata
+      let njivaLatLng = [];
+      oblikNjiveNaMapi.getPath().forEach((element) => {
+        njivaLatLng.push(new self.gmapsService.google.maps.LatLng(element.lat(), element.lng()));
+      });
+
+      // izracunaj povrsinu njive
+      let area = self.gmapsService.google.maps.geometry.spherical.computeArea(njivaLatLng);
+
       // Prebaci se u mod bez crtackih opcija
       drawingManager.setDrawingMode(null);
       // Sakrij crtacke ikone na mapi
@@ -66,10 +87,9 @@ export class DodajNjivuMapComponent implements OnInit {
         drawingControl: false
       });
 
-      let oblikNjiveNaMapi = e.overlay;
-      // oblikNjiveNaMapi.type = e.type;
+      // javi parent komponenti da je njiva nacrtana i posalji koordinate
+      self.onShapeDrawn.emit({oblikNjiveNaMapi, area});
 
-      self.onShapeDrawn.emit(oblikNjiveNaMapi);
 	  });
   } // kraj metoda
 

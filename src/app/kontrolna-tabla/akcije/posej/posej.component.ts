@@ -89,7 +89,7 @@ export class PosejComponent implements OnInit, OnDestroy {
 		})
 		.then((dodataAktivnost) => {
 			this.notificationHubService.emit(HubNotificationType.Success, 'Усев посејан');
-			this.router.navigate(['/kontrolna-tabla', 'akcije', {outlets: {'akcije-njive': ['akcije-meni-njive'], 'akcije-masine': ['akcije-meni-masine']}}]);
+			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]);
 		})
 		.catch(error => this.utilitiesService.handleError(error));
 	}

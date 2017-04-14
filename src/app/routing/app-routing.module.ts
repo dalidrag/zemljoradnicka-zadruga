@@ -48,7 +48,7 @@ const routes: Routes = [
    { path: 'imovina', component: ImovinaPogledComponent, children: [
     { path: 'njive-prikaz', component: NjiveComponent, outlet: 'njive', resolve: {njive: NjiveResolve, vrsteUseva: VrsteUsevaResolve} },
     { path: 'njiva-prikaz/:id', component: NjivaComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
-    { path: 'dodaj-njivu', component: DodajNjivuComponent, outlet: 'njive' },
+    { path: 'dodaj-njivu', component: DodajNjivuComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
     { path: 'masine-prikaz', component: MasineComponent, outlet: 'masine', resolve: {masine: MasineResolve, tipoviMasina: TipoviMasinaResolve} },
     { path: 'dodaj-masinu', component: DodajMasinuComponent, outlet: 'masine', resolve: {tipoviMasina: TipoviMasinaResolve} },
     ]

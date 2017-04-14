@@ -150,7 +150,7 @@ body, p {
   position: absolute;
   left: 0; right: 0; top: 0; bottom: 0;
   width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Make background
+  background-color: rgba(0, 0, 0, 0.8); /* Make background
   semi-opaque */
   z-index: 2147483647; /* Ensure the box is on top of z
   stacking order */
