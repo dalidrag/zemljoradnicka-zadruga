@@ -1,2 +1,0 @@
-Prikazivanje njive na mapi: Google Maps JavaScript API Cookbook, pages 81-82
-map.fitBounds(bounds:LatLngBounds), constructor: google.maps.LatLngBounds(sw?:LatLng, ne?:LatLng), constructor: google.maps.LatLng(lat:number,lng:number)

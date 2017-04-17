@@ -9,6 +9,11 @@ import { VrstaUseva} from './tipovi-podataka/vrsta-useva';
 import { TipMasine } from './tipovi-podataka/tip-masine';
 import { Masina } from './tipovi-podataka/masina';
 
+class DataCache {
+	data = null;
+	dirty = true;
+}
+
 /**
  * Omogucuje razmenu podataka sa HTTP serverom
  * Jedan metod rukuje svim eventualnim greskama
@@ -21,9 +26,15 @@ export class DataService {
 	// URLs to web api
 	private njiveUrl = 'http://localhost:4200/api/njive';
 	private aktivnostiUrl = 'http://localhost:4200/api/aktivnosti';
+	private masineUrl = 'http://localhost:4200/api/masine';
 	private vrsteUsevaUrl = 'http://localhost:4200/api/vrsteUseva';
 	private tipoviMasinaUrl = 'http://localhost:4200/api/tipoviMasina';
-	private masineUrl = 'http://localhost:4200/api/masine';
+
+	njiveCache = new DataCache();
+	aktivnostiCache = new DataCache();
+	masineCache = new DataCache();
+	vrsteUsevaCache = new DataCache();
+	tipoviMasinaCache = new DataCache();
   
   constructor(private http: Http) { }
 
@@ -34,9 +45,15 @@ export class DataService {
 	 * @return {Promise<VrstaUseva[]>} Vraca preuzete vrste useva kao Promise
 	 */
 	preuzmiVrsteUseva() {
-		return this.http.get(this.vrsteUsevaUrl)
+		if (!this.vrsteUsevaCache.dirty) {
+			return Promise.resolve(this.vrsteUsevaCache.data);
+		}
+		else
+			return this.http.get(this.vrsteUsevaUrl)
 		  	             .toPromise()		// Because Angular http service returns observable
 		  	             .then(response => {
+		  	             		this.vrsteUsevaCache.data = response.json().data as VrstaUseva[];
+		  	             		this.vrsteUsevaCache.dirty = false;
 		  	             		return response.json().data as VrstaUseva[];
 		  	             })
 		  	             .catch(this.handleError)
@@ -49,9 +66,14 @@ export class DataService {
 	 * @return {Promise<TipMasine[]>} Vraca preuzete tipova masina kao Promise
 	 */
 	preuzmiTipoveMasina() {
+		if (!this.tipoviMasinaCache.dirty) {
+			return Promise.resolve(this.tipoviMasinaCache.data);
+		}
 		return this.http.get(this.tipoviMasinaUrl)
 		  	             .toPromise()		// Because Angular http service returns observable
 		  	             .then(response => {
+		  	             		this.tipoviMasinaCache.data = response.json().data as TipMasine[];
+		  	             		this.tipoviMasinaCache.dirty = false;
 		  	             		return response.json().data as TipMasine[];
 		  	             })
 		  	             .catch(this.handleError)
@@ -64,9 +86,14 @@ export class DataService {
 	 * @return {Promise<Njiva[]>} Vraca preuzete njive kao Promise
 	 */
 	preuzmiNjive() {
+		if (!this.njiveCache.dirty) {
+			return Promise.resolve(this.njiveCache.data);
+		}
 		return this.http.get(this.njiveUrl)
 		  	             .toPromise()		// Because Angular http service returns observable
 		  	             .then(response => {
+		  	             		this.njiveCache.data = response.json().data as Njiva[];
+		  	             		this.njiveCache.dirty = false;
 		  	             		return response.json().data as Njiva[];
 		  	             })
 		  	             .catch(this.handleError)
@@ -84,6 +111,7 @@ export class DataService {
 			.post(this.njiveUrl, JSON.stringify(novaNjiva), {headers: this.headers})
 			.toPromise()
 			.then(response => {
+				this.njiveCache.dirty = true;
 				return response.json().data as Njiva
 			})
 			.catch(this.handleError);
@@ -101,6 +129,7 @@ export class DataService {
 			.put(this.njiveUrl + '/' + azuriranaNjiva.id, JSON.stringify(azuriranaNjiva), {headers: this.headers})
 			.toPromise()
 			.then(response => {
+				this.njiveCache.dirty = true;
 				return response;
 			})
 			.catch(this.handleError);
@@ -113,9 +142,14 @@ export class DataService {
 	 * @return {Promise<Masina[]>} Vraca preuzete masine kao Promise
 	 */
 	preuzmiMasine() {
+		if (!this.masineCache.dirty) {
+			return Promise.resolve(this.masineCache.data);
+		}
 		return this.http.get(this.masineUrl)
 		  	             .toPromise()		// Because Angular http service returns observable
 		  	             .then(response => {
+		  	             		this.masineCache.data = response.json().data as Masina[];
+		  	             		this.masineCache.dirty = false;
 		  	             		return response.json().data as Masina[];
 		  	             })
 		  	             .catch(this.handleError)
@@ -132,6 +166,7 @@ export class DataService {
 			.post(this.masineUrl, JSON.stringify(novaMasina), {headers: this.headers})
 			.toPromise()
 			.then(response => {
+				this.masineCache.dirty = true;
 				return response.json().data as Masina
 			})
 			.catch(this.handleError);
@@ -144,9 +179,14 @@ export class DataService {
 	 * @return {Promise<Aktivnost[]>} Vraca preuzete aktivnosti kao Promise
 	 */
 	 preuzmiAktivnosti() {
+	 	if (!this.aktivnostiCache.dirty) {
+			return Promise.resolve(this.aktivnostiCache.data);
+		}
 	 	return this.http.get(this.aktivnostiUrl)
 	 	  	             .toPromise()		// Because Angular http service returns observable
 	 	  	             .then(response => {
+	 	  	             		this.aktivnostiCache.data = response.json().data as Aktivnost[];
+		  	             		this.aktivnostiCache.dirty = false;
 	 	  	             		return response.json().data as Aktivnost[];
 	 	  	             })
 	 	  	             .catch(this.handleError)
@@ -164,6 +204,7 @@ export class DataService {
 			.post(this.aktivnostiUrl, JSON.stringify(novaAktivnost), {headers: this.headers})
 			.toPromise()
 			.then(response => {
+				this.aktivnostiCache.dirty = true;
 				return response.json().data as Aktivnost
 			})
 			.catch(this.handleError);
