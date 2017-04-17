@@ -44,7 +44,7 @@ export class DodajNjivuMapComponent implements OnInit {
 		this.gmapsService.initMap(mapElement, mapOptions);
 
     // Ako ima vec unetih njiva, zumiraj mapu na poslednju njivu korisnika
-    if (this.njive) {
+    if (this.njive.length > 0) {
       let njiveCoords = this.njive.map((njiva) => njiva.oblikNaMapi);
       this.gmapsService.zumirajNjivu(njiveCoords[njiveCoords.length-1]);
       this.gmapsService.prikaziNjive(njiveCoords);
@@ -57,10 +57,10 @@ export class DodajNjivuMapComponent implements OnInit {
 	      drawingModes: ['polygon']
 	    },
       polygonOptions: {
-        strokeColor: '#A52A2A',
+        strokeColor: '#FFFF00',
         strokeOpacity: 0.9,
-        strokeWeight: 3,
-        fillColor: '#A52A2A',
+        strokeWeight: 9,
+        fillColor: '#FFFF00',
         fillOpacity: 0.25
       }
 	  });

@@ -17,20 +17,23 @@
 
 - Sekcije za ekran Imovina, odozgo na dole:
 	- Njive;
-	- Masine: traktori, kombajni, motokultivatori, prskalice za navodnjavanje, sejac, drugo;
-	- Skladista;
+	- Masine: traktori, kombajni, motokultivatori, prskalice za navodnjavanje, sejac, drugo; mogu biti posedovane ili iznajmljene, ili dobijene od zadruge na koriscenje u odredjenom periodu
+	- Skladista; mogu biti posedovana ili iznajmljena, ili dobijena od zadruge na koriscenje u odredjenom periodu. Ako su iznajmljena, kapacitet moze da se ne unese.
 	- Djubrivo;
 	- Pesticidi;
+	- Seme;?
 	- Ostala imovina?
 	Klikom na neku od imovina ide se na detaljni prikaz, u slucaju njive na mapu. Na detaljima je prikaz njive na mapi, kolicina padavina u poslednjih x meseci, lista aktivnosti nad ovom njivom itd.
 	- Na detaljnom prikazu se moze editovati ili izbrisati imovina.
+	- Moze se selektovati da li da se prikazuje i zadruzna imovina na ekranima clana zadruge.
 
 - Sekcije za ekran Aktivnosti su:
 	- Njive: navodnjavanje, oranje, sejanje, prskanje, zetva ili djubrenje, kupovina, iznajmljivanje, prodaja;
 	- Masine: opravka i dosipanje goriva, kupovina, iznajmljivanje, prodaja;
 	- Skladista: punjenje, prodaja, opravka, kupovina, iznajmljivanje, prodaja;
+	- Ostala imovina: kupi/prodaj;
 	- Ostale aktivnosti?
-	Svaka aktivnost moze da ima cenu, dobit, vreme trajanja, upotrebljene masine i sirovine i datum.
+	Svaka aktivnost moze da ima cenu, dobit, vreme trajanja, upotrebljene masine i sirovine i datum. Kupi/prodaj jos ima kupca ili prodavca.
 	- Prikaz aktivnosti. Moze se stiklirati koje vrste aktivnosti da se prikazuju (inicijalno sve), podesiti u kom vremenskom periodu, izabrati za koje zasade/njive, vrste zasada, masine, vrste masina, skladista, kupce.
 
 - Grafikoni vode na ekran sa velikim dugmadima koja vode ka razlicitim vizuelizacijama podataka:
@@ -53,20 +56,25 @@
 
 - Osnovni ekran, na koji uvek vodi pritisak na logo aplikacije u gornjem levom uglu, prikazuje mnoge informacije. Tu su informacije vezane za obavestavanje zadrugara o aktuelnoj potraznji poljoprivrednih dobara, zatim o povoljnim ponudama za kupovinu zemljoradnickih sirovina i masina, i konacno deo o poljoprivrednom znanju i tehnikama. Konacno, ovaj ekran prikazuje kalendar. Na kalendaru je prognoza kolicine padavina.
 
-- Program na razlicitim ekranima vrsi predvidjanja i daje predloge. Recimo, kada se zaseje njiva, na ekranu njiva stoji ocekivani prinos. Mogu da se dobiju informacije o tome kako da se postupa na toj njivi, u smislu koji zasadi se dobro kombinuju sa postojecim i onim od prosle godine itd. Na ekranu 'zasad'  mogu se dobiti razni predlozi kako da se gaji ta kultura, kako da se prska itd.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- Kada se unese tip-masine/pod-tip/proizvodjac/model, program ovo pamti u bazu podataka i kada ostali korisnici budu birali, program ce automatski ponuditi kad se pocne kucanje slova. Ako se izabere vec postojeci tip, sva polja za koja je to smisleno se automatski popunjavaju (mogu se ipak editovati), a za ona koja i ne mogu, daje se izbor da se preuzmu vec unete vrednosti, sto je pogotovu korisno za recimo sliku masine. Sve receno vazi i za tipove useva, djubriva i pesticida.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Ako je korisnik direktor zadruge ili clan upravnog odbora, pojavljuju se dodatne opcije. Masina se moze dodeliti clanu zadruge u odredjenom vremenskom periodu. Sirovine se mogu raspodeliti clanovima zadruge.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- Informacije o objektima: zadrugari mogu da ih dodaju, zadruga da ih potvrdi ili obrise. Info moze biti citan od strane svih korisnika programa. Info moze biti oznacen kao koristan od strane korisnika (samo 1 za 1 korisnika). Program predlaze info na osnovu popularnosti.
+- Tip objekta za koji se daje info: recimo, to moze biti traktori, a moze i traktori/(odredjeni model). Moze biti kukuruz, a moze i kukuruz(odredjena sorta). Moze i recimo biti tip akcije, kao sejanje, u kom slucaju jos jedan objekat povezan sa info moze biti kultura o kojoj se radi.
+- Na ekranu 'zasad'  mogu se dobiti razni predlozi kako da se gaji ta kultura, kako da se prska itd.
+- Info ekrani se pisu u rich tekst editoru, isto kao i zabeleske.
+
+- Program na razlicitim ekranima vrsi predvidjanja i daje predloge. Recimo, kada se zaseje njiva, na ekranu njiva stoji ocekivani prinos. Mogu da se dobiju informacije o tome kako da se postupa na toj njivi, u smislu koji zasadi se dobro kombinuju sa postojecim i onim od prosle godine itd.
 - Pored svake opcije postoji dugme pomoc koje otvara modalni prozor sa jasnim objasnjenjem opcije.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-- Svi clanovi zadruge mogu videti aktivnosti ostalih clanova zadruge.
-- Moze se selektovati da li da se prikazuje i zadruzna imovina na ekranima clana zadruge.
-
-
 - Postoji oglasna tabla na kojoj zadruga, u gornjem delu table, postavlja aktuelna obavestenja. Na njih mogu odgovarati clanovi zadruge. Forum je linearan, nema odgovora na odgovor (tehnicki). U donjem delu oglasne table clanovi zadruge mogu se obratiti zadruzi. Isto je moguce svim clanovima zadruge da odgovaraju na ove teme. Teme koje korisnik jos nije otvorio oznacene su kao nove crvenim znakom. Crveni znak se pokazuje preko logoa aplikacije kada god stignu nova obavestenja od zadruge.
-++
 - Poruka svojoj zadruzi se moze uciniti javnom, kada ce na posebnom delu oglasne table biti vidljiva svim korsnicima programa Zadruga. Program vodi evidenciju o najpopularnijim ovakvim porukama i one su sortirane na osnovu popularnosti.
 - Bilo kom korisniku se moze poslati direktna poruka od strane drugog korisnika. Isto tako, za svakog korisnika koji je svoj profil ucinio javnim mogu se videti njegove njive, zasadi i licni podaci, na posebnom delu osnovnog ekrana.
-
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - Ako je ulogovani korisnik clan upravnog odbora, postoji i opcija knjiga zadrugara koja prikazuje listu svih clanova zadruge.

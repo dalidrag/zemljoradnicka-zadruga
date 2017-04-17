@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Changed
-- Kompletirano crtanje njiva na Gmaps, izuzev pretvaranja u jpg i snimanja na server bazu
+- Kompletirano crtanje njiva jednog korisnika na Gmaps, izuzev pretvaranja u jpg i snimanja na server bazu
 - Funkcionalna specifikacija obogacena.
 ###Fixed
 - Numerous illogical features and a CSS bug fix
