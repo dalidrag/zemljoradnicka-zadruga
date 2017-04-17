@@ -1,3 +1,20 @@
-<p>
-  akcije-pogled works!
-</p>
+<div class="section-header">
+	<div class="inset-line-left"></div>
+	<div class="header-text">Њиве</div>
+	<div class="section-header-last inset-line"></div>
+</div>
+<router-outlet name="akcije-njive"></router-outlet>
+<div class="section-header">
+	<div class="inset-line-left"></div>
+	<div class="header-text">Машинерија</div>
+	<div class="section-header-last inset-line"></div>
+</div>
+<router-outlet name="akcije-masine"></router-outlet>
+<div class="section-header">
+	<div class="inset-line-left"></div>
+	<div class="header-text">Историја активности</div>
+	<div class="section-header-last inset-line"></div>
+</div>
+<div class="aktivnosti">
+	<button routerLink="../akcije-lista">Прикажи историју активности</button>
+</div>

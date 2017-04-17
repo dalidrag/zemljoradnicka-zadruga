@@ -12,7 +12,6 @@ import { StateService } from './deljeno/state.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app works!';
 
   constructor(private stateService: StateService ) { }
 

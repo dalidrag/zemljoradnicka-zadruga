@@ -3,11 +3,55 @@
 	to { opacity: 1;  }
 }
 
-#njive {
-	border: 1px solid red;
+.njiva {
+	display: inline-block;
+	vertical-align: top;
+	width: 11rem;
+	margin: 0.5rem;
 }
+.okvir-njive {
+	cursor: pointer;
+}
+.slika-njive {
+	height: 10rem;
+	border: 12px solid brown;
+	border-radius: 12px;
+	background-color: green;
+}
+.usev {
+	display: inline-block;
+	margin: 0.2rem;
+	cursor: pointer;
+}
+.okvir-useva {
+	width: 5rem;
+}
+.slika-useva {
+	height: 5rem;
+	border: 4px solid gold;
+	border-radius: 4px;
+	background-color: green;
+}
+.ime-njive {
+	font-size: 1.2rem;
+}
+
+.dugme-dodaj-njivu {
+	display: block;
+	margin-left: 0.5rem;
+}
+
 .nova-njiva {
 	animation-name: fade-in;
 	animation-duration: 0.5s;
 	animation-timing-function: ease-in;
+}
+.novi-usev {
+	animation-name: fade-in;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in;
+}
+
+#info-dugme {
+	display: block;
 }

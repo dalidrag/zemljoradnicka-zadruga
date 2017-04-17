@@ -1,0 +1,12 @@
+.google-map {
+	width: 80vw;
+	max-width: 26rem;
+	height: 50vh;
+	margin: auto;
+	overflow: hidden;
+}
+.info-box {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0.5rem;
+}

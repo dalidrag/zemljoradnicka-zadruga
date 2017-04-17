@@ -1,1 +1,374 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url("/assets/fonts/font-awesome-4.2.0/css/font-awesome.min.css");
+
+body, p {
+  margin: 0;
+}
+
+@font-face {
+  font-family: "naturalFont";
+  src: url("assets/fonts/JustBreatheBd.otf");
+}
+@font-face {
+  font-family: "Gabriela";
+  src: url("assets/fonts/Gabriela-Regular.ttf");
+}
+
+* {
+  font-family: naturalFont, serif;
+}
+
+.info-text {
+  font-family: Gabriela, serif;
+  font-size:0.8rem;
+  color: yellowgreen;
+  text-shadow: 1px 1px black;
+}
+.info-box {
+  background-color: #314645;
+  border-radius: 5px;
+  border-color: #314645;
+  border-width: 5px;
+  padding: 5px;
+}
+
+/* Responsive */
+@media screen and (min-width: 760px) {
+  html {
+    font-size: 24px;
+  }
+}
+
+/* Za centriranje sadrzaja u odnosu na ceo ekran*/
+.overlay-center {
+  display: flex;
+  flex-direction: column;
+  height: 92vh;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/*****************************************/
+/* Stilovi za liniju razdvajanja sekcija */
+/*****************************************/
+.section-header {
+  display:  flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  color: white;
+}
+.section-header-last {
+  flex-grow: 1;
+}
+.inset-line {
+  height: 1px;
+  background-color: blue;
+  box-shadow: 0px 1px 0px 0px white;
+}
+.inset-line-left {
+  height: 1px;
+  width: 2rem;
+  background-color: blue;
+  box-shadow: 0px 1px 0px 0px white;
+}
+.header-text {
+  font-size: 1.2rem;
+  text-shadow: 1px 1px blue;
+}
+
+
+
+/****************************************************/
+/* Stilovi za tekst-balone (by Nicolas Gallagher)   */
+/****************************************************/
+.tekst-balon {
+  position:absolute;
+  width:fit-content;
+  max-width: 24vw;
+  padding:15px;
+  margin:1em 0 3em;
+  z-index: 500;
+  color:#000;
+  background:#f3961c; /* default background for browsers without gradient support */
+  /* css3 */
+  background:linear-gradient(#f3961c, #f9d835);
+  border-radius:10px;
+}
+
+/* creates triangle on the left side */
+.tekst-balon-levi:after {
+  content:"";
+  position:absolute;
+  top:-15px; /* value = - border-top-width - border-bottom-width */
+  left:50px; /* controls horizontal position */
+  left:auto;
+  bottom:auto;
+  z-index: 500;
+
+  border-width:0 15px 15px; /* vary these values to change the angle of the vertex */
+  border-style:solid;
+  border-color:#f3961c transparent;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+/* creates triangle on the right side */
+.tekst-balon-desni:after {
+  content:"";
+  position:absolute;
+  top:-15px; /* value = - border-top-width - border-bottom-width */
+  right:50px; /* controls horizontal position */
+  left:auto;
+  bottom:auto;
+  z-index: 500;
+
+  border-width:0 15px 15px; /* vary these values to change the angle of the vertex */
+  border-style:solid;
+  border-color:#f3961c transparent;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+
+
+/************************************/
+/* Stilovi za modalni pop-up        */
+/* implementiran u okviru           */
+/* ModalPopupService serivsa        */
+/************************************/
+.modal-backdrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Stretch the absolute box container over the whole
+  screen */
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Make background
+  semi-opaque */
+  z-index: 2147483647; /* Ensure the box is on top of z
+  stacking order */
+}
+.modal-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:#f3961c; /* default background for browsers without gradient support */
+  background:linear-gradient(#f3961c, #f9d835);
+}
+.modal-content {
+  color: #fff;
+  /* Finally, some nice color to the text */
+  /* Finished! */
+}
+.modal-de-emphasised {
+	filter: blur(3px) contrast(.8) brightness(.8);
+}
+
+
+
+/************************/
+/*    Stilovi za forme  */
+/************************/
+.form-container {
+  position: relative;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 1rem;
+  margin: 1rem;
+}
+.form-background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: blue;
+  opacity: 0.4;
+}
+.form-input-error {
+  font-family: "Gabriela", serif;
+  font-size: 0.7rem;
+  color: orange;
+  text-shadow: 1px 1px black;
+  margin-bottom: 0.5rem;
+}
+button {
+  display: block;
+  margin-top: 1rem;
+  font-family: "Gabriela", serif;
+  background-color: brown;
+  color: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+button[disabled] {
+  cursor: initial;
+  opacity: 0.5;
+}
+label {
+  font-family: 'Gabriela', serif;
+  font-size: 0.7rem;
+  text-shadow: 1px 1px black;
+  color: white;
+}
+select {
+  background-color: brown;
+  color: white;
+  font-family: 'Gabriela', serif;
+  font-size: 0.7rem;
+}
+option {
+  font-family: 'Gabriela', serif;
+}
+
+/*    Stilovi za 'Sae' input polja  */
+/************************************/
+.input {
+  position: relative;
+  z-index: 1;
+  display: block;
+  /* margin: 1em; */
+  max-width: 30rem;
+  width: calc(100% - 2em);
+  width: 30rem;
+}
+
+.input__field {
+  position: relative;
+  display: block;
+  float: right;
+  padding: 0.8rem;
+  width: 60%;
+  border: none;
+  border-radius: 0;
+  background: #f0f0f0;
+  font-weight: 400;
+  font-size: 1rem;
+  font-family: "Gabriela", serif;
+  text-shadow: 1px 1px black;
+  -webkit-appearance: none; /* for box shadows to show on iOS */
+}
+
+.input__field:focus {
+  outline: none;
+}
+
+.input__label {
+  display: inline-block;
+  float: right;
+  padding: 0 1em;
+  width: 40%;
+  color: #696969;
+  font-size: 70.25%; 
+/*  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none; */
+  user-select: none;
+}
+
+.input__label-content {
+  position: relative;
+  display: block;
+  padding: 1.6em 0;
+  width: 100%;
+}
+
+.graphic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: none;
+}
+
+.icon {
+  color: #ddd;
+  font-size: 150%;
+}
+
+.input--sae {
+  overflow: hidden;
+  width: 95%;
+  padding-bottom: 0.3rem;
+  margin: 1rem 0 0;
+}
+
+.input__field--sae {
+  background: transparent;
+  width: 100%;
+  color: yellow;
+  padding: 1em 0 0.3rem;
+  font-weight: 500;
+}
+
+.input__label--sae {
+  position: absolute;
+  width: 100%;
+  text-align: left;
+  color: white;
+  text-shadow: 1px 1px black;
+  padding: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.input__label--sae::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #eee;
+  bottom: 0;
+  transform: translate3d(100%, 0, 0);
+  transition: transform 0.3s;
+}
+
+.icon--sae {
+  position: absolute;
+  right: 0;
+  top: 1.35rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  color: wheat;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s;
+}
+
+.input__label-content--sae {
+  height: 1rem;
+  padding: 0;
+  font-size: 1rem;
+  font-family: "Gabriela", serif;
+  display: inline-block;
+  vertical-align: bottom;
+  transform-origin: 0 0;
+  transform: translate3d(0, 1.2rem, 0);
+  transition: transform 0.3s;
+}
+
+.input__field--sae:focus + .input__label--sae .input__label-content--sae,
+.input--filled + .input__label--sae .input__label-content--sae {
+  transform: translate3d(0, 0, 0)  scale3d(0.7, 0.7, 1);
+}
+
+.input__field--sae:focus + .input__label--sae::after,
+.input--filled + .input__label--sae .input__label--sae::after {
+  transform: translate3d(0, 0, 0);
+}
+
+.input__field--sae:focus + .input__label--sae .icon--sae,
+.input--filled + .input__label--sae .icon--sae {
+  transition-delay: 0.01s;
+  transform: translate(-20rem, 0) rotate3d(0, 0, 1, -90deg);
+}

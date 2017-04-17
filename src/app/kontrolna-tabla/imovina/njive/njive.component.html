@@ -1,7 +1,16 @@
-<p>
-  njive works!
-</p>
-<div *ngFor="let njiva of njive" [class.nova-njiva]="novaNjivaId && novaNjivaId===njiva.id" (click)="prikaziNjivu(njiva.id)" id="njive">
-	<p>Име: {{njiva.ime}}</p>
+<div *ngFor="let njiva of njive" [class.nova-njiva]="novaNjivaId && novaNjivaId===njiva.id" class="njiva">
+	<div (click)="prikaziNjivu(njiva.id)" class="okvir-njive" title="кликните да видите детаље о овој њиви">
+		<div class="slika-njive"></div>
+		<p class="ime-njive">{{njiva.ime}}</p>
+	</div>
+	<div class="usevi">
+		<div *ngFor="let usev of njiva.usevi" [class.novi-usev]="noviUsevId && noviUsevId===usev.id" class="usev">
+			<div class="okvir-useva" title="кликните да видите детаље о овом засаду">
+				<img src="/assets/images/{{vrsteUsevaPoId[usev.vrsta_useva].srcSlike}}" class="slika-useva"/>
+				<p>{{vrsteUsevaPoId[usev.vrsta_useva].ime}}</p>
+			</div>
+		</div>
+	</div>
 </div>
-<a [routerLink]="['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['dodaj-njivu']}}]">Додај њиву</a>
+<!--<button (click)="prikaziInformacije()" data-tema="pasulj_osnovno" id="info-dugme">Informacije</button>-->
+<button class="dugme-dodaj-njivu" [routerLink]="['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['dodaj-njivu']}}]">Додај нову њиву</button>

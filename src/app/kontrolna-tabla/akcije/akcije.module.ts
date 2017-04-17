@@ -1,6 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AppRoutingModule} from '../../routing/app-routing.module';
+
 import { AkcijePogledComponent } from './akcije-pogled/akcije-pogled.component';
+import { PosejComponent } from './posej/posej.component';
+import { AkcijeListaComponent } from './akcije-lista/akcije-lista.component';
+import { AkcijeNjiveComponent } from './akcije-njive/akcije-njive.component';
+import { AkcijeMasineComponent } from './akcije-masine/akcije-masine.component';
 
 /**
  * Ovaj modul sadzi svu funkcionalost pogleda 'akcije'
@@ -9,8 +17,10 @@ import { AkcijePogledComponent } from './akcije-pogled/akcije-pogled.component';
  */
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AppRoutingModule,
+    FormsModule, ReactiveFormsModule
   ],
-  declarations: [AkcijePogledComponent]
+  declarations: [AkcijePogledComponent, PosejComponent, AkcijeListaComponent, AkcijeNjiveComponent, AkcijeMasineComponent]
 })
 export class AkcijeModule { }

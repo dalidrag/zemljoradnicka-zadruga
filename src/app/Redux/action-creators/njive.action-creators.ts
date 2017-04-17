@@ -7,6 +7,8 @@ export class NjiveActionCreators {
 
 	static NOVA_NJIVA = 'NOVA_NJIVA';
 	static NOVA_NJIVA_PRIKAZANA = 'NOVA_NJIVA_PRIKAZANA';
+	static NOVI_USEV = 'NOVI_USEV';
+	static NOVI_USEV_PRIKAZAN = 'NOVI_USEV_PRIKAZAN';
 
 	novaNjiva(novaNjivaId: string) {
 		this.appStore.dispatch({
@@ -17,6 +19,17 @@ export class NjiveActionCreators {
 	novaNjivaPrikazana() {
 		this.appStore.dispatch({
 			type: NjiveActionCreators.NOVA_NJIVA_PRIKAZANA
+		});
+	}
+	noviUsev(noviUsevId: string) {
+		this.appStore.dispatch({
+			type: NjiveActionCreators.NOVI_USEV,
+			noviUsevId: noviUsevId
+		});
+	}
+	noviUsevPrikazan() {
+		this.appStore.dispatch({
+			type: NjiveActionCreators.NOVI_USEV_PRIKAZAN
 		});
 	}
 }

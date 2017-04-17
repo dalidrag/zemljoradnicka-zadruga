@@ -1,6 +1,6 @@
 <div id="statusna-tabla">
 	<div id="status">
-		<a *ngIf="!notificationMessage" id="logo" routerLink="/kontrolna-tabla">Задруга</a>
+		<a *ngIf="!notificationMessage" id="logo" routerLink="/kontrolna-tabla">{{statusMessage}}</a>
 		<p *ngIf="notificationMessage" [class.error]="notificationType===0 || notificationType===1" [class.success]="notificationType===2" [class.fadingOut]="fadingOut" >
 		  {{notificationMessage}}
 		</p>

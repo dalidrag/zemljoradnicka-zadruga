@@ -1,0 +1,49 @@
+.aktivnosti {
+	display: flex;
+	justify-content: center;
+	margin-top: 1rem;
+}
+.aktivnost-slika {
+	position: relative;
+	width: 5rem;
+	height: 5rem;
+	text-align: center;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	border: 4px solid grey;
+	border-radius: 4px;
+	background-color: gold;
+	background-size: 100% 100%;
+	cursor: pointer;
+}
+.aktivnost-tekst {
+	position: relative;
+	top: 3.7rem;
+	color: white;
+	text-shadow: 1px 1px black;
+}
+.aktivnost-tekst-mali {
+	position: relative;
+	top: 3.7rem;
+	font-size: 0.8rem;
+	color: white;
+	text-shadow: 1px 1px black;
+}
+#slika-oranje {
+	background-image: url("/assets/images/aktivnosti/oranje.jpg");
+}
+#slika-sejanje {
+	background-image: url("/assets/images/aktivnosti/posej.jpg");
+}
+#slika-navodnjavanje {
+	background-image: url("/assets/images/aktivnosti/navodnjavanje.jpg");
+}
+#slika-djubrenje {
+	background-image: url("/assets/images/aktivnosti/djubrenje.jpg");
+}
+#slika-prskanje {
+	background-image: url("/assets/images/aktivnosti/prskanje.jpg");
+}
+#slika-zetva {
+	background-image: url("/assets/images/aktivnosti/zetva.jpg");
+}

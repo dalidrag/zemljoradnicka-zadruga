@@ -6,7 +6,10 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-db';
 
 import { DataService } from './data.service';
+
 import { Njiva } from './tipovi-podataka/njiva';
+import { Aktivnost } from './tipovi-podataka/aktivnost';
+import { Usev } from './tipovi-podataka/usev';
 
 describe('DataService', () => {
 	let service: DataService;
@@ -68,6 +71,92 @@ describe('DataService', () => {
         .then(() => service.preuzmiNjive())
         .then((njive) => {
           expect(njive.length).toBe(3);
+          done();
+        });
+    });
+  });
+
+  it('should have azurirajNjivu() method', () => {
+    expect(service.azurirajNjivu).toBeDefined();
+  });
+  describe('azurirajNjivu() method', () => {
+    it('should return a Promise', () => {
+      let azuriranaNjiva = new Njiva();
+      azuriranaNjiva.id="1";
+      expect(service.azurirajNjivu(azuriranaNjiva) instanceof Promise).toBeTruthy();
+    });
+    it('should update njiva', (done) => {
+      service.preuzmiNjive()
+      .then((njive) => {
+        let azuriranaNjiva = new Njiva();
+        azuriranaNjiva.id = njive[0].id;
+        azuriranaNjiva.ime = "Novo ime";
+        service.azurirajNjivu(azuriranaNjiva);
+      })
+      .then(() => service.preuzmiNjive())
+      .then((njive) => {
+        expect(njive[0].ime).toBe("Novo ime");
+        done();
+      })
+      .catch((error) => {
+        console.log('Azuriraj njivu poziv nije uspeo: ' + error);
+      });
+    });
+  });
+
+  it('should have preuzmiAktivnosti() method', () => {
+    expect(service.preuzmiAktivnosti).toBeDefined();
+  });
+  describe('preuzmiAktivnosti() metod', () => {
+    it('should return a Promise', () => {
+      expect(service.preuzmiAktivnosti() instanceof Promise).toBeTruthy();
+    });
+    it('should return Aktivnost[] data as a Promise<Aktivnost[]>, where Aktivnost[] array has the length of 0', (done) => {
+      service.preuzmiAktivnosti().then((aktivnosti) => {
+        expect(aktivnosti.length).toBe(0);
+        done();
+      })
+    });
+    it('should return Njiva[0].id with value of 1', (done) => {
+      service.preuzmiNjive().then((njive) => {
+        expect(njive[0].id.toString()).toBe('1');
+        done();
+      })
+    });
+  });
+
+  it('should have dodajAktivnost() method', () => {
+    expect(service.dodajAktivnost).toBeDefined();
+  });
+  describe('dodajAktivnost() metod', () => {
+    let novaAktivnost: Aktivnost = new Aktivnost();
+    novaAktivnost.tip = "Посејано";
+    it('should return a Promise', () => {
+      expect(service.dodajAktivnost(novaAktivnost) instanceof Promise).toBeTruthy();
+    });
+    it('should return id as a part of return value', (done) => {
+      service.dodajAktivnost(novaAktivnost).then((dodataAktivnost) => {
+        expect(dodataAktivnost.id).toBeDefined();
+        done();
+      })
+    });
+    it('should add a new Aktivnost', (done) => {
+      service.preuzmiNjive()
+        .then((njive) => {
+          novaAktivnost.meta1 = njive[0];
+          let noviUsev = new Usev();
+          noviUsev.vrsta_useva = "Пшеница";
+          novaAktivnost.meta2 = noviUsev;
+          service.dodajAktivnost(novaAktivnost);
+        })
+        .then(() => service.preuzmiAktivnosti())
+        .then((preuzeteAktivnosti) => {
+          expect(preuzeteAktivnosti.length).toBe(1);
+          expect(preuzeteAktivnosti[0].meta1 instanceof Njiva).toBeTruthy;
+          expect(preuzeteAktivnosti[0].meta1.ime).toBe('Задња');
+          expect(preuzeteAktivnosti[0].meta1 instanceof Usev).toBeTruthy;
+          expect(preuzeteAktivnosti[0].meta2.vrsta_useva).toBe("Пшеница");
+
           done();
         });
     });

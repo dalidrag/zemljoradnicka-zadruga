@@ -1,3 +1,9 @@
-<p>
-  masine works!
-</p>
+<div class="masine">
+	<div *ngFor="let masina of masine" [class.nova-masina]="novaMasinaId && novaMasinaId===masina.id" class="masina">
+		<div class="okvir-masine">
+			<img src="/assets/images/{{tipoviMasinaPoId[masina.tipMasine].srcSlike}}" class="slika-masine"/>
+			<p>{{masina.ime}}</p>
+		</div>
+	</div>
+</div>
+<button class="dugme-dodaj-masinu" [routerLink]="['/kontrolna-tabla', 'imovina', {outlets: {'masine': ['dodaj-masinu']}}]">Додај нову машину</button>

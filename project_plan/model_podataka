@@ -5,7 +5,7 @@ Clan Zadruge
 	Iznos novcanog uloga ili clanarine, odnosno opis vrste i vrednost nenovcanog uloga
 	Vreme uplate, odnosno nacin i vreme unošenja nenovcanog uloga	
 	Njive, Masine, Skladista, Djubrivo, Pesticidi, Ostala imovina -  svi Array, deo Clana Zadruge u MongoDB-u.
-	Aktivnosti - Array, posebna kolekcija u MongoDB-u (1).
+	Aktivnosti - (1).
 	Slika;
 	Zabeleske - Array, deo Clana Zadruge u MongoDB-u.
 Zadruga
@@ -35,32 +35,39 @@ Zadruga
 	Ime prvog direktora zadruge ili vrsioca duznosti direktora;
 	Podatak da li zadruga posluje sa ulozima ili članarinama;
 	Slika;
+	Aktivnosti - Array[Aktivnost].
 Vrsta useva (2)
 	Ime;
 	Slika;
-Aktivnost
-	Clan Zadruge: back-reference prema clanu zadruge koji je sproveo aktivnost, ili sama zadruga;
-	Meta Aktivnosti: Array of back-references prema objektu nad kojim je aktivnost sprovedena;
-	Tip: tip aktivnosti;
+HTML Template-ovi (stringovi) koji predstavljaju informacije na razne teme, adresirane po imenu teme (string)
+
+Aktivnost - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
+	Tip: tip aktivnosti;	
+	Meta Aktivnosti 1: reference to objekat u bazi
+	Meta Aktivnosti 2: reference to objekat u bazi
+	Meta Aktivnosti 3: reference to objekat u bazi
+	Meta Aktivnosti 4: reference to objekat u bazi
+	Meta Aktivnosti 5: reference to objekat u bazi
 	Datum;
 	Vreme trajanja;
 	Cena;
 	Dobit;
 	Zabeleska;
-	Upotrebljene masine: Array, deo Aktivnosti u MongoDB-u;
-Aktivnosti (1)
-	Array Aktivnosti.
-Njiva
+Usev - ova struktura je deo Njive, ne postoji kao posebna kolekcija
+	Vrsta useva (2);
+	Kolicina useva;
+	Datum sejanja?;
+	Ocekivani datum prinosa?;
+	Ocekivani prinos?;
+Njiva  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
 	Ime;
 	Geografske koordinate njive;
 	Katastarska opstina:
 	Osnov koriscenja: vlasnistvo/zakup zemljista;
 	Tip zemljista:
-	Klasa: (1-8)
-	Vrsta useva: Array, posebna kolekcija u MongoDB-u (2);
-	Kolicina useva: Array, deo Njive u MongoDB-u;
-	Aktivnosti: Array, posebna kolekcija u MongoDB-u (1).
-Masina
+	Klasa: (1-8);
+	Usevi: Array[Usev];
+Masina  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
 	Ime;
 	Tip: Traktor, Kombajn, Motokultivator, dodatak za Traktor, dodatak za Kombajn, dodatak za Motokultivator, ostalo
 	Godina proizvodnje;
@@ -69,16 +76,15 @@ Masina
 	Konjske snage;
 	Kapacitet goriva;
 	Posedovan ili iznajmljivan;
-	Aktivnosti: Array, posebna kolekcija u MongoDB-u (1);
 	Slika;
 	Zabeleske;
-Skladiste
+Skladiste  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
 	Ime;
 	Kapacitet;
 	Popunjenost;
 	Vrsta useva: Array, posebna kolekcija u MongoDB-u (2);
 	Kolicina useva: Array, deo Skladista u MongoDB-u; (kg/ar, kg/hektar)
-Djubrivo
+Djubrivo  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
 	Ime;
 	Tip mere: tezina (cvrsto) | zapremina (tecno)
 	Izvor: amonijak | nitrat | amonium nitrat | urea | svinjsko djubrivo | govedje djubrivo | mlecno djubrivo | kokosje djubrivo | curece djubrivo
@@ -86,15 +92,15 @@ Djubrivo
 	Procenat fosfata;
 	Procenat potashe;
 	Zabeleske.
-Pesticid
+Pesticid  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
 	Ime;
 	Tip: pomocno sredstvo | fungicid | herbicid | insecticid
 	Tip mere: tezina (cvrsto) | zapremina (tecno)
 	Zabeleske.
-Ostala imovina
+Ostala imovina  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
 	Ime;
 	Slika;
 	Zabeleske.
-Zabeleska
+Zabeleska  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
 	Naslov;
 	Zabeleska.

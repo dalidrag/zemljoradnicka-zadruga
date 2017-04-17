@@ -2,11 +2,15 @@
 	display: flex;
 	justify-content: space-between;
 	color: white;
-	background-color: green;
+	background-color: darkgreen;
 }
 a {
+	font-family: "Gabriela", serif;
 	color: white;
 	text-decoration: none;
+}
+#korisnik {
+	font-family: "naturalFont", serif;
 }
 .error {
 	color:  red;
@@ -19,6 +23,13 @@ a {
 }
 p {
 	margin: 0;
+	font-family: "Gabriela", serif;
 	transition: opacity 1.5s;
 	/* font-size: 1.3em; */
+}
+
+@media screen and (min-width: 760px) {
+  #logo, p {
+    font-size: 32px;
+  }
 }

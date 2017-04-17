@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 /**
- * Ovaj pogled prikazuje sve akcije clana zadruge
- * ako je selektovano, kombinovano sa zajednickim akcijama zadruge
+ * Ovaj pogled prikazuje ikone za selektovanje akcija
  *
  * @class AkcijePogledComponent
  */
@@ -17,5 +16,4 @@ export class AkcijePogledComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

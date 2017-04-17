@@ -5,8 +5,10 @@ import { HttpModule } from '@angular/http';
 
 import { createStore } from 'redux';
 import { rootReducer } from './Redux/index';
-import { NjiveActionCreators } from './Redux/action-creators/njive.action-creators';
 import { InitActionCreator } from './Redux/action-creators/init.action-creator';
+import { NjiveActionCreators } from './Redux/action-creators/njive.action-creators';
+import { VodicActionCreators } from './Redux/action-creators/vodic.action-creators';
+import { MasineActionCreators } from './Redux/action-creators/masine.action-creators';
 const appStore = createStore(rootReducer);
 
 import { AppComponent } from './app.component';
@@ -22,6 +24,7 @@ import { AuthService } from './deljeno/auth.service';
 import { DataService } from './deljeno/data.service';
 import { StateService } from './deljeno/state.service';
 import { NotificationHubService } from './deljeno/event-hub.service';
+import { ModalPopupService } from './deljeno/modal-popup.service';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -34,6 +37,10 @@ import { KontrolnaTablaEkranComponent } from './kontrolna-tabla/kontrolna-tabla-
 import { StatusnaTablaComponent } from './kontrolna-tabla/statusna-tabla/statusna-tabla.component';
 import { MeniTablaComponent } from './kontrolna-tabla/meni-tabla/meni-tabla.component';
 import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla-pogled/kontrolna-tabla-pogled.component';
+import { BrojAriComponent } from './vodic/broj-ari/broj-ari.component';
+import { PrvaNjivaComponent } from './vodic/prva-njiva/prva-njiva.component';
+
+
 
 /**
  * Root modul aplikacije
@@ -47,7 +54,9 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
     KontrolnaTablaEkranComponent,
     StatusnaTablaComponent,
     MeniTablaComponent,
-    KontrolnaTablaPogledComponent
+    KontrolnaTablaPogledComponent,
+    BrojAriComponent,
+    PrvaNjivaComponent
   ],
   imports: [
     BrowserModule,
@@ -62,8 +71,9 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
   ],
   providers: [
     AuthService, DataService, UtilitiesService, NotificationHubService,
+    ModalPopupService,
     { provide: 'AppStore', useValue: appStore },
-    NjiveActionCreators, InitActionCreator,
+    InitActionCreator, NjiveActionCreators, VodicActionCreators, MasineActionCreators,
     StateService
   ],
   bootstrap: [AppComponent]

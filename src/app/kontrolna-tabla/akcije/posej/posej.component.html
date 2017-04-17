@@ -1,0 +1,40 @@
+<form [formGroup]="posejForma" (ngSubmit)="onSubmit(posejForma.value)" class="form-container">
+	<table>
+		<tr>
+			<td>
+				<label for="usev">Врста усева</label>
+			</td>
+			<td>
+				<select [formControl]="posejForma.controls['usev']" id="usev">
+					<option *ngFor="let vrstaUseva of vrsteUseva" label="{{vrstaUseva.ime}}" value="{{vrstaUseva.id}}">
+					</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="form-input-error" *ngIf="posejForma.controls['usev'].hasError('required') && posejForma.controls['usev'].touched">Морате изабрати врсту усева</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label for="njiva">Њива</label>
+			</td>
+			<td>
+				<select [formControl]="posejForma.controls['njiva']" id="njiva">
+					<option *ngFor="let njiva of njive" label="{{njiva.ime}}" value="{{njiva.id}}">
+					</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="form-input-error" *ngIf="posejForma.controls['njiva'].hasError('required') && posejForma.controls['njiva'].touched">Морате изабрати њиву</div>
+			</td>
+		</tr>
+	</table>
+
+	<button type="submit" [disabled]="!posejForma.valid">Додај усев</button>
+
+	<div class="form-background"></div>
+</form>

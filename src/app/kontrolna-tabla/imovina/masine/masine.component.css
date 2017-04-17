@@ -1,0 +1,37 @@
+@keyframes fade-in {
+	from { opacity: 0; }
+	to { opacity: 1;  }
+}
+
+.masine {
+	margin: 0.5rem;
+}
+.masina {
+	display: inline-block;
+	vertical-align: top;
+	margin: 0.5rem;
+}
+.okvir-masine {
+	width: 5rem;
+}
+.slika-masine {
+	height: 5rem;
+	border: 4px solid blue;
+	border-radius: 4px;
+	background-color: green;
+}
+p {
+	color: yellow;
+	text-shadow: 1px 1px black;
+}
+
+.dugme-dodaj-masinu {
+	display: block;
+	margin-left: 0.5rem;
+}
+
+.nova-masina {
+	animation-name: fade-in;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in;
+}
