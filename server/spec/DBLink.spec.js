@@ -40,9 +40,6 @@ describe('DBLink object', () => {
 		it('should exist', () => {
 			expect(DBLink.getUser).toBeDefined();
 		});
-		// it('should return a Promise', () => {
-		// 	expect(DBLink.getUser('') instanceof Promise).toBe(true);
-		// });
 		it('should return correct data from the test base', (done) => {
 			DBLink.getUser('sample1')
 			.then((data) => {
@@ -60,9 +57,6 @@ describe('DBLink object', () => {
 		it('should exist', () => {
 			expect(DBLink.addUser).toBeDefined();
 		});
-		// it('should return a Promise', () => {
-		// 	expect(DBLink.addUser('') instanceof Promise).toBe(true);
-		// });
 		it('should add new user', (done) => {
 			DBLink.addUser('noviUser')
 			.then((dodatiUser) => {
@@ -76,13 +70,23 @@ describe('DBLink object', () => {
 		});
 	});
 
+	describe('getAllUsers method', () => {
+		it('should exist', () => {
+			expect(DBLink.getAllUsers).toBeDefined();
+		});
+		it('should return correct data', (done) => {
+			DBLink.getAllUsers()
+			.then(users => {
+				expect(users[1].username).toBe('noviUser');
+				done();
+			})
+		});
+	});
+
 	describe('getNjive method', () => {
 		it('should exist', () => {
 			expect(DBLink.getNjive).toBeDefined();
 		});
-		// it('should return a Promise', () => {
-		// 	expect(DBLink.getNjive('') instanceof Promise).toBe(true);
-		// });
 		it('should return a Promise resolved to an array', (done) => {
 			DBLink.getNjive('sample1')
 			.then(njive => {
@@ -98,13 +102,11 @@ describe('DBLink object', () => {
 			})
 		});
 	});
+
 	describe('addNjiva method', () => {
 		it('should exist', () => {
 			expect(DBLink.addNjiva).toBeDefined();
 		});
-		// it('should return a Promise', () => {
-		// 	expect(DBLink.addNjiva('noviUser', null) instanceof Promise).toBe(true);
-		// });
 		it('should add njiva', (done) => {
 			let novaNjiva = {
 				ime: 'Prva njiva',
@@ -120,20 +122,6 @@ describe('DBLink object', () => {
 				console.log('Add njiva: ' + error);
 				done();
 			});
-		});
-	});
-	describe('getSveNjive method', () => {
-		it('should exist', () => {
-			expect(DBLink.getSveNjive).toBeDefined();
-		});
-		// it('should return a promise', () => {
-		// 	expect(DBLink.getSveNjive('') instanceof Promise).toBe(true);
-		// });
-		it('should return all njive', (done) => {
-			DBLink.getSveNjive().then((sveNjive) => {
-				expect(sveNjive.length).toBe(2);
-				done();
-			})
 		});
 	});
 });

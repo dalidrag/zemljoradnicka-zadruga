@@ -1,7 +1,6 @@
 "use strict";
 
 var mongoose = require('mongoose');
-var _ = require('lodash');
 
 var UserSchema = require('./MongoUser');
 var UserModel = mongoose.model('User', UserSchema);
@@ -62,6 +61,24 @@ var DBLink = {
  	});
  },
 
+ /**
+ * Vraca sve usere
+ *
+ * @method getAllUsers
+ * @return {Promise<UserModel[]>}
+ */
+ getAllUsers() {
+ 	return new Promise((resolve, reject) => {
+ 			UserModel
+ 				.find({})
+ 				.exec((err, users) => {
+ 					if (err) reject(err);
+ 					resolve(users);
+ 				});
+
+ 	});
+ },
+
 	/**
 	* Uzima korisnicko ime kao parametar i vraca
 	* sve njive ovog korisnika
@@ -110,26 +127,5 @@ var DBLink = {
 				}
 		});
 	},
-
-/**
- * Vraca sve njive svih korisnika
- *
- * @method getSveNjive
- * @return {Promise<NjivaModel[]>}
- */
- getSveNjive() {
- 	return new Promise((resolve, reject) => {
- 			UserModel
- 				.find({})
- 				.select('njive')
- 				.exec((err, users) => {
- 					if (err) reject(err);
- 					let njive = users.map(user => user.njive);
- 					njive = _.flatten(njive);
- 					resolve(njive);
- 				});
-
- 	});
- }
 }
 module.exports = DBLink;
