@@ -3,7 +3,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-// var session = require('express-session');
+var session = require('express-session');
 
 var mongoose = require( 'mongoose' );
 
@@ -24,17 +24,62 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-/*
+// korisnicke sesije
 app.use(session({
     secret: 'cookieSecret',
     saveUninitialized: false,
     resave: false
 }));
-*/
+
+
+
 
 /*************************************/
 /* Zadruga REST API end points */
 /*************************************/
+
+// Log in based on user name
+app.post('/api/login', (req, res) => {
+	DBLink.getUser(req.body.username).then(user => {
+		if (user) {
+			req.session.username = user.username;
+			res.send({userId: user._id});
+		}
+		else
+			res.send({userId: false});
+	})
+	.catch(err => handleError(err, res));
+});
+// Log out 
+app.get('/api/logout', (req, res) => {
+	delete req.session.username;
+	res.send({ok: 'true'});
+});
+// Vrati datog korisnika
+app.get('/api/users', (req, res) => {
+	DBLink.getUser('sample1').then((user) => {
+		let oUser = user.toObject();
+		oUser.id = oUser._id;
+
+		res.send({ok: true, data: oUser});
+	})
+	.catch(err => handleError(err, res));
+});
+// Vrati sve korisnike
+app.get('/api/users/all', (req, res) => {
+	DBLink.getAllUsers().then((users) => {
+		var data = users.map((user) => {
+  	         			let oUser = user.toObject();
+  	         			oUser.id = oUser._id;
+  	             	return oUser;
+  	           });
+		res.send({ok: true, data: data});
+	})
+	.catch(err => handleError(err, res));
+});
+// Dodaj korisnika
+// TODO
+
 // Vrati sve njive datog korisnika
 app.get('/api/njive', (req, res) => {
 	DBLink.getNjive('sample1').then((njive) => {
@@ -51,7 +96,8 @@ app.get('/api/njive', (req, res) => {
 app.post('/api/njive', (req, res) => {
 	var novaNjiva = {
 		ime: req.body.ime,
-		klasa_zemljista: req.body.klasaZemljista
+		oblikNaMapi: req.body.oblikNaMapi,
+		klasaZemljista: req.body.klasaZemljista
 	}
 	DBLink.addNjiva('sample1', novaNjiva).then(savedNjiva => {
 		let oSavedNjiva = savedNjiva.toObject();
@@ -61,11 +107,22 @@ app.post('/api/njive', (req, res) => {
 	})
 	.catch(err => handleError(err, res));
 });
-
+// Vrati sve masine datog korisnika
+app.get('/api/masine', (req, res) => {
+	DBLink.getMasine('sample1').then((masine) => {
+		var data = masine.map((masina) => {
+  	         			let oMasina = masina.toObject();
+  	         			oMasina.id = oMasina._id;
+  	             	return oMasina;
+  	           });
+		res.send({ok: true, data: data});
+	})
+	.catch(err => handleError(err, res));
+});
 
 
 var handleError = function (err, res) {
-	console.log("Error: " + err);	// TODO
+	console.log("Error: " + err);	// TODO: log error server-side
 	res.sendStatus(500);
 }
 

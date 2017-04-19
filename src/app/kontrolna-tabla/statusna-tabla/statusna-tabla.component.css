@@ -8,6 +8,7 @@ a {
 	font-family: "Gabriela", serif;
 	color: white;
 	text-decoration: none;
+	 cursor: pointer;
 }
 #korisnik {
 	font-family: "naturalFont", serif;

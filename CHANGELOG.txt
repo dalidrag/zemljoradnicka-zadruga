@@ -5,8 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+###Added
+- Osnovna struktura Node/MongoDB Back end-a postavljena.
 ### Changed
-- Model podataka kompletiran, osim za zadrugu i zadrugara
+- Model podataka obogacen, osim za zadrugu i zadrugara
 
 
 [0.7.0] - 2017-04-17

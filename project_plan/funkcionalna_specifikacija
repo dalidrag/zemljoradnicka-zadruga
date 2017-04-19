@@ -59,10 +59,7 @@
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - Kada se unese tip-masine/pod-tip/proizvodjac/model, program ovo pamti u bazu podataka i kada ostali korisnici budu birali, program ce automatski ponuditi kad se pocne kucanje slova. Ako se izabere vec postojeci tip, sva polja za koja je to smisleno se automatski popunjavaju (mogu se ipak editovati), a za ona koja i ne mogu, daje se izbor da se preuzmu vec unete vrednosti, sto je pogotovu korisno za recimo sliku masine. Sve receno vazi i za tipove useva, djubriva i pesticida.
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Ako je korisnik direktor zadruge ili clan upravnog odbora, pojavljuju se dodatne opcije. Masina se moze dodeliti clanu zadruge u odredjenom vremenskom periodu. Sirovine se mogu raspodeliti clanovima zadruge.
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - Informacije o objektima: zadrugari mogu da ih dodaju, zadruga da ih potvrdi ili obrise. Info moze biti citan od strane svih korisnika programa. Info moze biti oznacen kao koristan od strane korisnika (samo 1 za 1 korisnika). Program predlaze info na osnovu popularnosti.
 - Tip objekta za koji se daje info: recimo, to moze biti traktori, a moze i traktori/(odredjeni model). Moze biti kukuruz, a moze i kukuruz(odredjena sorta). Moze i recimo biti tip akcije, kao sejanje, u kom slucaju jos jedan objekat povezan sa info moze biti kultura o kojoj se radi.
 - Na ekranu 'zasad'  mogu se dobiti razni predlozi kako da se gaji ta kultura, kako da se prska itd.
@@ -77,4 +74,6 @@ Ako je korisnik direktor zadruge ili clan upravnog odbora, pojavljuju se dodatne
 - Bilo kom korisniku se moze poslati direktna poruka od strane drugog korisnika. Isto tako, za svakog korisnika koji je svoj profil ucinio javnim mogu se videti njegove njive, zasadi i licni podaci, na posebnom delu osnovnog ekrana.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- Ako je korisnik direktor zadruge ili clan upravnog odbora, pojavljuju se dodatne opcije. Masina se moze dodeliti clanu zadruge u odredjenom vremenskom periodu. Sirovine se mogu raspodeliti clanovima zadruge.
 - Ako je ulogovani korisnik clan upravnog odbora, postoji i opcija knjiga zadrugara koja prikazuje listu svih clanova zadruge.
+

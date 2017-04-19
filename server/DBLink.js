@@ -67,6 +67,7 @@ var DBLink = {
  * @method getAllUsers
  * @return {Promise<UserModel[]>}
  */
+ // TODO: samo zadruge kojoj pripada dati korisnik
  getAllUsers() {
  	return new Promise((resolve, reject) => {
  			UserModel
@@ -127,5 +128,9 @@ var DBLink = {
 				}
 		});
 	},
+	// stub version of getMasine()
+	getMasine: function(username) {
+		return Promise.resolve([]);
+	}
 }
 module.exports = DBLink;

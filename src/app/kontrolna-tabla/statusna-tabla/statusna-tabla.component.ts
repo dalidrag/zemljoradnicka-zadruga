@@ -1,6 +1,8 @@
 /***********************************************************************************/
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
+import { AuthService } from '../../deljeno/auth.service';
 import { NotificationHubService, HubNotificationType } from '../../deljeno/event-hub.service';
 /***********************************************************************************/
 
@@ -19,8 +21,9 @@ export class StatusnaTablaComponent implements OnInit {
 	notificationMessage: string = '';
 	notificationType: HubNotificationType;
 	fadingOut: boolean = false;
+  username = '';
 
-  constructor(private notificationHubService: NotificationHubService) { }
+  constructor(private authService: AuthService, private notificationHubService: NotificationHubService, private router: Router) { }
 
   ngOnInit() {
   	this.notificationHubService.eventStream.subscribe(value => {	// Show messages as they arrive
@@ -43,6 +46,19 @@ export class StatusnaTablaComponent implements OnInit {
         this.statusMessage = value.message;
 			}
 		});
+    this.username = this.authService.userId;
+  }
+
+  /** 
+  * Pokusava da se odjavi iz aplikacije
+  *
+  * @method odjaviSe
+  */
+  odjaviSe() {
+    if (this.authService.logout())
+      this.router.navigate(['/pocetna-strana']);
+    else
+      this.notificationHubService.emit(HubNotificationType.Error, 'Грешка приликом одјављивања!');
   }
 
   /** 

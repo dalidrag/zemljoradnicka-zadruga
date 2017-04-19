@@ -24,11 +24,11 @@ class DataCache {
 export class DataService {
 	private headers = new Headers({'Content-Type': 'application/json'});
 	// URLs to web api
-	private njiveUrl = 'http://localhost:4200/api/njive';
-	private aktivnostiUrl = 'http://localhost:4200/api/aktivnosti';
-	private masineUrl = 'http://localhost:4200/api/masine';
-	private vrsteUsevaUrl = 'http://localhost:4200/api/vrsteUseva';
-	private tipoviMasinaUrl = 'http://localhost:4200/api/tipoviMasina';
+	private njiveUrl = 'http://localhost:3000/api/njive';
+	private aktivnostiUrl = 'http://localhost:3000/api/aktivnosti';
+	private masineUrl = 'http://localhost:3000/api/masine';
+	private vrsteUsevaUrl = 'http://localhost:3000/api/vrsteUseva';
+	private tipoviMasinaUrl = 'http://localhost:3000/api/tipoviMasina';
 
 	njiveCache = new DataCache();
 	aktivnostiCache = new DataCache();
@@ -208,6 +208,14 @@ export class DataService {
 				return response.json().data as Aktivnost
 			})
 			.catch(this.handleError);
+	}
+
+	clearCache() {
+		this.njiveCache.dirty = true;
+		this.aktivnostiCache.dirty = true;
+		this.masineCache.dirty = true;
+		this.vrsteUsevaCache.dirty = true;
+		this.tipoviMasinaCache.dirty = true;
 	}
 
 	private handleError(error: any): Promise<any> {

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { createStore } from 'redux';
 import { rootReducer } from './Redux/index';
@@ -38,6 +39,7 @@ import { MeniTablaComponent } from './kontrolna-tabla/meni-tabla/meni-tabla.comp
 import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla-pogled/kontrolna-tabla-pogled.component';
 import { BrojAriComponent } from './vodic/broj-ari/broj-ari.component';
 import { PrvaNjivaComponent } from './vodic/prva-njiva/prva-njiva.component';
+import { LogInComponent } from './pocetna-strana/log-in/log-in.component';
 
 
 
@@ -55,12 +57,14 @@ import { PrvaNjivaComponent } from './vodic/prva-njiva/prva-njiva.component';
     MeniTablaComponent,
     KontrolnaTablaPogledComponent,
     BrojAriComponent,
-    PrvaNjivaComponent
+    PrvaNjivaComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+//    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    FormsModule,
     AppRoutingModule,
     ImovinaModule,
     AkcijeModule,

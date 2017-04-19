@@ -1,0 +1,3 @@
+<input type="text" [(ngModel)]='username' autofocus />
+<div *ngIf="showError" class="error">ово корисничко име не постоји</div>
+<button (click)='prijava()'>Пријави се</button>

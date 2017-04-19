@@ -44,7 +44,7 @@ export class DodajNjivuMapComponent implements OnInit {
 		this.gmapsService.initMap(mapElement, mapOptions);
 
     // Ako ima vec unetih njiva, zumiraj mapu na poslednju njivu korisnika
-    if (this.njive.length > 0) {
+    if (this.njive && this.njive.length > 0) {
       let njiveCoords = this.njive.map((njiva) => njiva.oblikNaMapi);
       this.gmapsService.zumirajNjivu(njiveCoords[njiveCoords.length-1]);
       this.gmapsService.prikaziNjive(njiveCoords);

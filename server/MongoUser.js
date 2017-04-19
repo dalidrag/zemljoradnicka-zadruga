@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 
 var NjivaSchema = require('./MongoNjiva');
+var MasinaSchema = require('./MongoMasina');
 
 var UserSchema = mongoose.Schema({
 	username: String,
@@ -13,8 +14,9 @@ var UserSchema = mongoose.Schema({
 		Vreme uplate, odnosno nacin i vreme unošenja nenovcanog uloga	
 		Slika;
 		Zadruga: reference(Zadruga) */
-	njive: [NjivaSchema]
-		/* Masine, Aktivnosti - (1),
+	njive: [NjivaSchema],
+	masine: [MasinaSchema]
+		/* Aktivnosti - (1),
 		Skladista, Djubrivo, Pesticidi, Ostala imovina -  svi Array.
 		Zabeleske - Array, deo Clana Zadruge u MongoDB-u. */
 });

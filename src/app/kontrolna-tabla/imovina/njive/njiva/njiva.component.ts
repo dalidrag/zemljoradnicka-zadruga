@@ -24,9 +24,9 @@ export class NjivaComponent implements OnInit, OnDestroy {
   	this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[] }) => {
   		this.njive = data.njive;
   	});
-  	let njivaId = +this.route.snapshot.params['id'];
+  	let njivaId = this.route.snapshot.params['id'];
     for (let njiva of this.njive) {
-      if (+njiva.id === njivaId) {
+      if (njiva.id === njivaId) {
         this.njiva = njiva;
         break;
       }

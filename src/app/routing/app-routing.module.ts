@@ -28,6 +28,8 @@ import { KorisnickiEkranComponent } from '../korisnik/korisnicki-ekran/korisnick
 import { BrojAriComponent } from '../vodic/broj-ari/broj-ari.component';
 import { PrvaNjivaComponent } from '../vodic/prva-njiva/prva-njiva.component';
 
+import { LogInComponent } from '../pocetna-strana/log-in/log-in.component';
+
 import { NjiveResolve } from './njive-resolve.service';
 import { AkcijeResolve } from './akcije-resolve.service';
 import { VrsteUsevaResolve } from './vrste-useva-resolve.service';
@@ -39,17 +41,18 @@ import { AuthGuard } from './auth.guard';
 const routes: Routes = [
  { path: '', redirectTo: '/kontrolna-tabla', pathMatch: 'full' },
  { path: 'pocetna-strana', component: PocetnaStranaEkranComponent },
+ { path: 'login', component: LogInComponent },
  { path: 'korisnik', component: KorisnickiEkranComponent },
  { path: 'vodic-broj-ari', component: BrojAriComponent },
  { path: 'vodic-prva-njiva', component: PrvaNjivaComponent },
  { path: 'kontrolna-tabla', component: KontrolnaTablaEkranComponent,
-   /* canActivate: [AuthGuard], canActivateChild: [AuthGuard], */ children: [
+    canActivate: [AuthGuard], /* canActivateChild: [AuthGuard], */ children: [
    { path: '', component: KontrolnaTablaPogledComponent },
    { path: 'imovina', component: ImovinaPogledComponent, children: [
-    { path: 'njive-prikaz', component: NjiveComponent, outlet: 'njive', resolve: {njive: NjiveResolve, vrsteUseva: VrsteUsevaResolve} },
+    { path: 'njive-prikaz', component: NjiveComponent, outlet: 'njive', resolve: {njive: NjiveResolve /*, vrsteUseva: VrsteUsevaResolve} */ } },
     { path: 'njiva-prikaz/:id', component: NjivaComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
     { path: 'dodaj-njivu', component: DodajNjivuComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
-    { path: 'masine-prikaz', component: MasineComponent, outlet: 'masine', resolve: {masine: MasineResolve, tipoviMasina: TipoviMasinaResolve} },
+    { path: 'masine-prikaz', component: MasineComponent, outlet: 'masine' /* , resolve: {masine: MasineResolve, tipoviMasina: TipoviMasinaResolve} */ },
     { path: 'dodaj-masinu', component: DodajMasinuComponent, outlet: 'masine', resolve: {tipoviMasina: TipoviMasinaResolve} },
     ]
  	 },
