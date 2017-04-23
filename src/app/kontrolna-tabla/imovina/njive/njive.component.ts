@@ -32,12 +32,12 @@ export class NjiveComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private router: Router, private stateService: StateService, private actionCreators: NjiveActionCreators, private modalPopupService: ModalPopupService) { }
 
   ngOnInit() {
-    this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[], vrsteUseva: VrstaUseva[] }) => {
+    this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[] /*, vrsteUseva: VrstaUseva[] */ }) => {
   		this.njive = data.njive;
-      this.vrsteUseva = data.vrsteUseva;
+/*      this.vrsteUseva = data.vrsteUseva;
       for (let vrstaUseva of this.vrsteUseva) {
         this.vrsteUsevaPoId[vrstaUseva.id] = vrstaUseva;
-      }
+      } */
   	});
     if (this.stateService.state.vodic.faza === 1) {
       this.modalPopupService.open();

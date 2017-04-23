@@ -5,12 +5,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+###Added
+- Dodate masine i slike masine u MongoDB.
+- Osnovna struktura Node/MongoDB Back end-a postavljena.
+### Changed
+- Model podataka obogacen, osim za zadrugu i zadrugara
+
+
+[0.7.0] - 2017-04-17
 ### Changed
 - Kompletirano crtanje njiva jednog korisnika na Gmaps, izuzev pretvaranja u jpg i snimanja na server bazu
 - Funkcionalna specifikacija obogacena.
 ###Fixed
-- Numerous illogical features and a CSS bug fix
-
+- Situacija kada korinsnik ne nacrta kompletnu njivu sredjena
+- Mnoge nelogicne opcije i CSS bug sredjen
 
 [0.6.0] - 2017-04-13
 ### Added

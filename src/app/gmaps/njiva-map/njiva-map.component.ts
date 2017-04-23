@@ -44,7 +44,6 @@ export class NjivaMapComponent implements OnInit {
 		this.gmapsService.initMap(mapElement, mapOptions);
     this.gmapsService.zumirajNjivu(this.njivaCoords);
     let njiveCoords = this.njive.map((njiva) => njiva.oblikNaMapi);
-    console.log('njiveCoords: ' + njiveCoords);
     this.gmapsService.prikaziNjive(njiveCoords);
   }
 }

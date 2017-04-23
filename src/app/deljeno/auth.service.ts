@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
 
+import 'rxjs/add/operator/toPromise';
+
+import { DataService } from './data.service';
 /**
  * Sadrzi metode vezane za autentifikaciju, kao sto je
  * ulogujSe() ili ulogovan()
@@ -8,39 +12,55 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class AuthService {
-	prijavljenost = false;
+  private authUrl = 'http://localhost:3000/api/';
+	private headers = new Headers({'Content-Type': 'application/json'});
+  public userId = '';
 
-  constructor() { }
+  constructor(private http: Http, private dataService: DataService) { }
 
   /**
 	 * Pokusava da se prijavi
 	 *
 	 * @method prijaviSe
-	 * @return {boolean} true ako je prijavljivanje uspelo, inace false
+   * @param username String
+	 * @return {Promise<boolean>} true ako je prijavljivanje uspelo, inace false
    */
-  prijaviSe(): boolean {
-  	this.prijavljenost = true;
-  	return true;
+  prijaviSe(username: string): Promise<boolean> {
+  	return this.http
+      .post(this.authUrl + 'login', JSON.stringify({username: username}), {headers: this.headers})
+      .toPromise()    // Because Angular http service returns observable
+      .then(response => {
+        if (response.json().userId) {
+          this.userId = response.json().userId;
+          return true;
+        }
+        else
+          return false;
+      })                                                  
+      .catch(this.handleError);  // a single method deals with error in this class
   }
 
   /**
-	 * Pokusava da se odjavi
-	 *
-	 * @method odjaviSe
-	 * @return {boolean} true ako je odjavljivanje uspelo, inace false
+   * Tries to log out a user
+   *
+   * @method logout
+   * @return {Promise<boolean>} Will resolve to true if log out succeeded
    */
-  odjaviSe(): boolean {
-  	this.prijavljenost = false;
-  	return true;
+  logout(): Promise<boolean> {
+    return this.http.get(this.authUrl + 'logout')
+            .toPromise()
+            .then(response => {
+              if (response.json().ok === 'true') {
+                  this.userId = '';
+                  this.dataService.clearCache();
+                  return true;
+              }
+               else return false;
+            })
+            .catch(this.handleError);
   }
 
-  /**
-	 * Proverava da li smo prijavljeni
-	 *
-	 * @method prijavljen
-	 * @return {boolean} true ako smo prijavljeni, inace false
-   */
-  prijavljen(): boolean {
-  	return this.prijavljenost;
+  private handleError(error: any): Promise<any> {
+    return Promise.reject(error.message || error.statusText || error);
   }
 }

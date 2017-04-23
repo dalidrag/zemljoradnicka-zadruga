@@ -44,6 +44,6 @@ export class MasineComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.unsubscribe.unsubscribe();
+    // this.unsubscribe.unsubscribe();
   }
 }

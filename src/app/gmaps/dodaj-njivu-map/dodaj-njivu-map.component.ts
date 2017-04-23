@@ -44,7 +44,7 @@ export class DodajNjivuMapComponent implements OnInit {
 		this.gmapsService.initMap(mapElement, mapOptions);
 
     // Ako ima vec unetih njiva, zumiraj mapu na poslednju njivu korisnika
-    if (this.njive.length > 0) {
+    if (this.njive && this.njive.length > 0) {
       let njiveCoords = this.njive.map((njiva) => njiva.oblikNaMapi);
       this.gmapsService.zumirajNjivu(njiveCoords[njiveCoords.length-1]);
       this.gmapsService.prikaziNjive(njiveCoords);
@@ -80,16 +80,17 @@ export class DodajNjivuMapComponent implements OnInit {
       // izracunaj povrsinu njive
       let area = self.gmapsService.google.maps.geometry.spherical.computeArea(njivaLatLng);
 
-      // Prebaci se u mod bez crtackih opcija
-      drawingManager.setDrawingMode(null);
-      // Sakrij crtacke ikone na mapi
-      drawingManager.setOptions({
-        drawingControl: false
-      });
+      if (area > 0) {
+        // Prebaci se u mod bez crtackih opcija
+        drawingManager.setDrawingMode(null);
+        // Sakrij crtacke ikone na mapi
+        drawingManager.setOptions({
+          drawingControl: false
+        });
 
-      // javi parent komponenti da je njiva nacrtana i posalji koordinate
-      self.onShapeDrawn.emit({oblikNjiveNaMapi, area});
-
+        // javi parent komponenti da je njiva nacrtana i posalji koordinate
+        self.onShapeDrawn.emit({oblikNjiveNaMapi, area});
+      }
 	  });
   } // kraj metoda
 

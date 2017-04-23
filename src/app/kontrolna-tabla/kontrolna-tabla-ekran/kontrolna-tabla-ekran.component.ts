@@ -4,8 +4,9 @@ import { Router, ActivatedRoute }   from '@angular/router';
 
 import { Store } from 'redux';
 import { IAppState } from '../../Redux/index';
-
 import { VodicActionCreators } from '../../Redux/action-creators/vodic.action-creators';
+
+import { User } from '../../deljeno/tipovi-podataka/user';
 /***********************************************************************************/
 
 /**
@@ -19,7 +20,8 @@ import { VodicActionCreators } from '../../Redux/action-creators/vodic.action-cr
   styleUrls: ['./kontrolna-tabla-ekran.component.css']
 })
 export class KontrolnaTablaEkranComponent implements OnInit {
-	vodicFaza: number;	// sadrzi redni broj faze pomoc-vodica, 0 ako je deaktiviran
+  user: User;
+  vodicFaza: number;  // sadrzi redni broj faze pomoc-vodica, 0 ako je deaktiviran
 	unsubscribe;
 	unsubsribeStore;
 
@@ -30,7 +32,11 @@ export class KontrolnaTablaEkranComponent implements OnInit {
   	  let state = this.appStore.getState();
   	  this.vodicFaza = state.vodic.faza;
   	});
-		
+
+    this.unsubscribe = this.route.data.subscribe((data: { user: User }) => {
+      this.user = data.user;
+		});
+
 		if (this.route.snapshot.queryParams['vodic'] === 'true') {
 			this.vodicActionCreators.imanje();
 		  this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]);
@@ -69,4 +75,7 @@ export class KontrolnaTablaEkranComponent implements OnInit {
   vodicZavrsi() {
     this.vodicActionCreators.zavrsi();
   }
+
+  //TODO
+  // ngOnDestroy
 }
