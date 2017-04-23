@@ -80,6 +80,23 @@ app.get('/api/users/all', (req, res) => {
 // Dodaj korisnika
 // TODO
 
+/* Update korisnika TODO
+app.put('/api/users', (req, res) => {
+	let user = {};
+	user._id = req.body._id;
+	user.masine = req.body.masine;
+	user.username = req.body.username;
+	DBLink.updateUser(user).then(updatedUser => {
+		updatedUser.masine = updatedUser.masine.map((masina) => {
+  	         			let oMasina = masina.toObject();
+  	         			oMasina.id = oMasina._id;
+  	             	return oMasina;
+  	           });
+		res.send({ok: true, data: updatedUser});
+	})
+	.catch(err => handleError(err, res));
+}); */
+
 // Vrati sve njive datog korisnika
 app.get('/api/njive', (req, res) => {
 	DBLink.getNjive('sample1').then((njive) => {
@@ -107,9 +124,30 @@ app.post('/api/njive', (req, res) => {
 	})
 	.catch(err => handleError(err, res));
 });
-// Vrati sve masine datog korisnika
+
+// Skini sliku tipa masine sa datim id-om
+app.get('/api/masine/:idTipMasine/slika', function (req, res) {
+	DBLink.getSlikaMasine(req.params.idTipMasine).then(img => {
+		res.contentType(img.contentType);
+		res.end(img.data);
+	})
+	.catch(err => handleError(err, res));
+});
+// Vrati sve tipove masine
+app.get('/api/masine/tipovi', function(req, res) {
+	DBLink.getTipoveMasina().then(tipoviMasina => {
+		var data = tipoviMasina.map((tipMasine) => {
+  	         			let otipMasine = tipMasine.toObject();
+  	         			otipMasine.id = otipMasine._id;
+  	             	return otipMasine;
+							});
+  	res.send({ok: true, data: data});
+	})
+	.catch(err => handleError(err, res));
+});
+// Vrati sve masine ulogovanog korisnika //TODO
 app.get('/api/masine', (req, res) => {
-	DBLink.getMasine('sample1').then((masine) => {
+	DBLink.getMasine('sample1').then(masine => {
 		var data = masine.map((masina) => {
   	         			let oMasina = masina.toObject();
   	         			oMasina.id = oMasina._id;
@@ -119,7 +157,20 @@ app.get('/api/masine', (req, res) => {
 	})
 	.catch(err => handleError(err, res));
 });
+// Dodaj masinu ulogovanom korisniku //TODO
+app.post('/api/masine', (req, res) => {
+	var novaMasina = {
+		ime: req.body.ime,
+		tipMasine: req.body.tipMasine
+	}
+	DBLink.dodajMasinu('sample1', novaMasina).then(savedMasina => {
+		let oSavedMasina = savedMasina.toObject();
+		oSavedMasina.id = oSavedMasina._id;
 
+		res.send({ok: true, data: oSavedMasina});
+	})
+	.catch(err => handleError(err, res));
+});
 
 var handleError = function (err, res) {
 	console.log("Error: " + err);	// TODO: log error server-side

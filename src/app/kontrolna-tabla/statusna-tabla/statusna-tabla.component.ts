@@ -1,5 +1,5 @@
 /***********************************************************************************/
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router'
 
 import { AuthService } from '../../deljeno/auth.service';
@@ -21,7 +21,8 @@ export class StatusnaTablaComponent implements OnInit {
 	notificationMessage: string = '';
 	notificationType: HubNotificationType;
 	fadingOut: boolean = false;
-  username = '';
+  @Input()
+  username;
 
   constructor(private authService: AuthService, private notificationHubService: NotificationHubService, private router: Router) { }
 
@@ -46,7 +47,6 @@ export class StatusnaTablaComponent implements OnInit {
         this.statusMessage = value.message;
 			}
 		});
-    this.username = this.authService.userId;
   }
 
   /** 

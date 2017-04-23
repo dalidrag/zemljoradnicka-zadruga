@@ -30,6 +30,7 @@ import { PrvaNjivaComponent } from '../vodic/prva-njiva/prva-njiva.component';
 
 import { LogInComponent } from '../pocetna-strana/log-in/log-in.component';
 
+import { UserResolve } from './user-resolve.service';
 import { NjiveResolve } from './njive-resolve.service';
 import { AkcijeResolve } from './akcije-resolve.service';
 import { VrsteUsevaResolve } from './vrste-useva-resolve.service';
@@ -46,13 +47,13 @@ const routes: Routes = [
  { path: 'vodic-broj-ari', component: BrojAriComponent },
  { path: 'vodic-prva-njiva', component: PrvaNjivaComponent },
  { path: 'kontrolna-tabla', component: KontrolnaTablaEkranComponent,
-    canActivate: [AuthGuard], /* canActivateChild: [AuthGuard], */ children: [
+    resolve: { user: UserResolve}, /* canActivate: [AuthGuard], /* canActivateChild: [AuthGuard], */ children: [
    { path: '', component: KontrolnaTablaPogledComponent },
    { path: 'imovina', component: ImovinaPogledComponent, children: [
     { path: 'njive-prikaz', component: NjiveComponent, outlet: 'njive', resolve: {njive: NjiveResolve /*, vrsteUseva: VrsteUsevaResolve} */ } },
     { path: 'njiva-prikaz/:id', component: NjivaComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
     { path: 'dodaj-njivu', component: DodajNjivuComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
-    { path: 'masine-prikaz', component: MasineComponent, outlet: 'masine' /* , resolve: {masine: MasineResolve, tipoviMasina: TipoviMasinaResolve} */ },
+    { path: 'masine-prikaz', component: MasineComponent, outlet: 'masine', resolve: {masine: MasineResolve, tipoviMasina: TipoviMasinaResolve} },
     { path: 'dodaj-masinu', component: DodajMasinuComponent, outlet: 'masine', resolve: {tipoviMasina: TipoviMasinaResolve} },
     ]
  	 },
@@ -79,7 +80,7 @@ const routes: Routes = [
  exports: [ RouterModule ],
  providers: [
    AuthGuard,
-   NjiveResolve, AkcijeResolve, VrsteUsevaResolve, TipoviMasinaResolve, MasineResolve
+   UserResolve, NjiveResolve, AkcijeResolve, VrsteUsevaResolve, TipoviMasinaResolve, MasineResolve
  ]
 })
 export class AppRoutingModule {}

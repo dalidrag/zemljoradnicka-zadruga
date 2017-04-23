@@ -6,6 +6,12 @@ var UserSchema = require('./MongoUser');
 var UserModel = mongoose.model('User', UserSchema);
 var NjivaSchema = require('./MongoNjiva');
 var NjivaModel = mongoose.model('Njiva', NjivaSchema);
+var SlikaMasineSchema = require("./MongoSlikaMasine");
+var SlikaMasineModel = mongoose.model('SlikaMasine', SlikaMasineSchema);
+var TipMasineSchema = require("./MongoTipMasine");
+var TipMasineModel = mongoose.model('TipMasine', TipMasineSchema);
+var MasinaSchema = require("./MongoMasina");
+var MasinaModel = mongoose.model('Masina', MasinaSchema);
 
 /**
 * This class marshals CRUD operations against MongoDB Database
@@ -60,6 +66,29 @@ var DBLink = {
 	 	}
  	});
  },
+ /**
+ * Update existing user
+ *
+ * @method updateUser
+ * @param updatedUser
+ * @return {Promise(UserModel)} returns newly created user as a Mongoose model
+ */ /*
+ updateUser(updatedUser) {
+ 	return new Promise((reject, resolve) => {
+ 		if (!updatedUser) reject("Prazan user prosledjen kao argument");
+ 		else {
+ 			UserModel.findById(updatedUser._id, (err, foundUser) => {
+ 				if (err) reject(err);
+
+ 				foundUser.masine = updatedUser.masine;
+ 				foundUser.save((err, updatedUser) => {
+				 	if (err) reject(err);
+ 					resolve(updatedUser);
+ 				});
+ 			});
+ 		}
+ 	});
+ }, */
 
  /**
  * Vraca sve usere
@@ -128,9 +157,85 @@ var DBLink = {
 				}
 		});
 	},
-	// stub version of getMasine()
-	getMasine: function(username) {
-		return Promise.resolve([]);
-	}
+
+	/* Provizorni metod */
+	getSlikaMasine: function(idTipMasine) {
+		return new Promise((resolve, reject) => {
+			if (!idTipMasine) 
+				reject(new ReferenceError("Parameter must be non-empty string"));
+			TipMasineModel
+			.findById(idTipMasine)
+			.populate('slikaMasine')
+			.exec((err, tipMasine) => {
+				if (err) reject(err);
+				// slikaMasine ce biti null ako ne postoji
+				if (tipMasine) resolve(tipMasine.slikaMasine);
+				else
+					reject(new ReferenceError("Slika masine ne postoji"));
+			});
+		});
+	},
+ /**
+  * Vraca sve tipove masina iz baze
+  *
+  * @method getTipoveMasina
+  * @return Array[]
+  */
+	getTipoveMasina: function() {
+		return new Promise((resolve, reject) => {
+			TipMasineModel.find({}, (err, tipoviMasina) => {
+				if (err) reject(err);
+				resolve(tipoviMasina);
+			});
+		});
+	},
+	/**
+  * Vraca sve masine datog user-a
+  *
+  * @param MongoUserId
+  * @method getMasine
+  * @return Array[MongoMasina]
+  */
+  getMasine(userName) {
+  	return new Promise((resolve, reject) => {
+  		UserModel.findOne({'username': userName}, (err, user) => {
+  			if (err) reject(err);
+  			resolve(user.masine);
+  		});
+  	});
+  },
+	/**
+ * Dodaje novu masinu
+ *
+ * @method dodajMasinu
+ * @param username
+ * @param novaMasina
+ * @return {Promise<MasinaModel>}
+ */
+	dodajMasinu: function(username, novaMasina) {
+		var novaMasinaModel = new MasinaModel(novaMasina);
+		return new Promise((resolve, reject) => {
+			if (!novaMasina) reject("Masina prazna");
+			else {
+				UserModel
+					.findOne({'username': username})
+					.exec((err, foundUser) => {
+						if (err) reject(err);
+						else {
+							TipMasineModel.findById(novaMasinaModel.tipMasine, (err, tipMasine) => {
+								if (err) reject(err);
+
+								novaMasinaModel.tipMasine = tipMasine;
+								foundUser.masine.push(novaMasinaModel);
+								foundUser.save((err, updatedUser) => {
+									if (err) reject(err);
+									resolve(updatedUser.masine[updatedUser.masine.length-1]);
+								})
+							})
+						}
+					});
+			}
+		});
+	},
 }
 module.exports = DBLink;

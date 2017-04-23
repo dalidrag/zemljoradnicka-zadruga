@@ -92,12 +92,11 @@ Usev - ova struktura je deo Njive, ne postoji kao posebna kolekcija
 Aktivnost - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija? (1)
 	Tip: tip aktivnosti; (oranje, sejanje, navodnjavanje, djubrenje, nega, zetva), Transport, Savetodavna usluga, Osiguranje, Prodaja sporednih proizvoda, Prodaja zetve: ugovorena, slobodna, 
 	Pod-tip:  pod-tip aktivnosti; 
-	Meta Aktivnosti 1: reference to njiva
-	Meta Aktivnosti 2: reference to vrsta_useva
-	Meta Aktivnosti 3: reference to usev
-	Meta Aktivnosti 4: reference to masina1
-	Meta Aktivnosti 5: reference to masina2
-	Meta Aktivnosti 6: reference to storage
+	Meta Aktivnosti 1: ime njive (Array)
+	Meta Aktivnosti 2: ime masine
+	Meta Aktivnosti 3: ime dodatka za masinu
+	Meta Aktivnosti 4: ime skladista (Array)
+	Meta Aktivnosti 5: ime sirovine (vrsta useva, vrsta djubriva, vrsta hemikalije)
 	Datum;
 	Vreme trajanja;
 	Kolicina;
@@ -108,23 +107,28 @@ Aktivnost - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne 
 	Radnici: korisnik | korisnici | sezonski radnici | ostalo
 	Zabeleska;
 
-Tip_traktora:
-	namena: Standardni | univerzalni | nosač orudja, samohodna šasija, uski – voćarsko –
+Tip masine:
+	Tip: Traktor, Kombajn, Motokultivator, dodatak za Traktor, adapter za Kombajn, prikljucak za Motokultivator;
+	Marka;
+	Model;
+	Slike: Array[ref: SlikaMasine]
+	Pod_tip1; namena taktora: Standardni | univerzalni | nosač orudja, samohodna šasija, uski – voćarsko –
 vinogradarski traktor, traktori sa specijalno visokim klirensom, mali zglobni dvoosovinski traktor, jednoosovinski traktor, mobilni most, traktor kamion.
+	Pod_tip2; (dizel/benzinac)
+	Pod_tip3; (vrsta sasije)
+	Konjske snage;
+	Kapacitet goriva;
 
 Masina  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
 	Ime;
-	Tip: Traktor, Kombajn, Motokultivator, dodatak za Traktor, adapter za Kombajn, prikljucak za Motokultivator;
-	Pod_tip1;
-	Pod_tip2;
-	Pod_tip3;
-	Marka;
-	Model;
-	Konjske snage;
-	Kapacitet goriva;
+	Pod_tip1;  namena taktora (prebisava istovetni podatak iz tipa masine)
+	Pod_tip2; (dizel/benzinac) (prebisava istovetni podatak iz tipa masine)
+	Pod_tip3; (sasija) (prebisava istovetni podatak iz tipa masine)
+	Konjske snage; (prebisava istovetni podatak iz tipa masine)
+	Kapacitet goriva (prebisava istovetni podatak iz tipa masine);
 	Godina proizvodnje;	
 	Posedovan ili iznajmljivan;
-	Slika;
+	Slika: ref: SlikaMasine;
 	Zabeleska;
 
 Vrsta_djubriva
@@ -159,3 +163,6 @@ Zabeleska  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne
 Info
 	Naslov;
 	Info_clanak. (HTML Template (string) koji predstavlja informacije na razne teme, adresirane po imenu teme (string))
+	Tip masine:
+	Vrsta useva:
+	Tip aktivnosti; (u buducnosti i pod-tip)

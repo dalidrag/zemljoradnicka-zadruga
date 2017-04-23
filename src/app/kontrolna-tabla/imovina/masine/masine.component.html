@@ -1,7 +1,7 @@
 <div class="masine">
 	<div *ngFor="let masina of masine" [class.nova-masina]="novaMasinaId && novaMasinaId===masina.id" class="masina">
 		<div class="okvir-masine">
-			<img src="/assets/images/{{tipoviMasinaPoId[masina.tipMasine].srcSlike}}" class="slika-masine"/>
+			<img src="http://localhost:3000/api/masine/{{masina.tipMasine}}/slika" class="slika-masine"/>
 			<p>{{masina.ime}}</p>
 		</div>
 	</div>

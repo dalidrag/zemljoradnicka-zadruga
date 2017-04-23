@@ -3,10 +3,12 @@ import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Njiva } from './tipovi-podataka/njiva';
-import { Aktivnost } from './tipovi-podataka/aktivnost';
+import { User } from './tipovi-podataka/user';
 import { VrstaUseva} from './tipovi-podataka/vrsta-useva';
 import { TipMasine } from './tipovi-podataka/tip-masine';
+
+import { Njiva } from './tipovi-podataka/njiva';
+import { Aktivnost } from './tipovi-podataka/aktivnost';
 import { Masina } from './tipovi-podataka/masina';
 
 class DataCache {
@@ -28,15 +30,54 @@ export class DataService {
 	private aktivnostiUrl = 'http://localhost:3000/api/aktivnosti';
 	private masineUrl = 'http://localhost:3000/api/masine';
 	private vrsteUsevaUrl = 'http://localhost:3000/api/vrsteUseva';
-	private tipoviMasinaUrl = 'http://localhost:3000/api/tipoviMasina';
-
+	private usersUrl = 'http://localhost:3000/api/users'
+	
 	njiveCache = new DataCache();
 	aktivnostiCache = new DataCache();
 	masineCache = new DataCache();
+	
+	usersCache = new DataCache();
 	vrsteUsevaCache = new DataCache();
 	tipoviMasinaCache = new DataCache();
   
   constructor(private http: Http) { }
+
+  /**
+	 * Vrati ulogovanog usera
+	 *
+	 * @method getUser
+	 * @return {Promise<User>} Vraca user objekat kao Promise
+	 */
+	getUser() {
+		if (!this.usersCache.dirty) {
+			return Promise.resolve(this.usersCache.data);
+		}
+		else
+			return this.http.get(this.usersUrl)
+		  	             .toPromise()		// Because Angular http service returns observable
+		  	             .then(response => {
+		  	             		this.usersCache.data = response.json().data as User;
+		  	             		this.usersCache.dirty = false;
+		  	             		return response.json().data as User;
+		  	             })
+		  	             .catch(this.handleError)
+	}
+
+  /**
+	 * Update user
+	 *
+	 * @method updateUser
+	 * @return {Promise<boolean>} Vraca preuzete vrste useva kao Promise
+	 */ /*
+	 updateUser(user) {
+	 			return this.http.put(this.usersUrl, JSON.stringify(user), {headers: this.headers})
+	 		  	             .toPromise()		// Because Angular http service returns observable
+	 		  	             .then(response => {
+	 		  	             		this.usersCache.dirty = true;
+	 		  	             		return response.json().data as User;
+	 		  	             })
+	 		  	             .catch(this.handleError)
+	 } */
 
   /**
 	 * Preuzima vrste useva
@@ -69,7 +110,7 @@ export class DataService {
 		if (!this.tipoviMasinaCache.dirty) {
 			return Promise.resolve(this.tipoviMasinaCache.data);
 		}
-		return this.http.get(this.tipoviMasinaUrl)
+		return this.http.get(this.masineUrl + '/tipovi')
 		  	             .toPromise()		// Because Angular http service returns observable
 		  	             .then(response => {
 		  	             		this.tipoviMasinaCache.data = response.json().data as TipMasine[];

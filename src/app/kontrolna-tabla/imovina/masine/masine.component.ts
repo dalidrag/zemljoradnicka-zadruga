@@ -30,13 +30,13 @@ export class MasineComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private stateService: StateService, private actionCreators: MasineActionCreators) { }
 
   ngOnInit() {
-	  /* this.unsubscribe = this.route.data.subscribe((data: { masine: Masina[], tipoviMasina: TipMasine[]}) => {
+	  this.unsubscribe = this.route.data.subscribe((data: { masine: Masina[], tipoviMasina: TipMasine[]}) => {
 			this.masine = data.masine;
 	    this.tipoviMasina = data.tipoviMasina;
 	    for (let tipMasine of this.tipoviMasina) {
 	      this.tipoviMasinaPoId[tipMasine.id] = tipMasine;
 	    }
-		}); */
+		});
 		if (this.stateService.state.masine.novaMasinaId !== '0') {  // ako je upravo dodata nova masina
 		  this.novaMasinaId = this.stateService.state.masine.novaMasinaId;
 		  this.actionCreators.novaMasinaPrikazana();

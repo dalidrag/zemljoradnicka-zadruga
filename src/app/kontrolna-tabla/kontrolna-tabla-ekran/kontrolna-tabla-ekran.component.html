@@ -26,6 +26,6 @@
 	<p style="font-family: Gabriela, serif; font-size:0.8rem;">Желимо вам успешно пословање и рад на вашем имању!</p>
 	<button (click)="vodicZavrsi()">Заврши</button>
 </div>
-<app-statusna-tabla></app-statusna-tabla>
+<app-statusna-tabla [username]="user.username"></app-statusna-tabla>
 <app-meni-tabla></app-meni-tabla>
 <router-outlet></router-outlet>

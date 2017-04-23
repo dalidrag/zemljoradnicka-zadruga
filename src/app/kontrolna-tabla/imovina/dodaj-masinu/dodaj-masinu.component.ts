@@ -7,6 +7,7 @@ import { MasineActionCreators } from '../../../Redux/action-creators/masine.acti
 
 import { TipMasine } from '../../../deljeno/tipovi-podataka/tip-masine';
 import { Masina } from '../../../deljeno/tipovi-podataka/masina';
+import { User } from '../../../deljeno/tipovi-podataka/user';
 
 import { DataService } from '../../../deljeno/data.service';
 import { UtilitiesService } from '../../../deljeno/utilities.service';
@@ -68,13 +69,14 @@ export class DodajMasinuComponent implements OnInit, OnDestroy {
 		novaMasina.ime = formValues.ime;
 		novaMasina.tipMasine = formValues.tipMasine;
 
-		this.dataService.dodajMasinu(novaMasina).then((dodataMasina) => {
-			this.notificationHubService.emit(HubNotificationType.AppState, 'logo');
+    this.dataService.dodajMasinu(novaMasina)
+    .then((dodataMasina: Masina) => {
+      this.notificationHubService.emit(HubNotificationType.AppState, 'logo');
       this.notificationHubService.emit(HubNotificationType.Success, 'Додата нова машина');
-			this.actionCreators.novaMasina(dodataMasina.id);
-			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'masine': ['masine-prikaz']}}]);
-		})
-		.catch(error => this.utilitiesService.handleError(error));
+      this.actionCreators.novaMasina(dodataMasina.id);
+      this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'masine': ['masine-prikaz']}}]);
+    })
+    .catch(error => this.utilitiesService.handleError(error));
 	}
 
   // Sledeca dva metoda su potrebna zbog specijalnih efekata nad input poljima
