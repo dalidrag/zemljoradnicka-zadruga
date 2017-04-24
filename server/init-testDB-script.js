@@ -28,6 +28,9 @@ var TipMasineSchema = require("./MongoTipMasine");
 var MasinaSchema = require("./MongoMasina");
 var SlikaMasineSchema = require("./MongoSlikaMasine");
 
+
+/*******************************************************************/
+
 var SlikaMasineModel = mongoose.model('SlikaMasine', SlikaMasineSchema);
 var slikeMasina = [];
 let slikeLokacija = ['../src/assets/images/masine/traktor.jpg', '../src/assets/images/masine/kombajn.jpg', '../src/assets/images/masine/motokultivator.jpg'];
@@ -55,25 +58,27 @@ var tipoviMasinaData = [
 var tipoviMasina = tipoviMasinaData.map(tipMasine => {
 	return new TipMasineModel(tipMasine);
 });
+var brojSnimljenihMasina = 0;
 tipoviMasina.forEach(tipMasine => {
 	tipMasine.save(err => {
 		if (err) console.log(err);
-	})
-}) 
-/*
+		brojSnimljenihMasina++;
+	});
+});
+
 var NjivaModel = mongoose.model('Njiva', NjivaSchema);
 var njivaModel = new NjivaModel({
 	ime: 'prva',
 	klasa_zemljista: 8
 });
 
-var MasinaModel = mongoose.model('Masina', MasinaSchema); */
+var MasinaModel = mongoose.model('Masina', MasinaSchema);
 
 var UserModel = mongoose.model('User', UserSchema);
 var userModel = new UserModel({
 	username: 'sample1',
 	prebivaliste: 'Dobrica',
-	njive:[], 
+	njive:[njivaModel], 
 	masine: []
 });
 

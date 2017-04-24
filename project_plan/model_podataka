@@ -93,10 +93,10 @@ Aktivnost - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne 
 	Tip: tip aktivnosti; (oranje, sejanje, navodnjavanje, djubrenje, nega, zetva), Transport, Savetodavna usluga, Osiguranje, Prodaja sporednih proizvoda, Prodaja zetve: ugovorena, slobodna, 
 	Pod-tip:  pod-tip aktivnosti; 
 	Meta Aktivnosti 1: ime njive (Array)
-	Meta Aktivnosti 2: ime masine
-	Meta Aktivnosti 3: ime dodatka za masinu
-	Meta Aktivnosti 4: ime skladista (Array)
-	Meta Aktivnosti 5: ime sirovine (vrsta useva, vrsta djubriva, vrsta hemikalije)
+	Meta Aktivnosti 2: ime sirovine (vrsta useva, vrsta djubriva, vrsta hemikalije)
+	Meta Aktivnosti 3: ime masine
+	Meta Aktivnosti 4: ime dodatka za masinu
+	Meta Aktivnosti 5: ime skladista (Array)
 	Datum;
 	Vreme trajanja;
 	Kolicina;
@@ -162,7 +162,24 @@ Zabeleska  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne
 
 Info
 	Naslov;
-	Info_clanak. (HTML Template (string) koji predstavlja informacije na razne teme, adresirane po imenu teme (string))
-	Tip masine:
-	Vrsta useva:
-	Tip aktivnosti; (u buducnosti i pod-tip)
+	Info_clanak. (HTML Template (string) koji predstavlja informacije na razne teme, adresirane po naslovu teme (string))
+	Tip masine: { 
+		Tip: Traktor, Kombajn, Motokultivator, dodatak za Traktor, adapter za Kombajn, prikljucak za Motokultivator;
+		Marka;
+		Model;
+		Pod_tip1; namena taktora: Standardni | univerzalni | nosač orudja, samohodna šasija, uski – voćarsko –
+		vinogradarski traktor, traktori sa specijalno visokim klirensom, mali zglobni dvoosovinski traktor, jednoosovinski 			traktor, mobilni most, traktor kamion.
+		Pod_tip2; (dizel/benzinac)
+		Pod_tip3; (vrsta sasije)
+	}
+	Tip aktivnosti: {
+		Tip: tip aktivnosti; (oranje, sejanje, navodnjavanje, djubrenje, nega, zetva), Transport, Savetodavna usluga, Osiguranje, Prodaja sporednih proizvoda, Prodaja zetve: ugovorena, slobodna, 
+		Pod-tip:  pod-tip aktivnosti; 
+		Meta Aktivnosti 1: vrsta zemljista
+		Meta Aktivnosti 2: ime sirovine (vrsta useva, vrsta djubriva, vrsta hemikalije)
+		Meta Aktivnosti 3: ime masine
+		Meta Aktivnosti 4: ime dodatka za masinu
+		Meta Aktivnosti 5: ime skladista (Array)
+	}
+	Vrsta useva: ref
+

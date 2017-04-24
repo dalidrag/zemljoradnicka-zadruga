@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ###Added
-- Dodate masine i slike masine u MongoDB.
+- Osnovna struktura info pages-a.
+- Masine i slike masine u MongoDB.
 - Osnovna struktura Node/MongoDB Back end-a postavljena.
 ### Changed
 - Model podataka obogacen, osim za zadrugu i zadrugara

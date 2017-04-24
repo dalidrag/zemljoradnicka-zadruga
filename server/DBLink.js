@@ -12,6 +12,8 @@ var TipMasineSchema = require("./MongoTipMasine");
 var TipMasineModel = mongoose.model('TipMasine', TipMasineSchema);
 var MasinaSchema = require("./MongoMasina");
 var MasinaModel = mongoose.model('Masina', MasinaSchema);
+var InfoSchema = require("./MongoInfo");
+var InfoModel = mongoose.model('Info', InfoSchema);
 
 /**
 * This class marshals CRUD operations against MongoDB Database
@@ -237,5 +239,20 @@ var DBLink = {
 			}
 		});
 	},
+ /**
+  * Accepts a query object and returns info for all DB objects
+  * that match the query
+  *
+  * 
+	*/
+	getInfo(queryObject) {
+		return new Promise((resolve, reject) => {
+			InfoModel.find(queryObject, (err, infoPages) => {
+				if (err) reject(err);
+				var infoPagesHTML = infoPages.map(infoPage => infoPage.clanak);
+				resolve(infoPagesHTML);
+			});
+		});
+	}
 }
 module.exports = DBLink;

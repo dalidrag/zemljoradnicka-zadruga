@@ -172,6 +172,22 @@ app.post('/api/masine', (req, res) => {
 	.catch(err => handleError(err, res));
 });
 
+// Vrati array HTML stranica o datoj temi
+app.post('/api/info/get', (req, res) => {
+	var query = {
+		tipMasine: req.body.tipMasine,
+		marka: req.body.marka,
+		tipAktivnosti: req.body.tipAktivnosti
+	}
+	for (var key of Object.keys(query)) {
+		if (query[key] === undefined) delete query[key];
+	}
+	DBLink.getInfo(query).then(infoPages => {
+		res.send({ok: true, data: infoPages});
+	})
+});
+
+
 var handleError = function (err, res) {
 	console.log("Error: " + err);	// TODO: log error server-side
 	res.sendStatus(500);

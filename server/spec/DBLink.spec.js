@@ -95,7 +95,7 @@ describe('DBLink object', () => {
 			})
 		});
 		it('should return a Promise resolved to MongoNjiva[]', (done) => {
-			DBLink.getNjive('sample1')
+			DBLink.getNjive('noviUser')
 			.then(njive => {
 				expect(njive.length).toBe(1);
 				done();
@@ -112,7 +112,7 @@ describe('DBLink object', () => {
 				ime: 'Prva njiva',
 				klasa_zemljista: 5
 			}
-			DBLink.addNjiva('noviUser', novaNjiva)
+			DBLink.addNjiva('sample1', novaNjiva)
 			.then(dodataNjiva => {
 				expect(dodataNjiva._id).toBeDefined();
 				expect(dodataNjiva.ime).toBe('Prva njiva');
@@ -122,6 +122,17 @@ describe('DBLink object', () => {
 				console.log('Add njiva: ' + error);
 				done();
 			});
+		});
+	});
+
+	describe('getInfo method', () => {
+		it('should return two info objects from Info collection', (done) => {
+			var queryObject = { tipMasine: '58fe10673eb8cc12ad9537b1' } 
+			DBLink.getInfo(queryObject)
+			.then(infoPages => {
+				expect(infoPages.length).toBe(2);
+				done();
+			})
 		});
 	});
 });
