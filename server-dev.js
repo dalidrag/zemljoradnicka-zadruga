@@ -173,7 +173,7 @@ app.post('/api/masine', (req, res) => {
 });
 
 // Vrati array HTML stranica o datoj temi
-app.post('/api/info/get', (req, res) => {
+app.post('/api/info/getTopics', (req, res) => {
 	var query = {
 		tipMasine: req.body.tipMasine,
 		marka: req.body.marka,
@@ -182,7 +182,8 @@ app.post('/api/info/get', (req, res) => {
 	for (var key of Object.keys(query)) {
 		if (query[key] === undefined) delete query[key];
 	}
-	DBLink.getInfo(query).then(infoPages => {
+	DBLink.getInfoTopics(query).then(infoPages => {
+		console.log(infoPages);
 		res.send({ok: true, data: infoPages});
 	})
 });

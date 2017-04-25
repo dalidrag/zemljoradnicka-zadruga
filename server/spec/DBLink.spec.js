@@ -125,10 +125,10 @@ describe('DBLink object', () => {
 		});
 	});
 
-	describe('getInfo method', () => {
+	describe('getInfoTopics method', () => {
 		it('should return two info objects from Info collection', (done) => {
-			var queryObject = { tipMasine: '58fe10673eb8cc12ad9537b1' } 
-			DBLink.getInfo(queryObject)
+			var queryObject = { tipMasine: '58fe10673eb8cc12ad9537b1' } // TODO
+			DBLink.getInfoTopics(queryObject)
 			.then(infoPages => {
 				expect(infoPages.length).toBe(2);
 				done();

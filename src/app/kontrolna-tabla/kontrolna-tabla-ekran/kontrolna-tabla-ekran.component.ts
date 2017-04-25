@@ -22,7 +22,8 @@ import { User } from '../../deljeno/tipovi-podataka/user';
 export class KontrolnaTablaEkranComponent implements OnInit {
   user: User;
   vodicFaza: number;  // sadrzi redni broj faze pomoc-vodica, 0 ako je deaktiviran
-	unsubscribe;
+	infoThemes: Array<any> = [];
+  unsubscribe;
 	unsubsribeStore;
 
   constructor(@Inject('AppStore') private appStore: Store<IAppState>, private vodicActionCreators: VodicActionCreators, private router: Router, private route: ActivatedRoute) { }
@@ -31,6 +32,7 @@ export class KontrolnaTablaEkranComponent implements OnInit {
   	this.unsubsribeStore = this.appStore.subscribe(() => {
   	  let state = this.appStore.getState();
   	  this.vodicFaza = state.vodic.faza;
+      this.infoThemes = state.infoThemes.infoThemes;
   	});
 
     this.unsubscribe = this.route.data.subscribe((data: { user: User }) => {

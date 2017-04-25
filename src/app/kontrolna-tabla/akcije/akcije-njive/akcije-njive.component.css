@@ -29,6 +29,11 @@
 	color: white;
 	text-shadow: 1px 1px black;
 }
+button {
+	background-color: green;
+	width: 1rem;
+	margin: 0.5rem auto 0;
+}
 #slika-oranje {
 	background-image: url("/assets/images/aktivnosti/oranje.jpg");
 }

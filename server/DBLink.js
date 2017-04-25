@@ -245,12 +245,14 @@ var DBLink = {
   *
   * 
 	*/
-	getInfo(queryObject) {
+	getInfoTopics(queryObject) {
 		return new Promise((resolve, reject) => {
 			InfoModel.find(queryObject, (err, infoPages) => {
 				if (err) reject(err);
-				var infoPagesHTML = infoPages.map(infoPage => infoPage.clanak);
-				resolve(infoPagesHTML);
+				var infoPagesTopics = infoPages.map(infoPage => {
+					return {id: infoPage._id, naslov: infoPage.naslov}
+				});
+				resolve(infoPagesTopics);
 			});
 		});
 	}

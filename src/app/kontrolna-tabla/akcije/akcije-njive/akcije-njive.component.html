@@ -1,9 +1,15 @@
 <div class="aktivnosti">
-	<div class="aktivnost-slika" id="slika-oranje">
-		<span class="aktivnost-tekst">Орање</span>
+	<div>
+		<div class="aktivnost-slika" id="slika-oranje">
+			<span class="aktivnost-tekst">Орање</span>
+		</div>
+		<button *ngIf="oranjeTeme"><i>i</i></button>
 	</div>
-	<div (click)="sejanje()" class="aktivnost-slika" id="slika-sejanje">
-		<span class="aktivnost-tekst">Сејање</span>
+	<div>
+		<div (click)="sejanje()" class="aktivnost-slika" id="slika-sejanje">
+			<span class="aktivnost-tekst">Сејање</span>
+		</div>
+		<button *ngIf="sejanjeTeme" (click)="sejanjeInfoTeme()"><i>i</i></button>
 	</div>
 	<div class="aktivnost-slika" id="slika-navodnjavanje">
 		<span class="aktivnost-tekst-mali">Наводњавање</span>

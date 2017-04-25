@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
@@ -31,6 +32,7 @@ export class DataService {
 	private masineUrl = 'http://localhost:3000/api/masine';
 	private vrsteUsevaUrl = 'http://localhost:3000/api/vrsteUseva';
 	private usersUrl = 'http://localhost:3000/api/users'
+	private infoUrl = 'http://localhost:3000/api/info';
 	
 	njiveCache = new DataCache();
 	aktivnostiCache = new DataCache();
@@ -248,6 +250,14 @@ export class DataService {
 				this.aktivnostiCache.dirty = true;
 				return response.json().data as Aktivnost
 			})
+			.catch(this.handleError);
+	}
+
+	vratiTeme(query): Promise<any> {
+		return this.http
+			.post(this.infoUrl + '/getTopics', JSON.stringify(query), {headers: this.headers})
+			.toPromise()
+			.then(response => response.json().data)
 			.catch(this.handleError);
 	}
 

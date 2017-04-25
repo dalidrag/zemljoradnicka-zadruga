@@ -7,3 +7,8 @@
 	animation-duration: 0.5s;
 	animation-timing-function: ease-in;
 }
+.info-pop-up {
+	position: absolute;
+	z-index: 20;
+	border: 1px solid red;
+}
