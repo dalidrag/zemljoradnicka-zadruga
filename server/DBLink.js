@@ -243,7 +243,10 @@ var DBLink = {
   * Accepts a query object and returns info for all DB objects
   * that match the query
   *
-  * 
+  *	@method getInfoTopics
+  * @param queryObject	MongoDB will use this for searching
+  * @return [infoPagesTopics]	All topics that match the query
+  * @
 	*/
 	getInfoTopics(queryObject) {
 		return new Promise((resolve, reject) => {
@@ -254,6 +257,14 @@ var DBLink = {
 				});
 				resolve(infoPagesTopics);
 			});
+		});
+	},
+	getInfoHTML(id) {
+		return new Promise((resolve, reject) => {
+			InfoModel.findById(id, (err, infoPage) => {
+				if (err) reject(err);
+				resolve('<h1>' + infoPage.naslov + '</h1>' + infoPage.clanak);
+			})
 		});
 	}
 }

@@ -42,6 +42,7 @@ import { KontrolnaTablaPogledComponent } from './kontrolna-tabla/kontrolna-tabla
 import { BrojAriComponent } from './vodic/broj-ari/broj-ari.component';
 import { PrvaNjivaComponent } from './vodic/prva-njiva/prva-njiva.component';
 import { LogInComponent } from './pocetna-strana/log-in/log-in.component';
+import { PopUpComponent } from './kontrolna-tabla/pop-up/pop-up.component';
 
 
 
@@ -60,7 +61,8 @@ import { LogInComponent } from './pocetna-strana/log-in/log-in.component';
     KontrolnaTablaPogledComponent,
     BrojAriComponent,
     PrvaNjivaComponent,
-    LogInComponent
+    LogInComponent,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,

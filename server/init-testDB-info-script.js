@@ -71,3 +71,12 @@ var info4Model = new InfoModel({
 info4Model.save(function (err) {
 	if (err) console.log(err);
 });
+
+var info5Model = new InfoModel({
+	naslov: "О жетви",
+	clanak: "<p>Жетва је најбоља!</p>",
+	tipAktivnosti: 'Zetva'
+});
+info5Model.save(function (err) {
+	if (err) console.log(err);
+});

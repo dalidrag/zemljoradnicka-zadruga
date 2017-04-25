@@ -9,7 +9,7 @@
 		<div (click)="sejanje()" class="aktivnost-slika" id="slika-sejanje">
 			<span class="aktivnost-tekst">Сејање</span>
 		</div>
-		<button *ngIf="sejanjeTeme" (click)="sejanjeInfoTeme()"><i>i</i></button>
+		<button *ngIf="sejanjeTeme" (click)="sejanjeInfoTeme()" id="sejanje-info-button"><i>i</i></button>
 	</div>
 	<div class="aktivnost-slika" id="slika-navodnjavanje">
 		<span class="aktivnost-tekst-mali">Наводњавање</span>
@@ -20,7 +20,10 @@
 	<div class="aktivnost-slika" id="slika-prskanje">
 		<span class="aktivnost-tekst">Прскање</span>
 	</div>
-	<div class="aktivnost-slika" id="slika-zetva">
-		<span class="aktivnost-tekst">Жетва</span>
+	<div>
+		<div class="aktivnost-slika" id="slika-zetva">
+			<span class="aktivnost-tekst">Жетва</span>
+		</div>
+		<button *ngIf="zetvaTeme" (click)="zetvaInfoTeme()" id="zetva-info-button"><i>i</i></button>
 	</div>
 </div>

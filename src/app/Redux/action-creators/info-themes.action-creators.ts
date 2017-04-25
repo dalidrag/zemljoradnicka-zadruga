@@ -8,10 +8,11 @@ export class InfoThemesActionCreators {
 	static PRIKAZI_INFO = 'PRIKAZI_INFO';
 	static UKLONI_INFO = 'UKLONI_INFO';
 
-	prikaziInfoPages(infoThemes: Array<any>) {
+	prikaziInfoPages(infoThemes: Array<any>, coords: ClientRect) {
 		this.appStore.dispatch({
 			type: InfoThemesActionCreators.PRIKAZI_INFO,
-			infoThemes: infoThemes
+			infoThemes: infoThemes,
+			coords: coords
 		});
 	}
 	ukloniInfoPages() {

@@ -29,8 +29,4 @@
 <app-statusna-tabla [username]="user.username"></app-statusna-tabla>
 <app-meni-tabla></app-meni-tabla>
 <router-outlet></router-outlet>
-<div *ngIf="infoThemes.length > 0" class="info-pop-up">
-	<div *ngFor="let infoTheme of infoThemes">
-		<p>{{infoTheme.naslov}}</p>
-	</div>
-</div>
+<app-pop-up *ngIf="infoThemes.length > 0" [infoThemes]=infoThemes [coords]=coords></app-pop-up>

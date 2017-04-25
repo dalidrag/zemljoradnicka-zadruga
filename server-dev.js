@@ -182,12 +182,18 @@ app.post('/api/info/getTopics', (req, res) => {
 	for (var key of Object.keys(query)) {
 		if (query[key] === undefined) delete query[key];
 	}
-	DBLink.getInfoTopics(query).then(infoPages => {
-		console.log(infoPages);
+	DBLink.getInfoTopics(query)
+	.then(infoPages => {
 		res.send({ok: true, data: infoPages});
 	})
+	.catch(err => handleError(err, res));
 });
-
+// Vrati sadrzaj clanka
+app.get('/api/info/getHTML/:id', (req, res) => {
+	DBLink.getInfoHTML(req.params.id)
+	.then(clanak => res.send({ok: true, data: clanak}))
+	.catch(err => handleError(err, res));
+});
 
 var handleError = function (err, res) {
 	console.log("Error: " + err);	// TODO: log error server-side

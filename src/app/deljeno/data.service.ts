@@ -260,6 +260,13 @@ export class DataService {
 			.then(response => response.json().data)
 			.catch(this.handleError);
 	}
+	vratiHTMLTeme(id): Promise<string> {
+		return this.http
+			.get(this.infoUrl + '/getHTML/' + id)
+			.toPromise()
+			.then(response => response.json().data)
+			.catch(this.handleError);
+	}
 
 	clearCache() {
 		this.njiveCache.dirty = true;

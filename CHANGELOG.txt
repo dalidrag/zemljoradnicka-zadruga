@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ###Added
+- Front-end prikaz info pages-a (samo tekstualni).
 - Osnovna struktura info pages-a.
 - Masine i slike masine u MongoDB.
 - Osnovna struktura Node/MongoDB Back end-a postavljena.

@@ -23,6 +23,7 @@ export class KontrolnaTablaEkranComponent implements OnInit {
   user: User;
   vodicFaza: number;  // sadrzi redni broj faze pomoc-vodica, 0 ako je deaktiviran
 	infoThemes: Array<any> = [];
+  coords: ClientRect;
   unsubscribe;
 	unsubsribeStore;
 
@@ -33,6 +34,7 @@ export class KontrolnaTablaEkranComponent implements OnInit {
   	  let state = this.appStore.getState();
   	  this.vodicFaza = state.vodic.faza;
       this.infoThemes = state.infoThemes.infoThemes;
+      this.coords = state.infoThemes.coords;
   	});
 
     this.unsubscribe = this.route.data.subscribe((data: { user: User }) => {

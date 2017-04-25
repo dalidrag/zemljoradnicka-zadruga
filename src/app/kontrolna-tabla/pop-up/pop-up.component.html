@@ -1,0 +1,5 @@
+<div class="info-pop-up">
+	<div *ngFor="let infoTheme of infoThemes">
+		<a href="javascript:void(0)" (click)="clicked(infoTheme.id)">{{infoTheme.naslov}}</a>
+	</div>
+</div>

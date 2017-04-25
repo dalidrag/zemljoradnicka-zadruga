@@ -8,6 +8,7 @@ import { DataService } from '../../../deljeno/data.service';
 /**************************************************************/
 
 
+
 /**
  * Prikazuje opcije za aktivnosti na njivama
  *
@@ -37,6 +38,10 @@ export class AkcijeNjiveComponent implements OnInit {
   	{
   		if (infoTeme.length > 0) this.oranjeTeme = infoTeme;
   	});
+    this.dataService.vratiTeme({tipAktivnosti: 'Zetva'}).then(infoTeme =>
+    {
+      if (infoTeme.length > 0) this.zetvaTeme = infoTeme;
+    });
   }
 
   sejanje() {
@@ -44,6 +49,18 @@ export class AkcijeNjiveComponent implements OnInit {
   }
 
   sejanjeInfoTeme() {
-  	this.infoThemesActionCreators.prikaziInfoPages(this.sejanjeTeme);
+    let coords = this.vratiBoundingRect('sejanje-info-button');
+    this.infoThemesActionCreators.ukloniInfoPages();
+    this.infoThemesActionCreators.prikaziInfoPages(this.sejanjeTeme, coords);
+  }
+  zetvaInfoTeme() {
+    let coords = this.vratiBoundingRect('zetva-info-button');
+    this.infoThemesActionCreators.ukloniInfoPages();
+    this.infoThemesActionCreators.prikaziInfoPages(this.zetvaTeme, coords);
+  }
+
+  vratiBoundingRect(cssId) {
+    let element = document.getElementById(cssId) as HTMLElement;
+    return element.getBoundingClientRect();
   }
 }
