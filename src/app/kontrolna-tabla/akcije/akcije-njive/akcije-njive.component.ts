@@ -59,6 +59,10 @@ export class AkcijeNjiveComponent implements OnInit {
     this.infoThemesActionCreators.prikaziInfoPages(this.zetvaTeme, coords);
   }
 
+  oranjeDodajInfo() {
+    this.router.navigate(['kontrolna-tabla', 'akcije', { outlets: {'akcije-njive': ['dodaj-info-akcije-njive']}}]);
+  }
+
   vratiBoundingRect(cssId) {
     let element = document.getElementById(cssId) as HTMLElement;
     return element.getBoundingClientRect();

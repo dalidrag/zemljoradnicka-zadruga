@@ -1,4 +1,3 @@
-
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -30,6 +29,8 @@ import { PrvaNjivaComponent } from '../vodic/prva-njiva/prva-njiva.component';
 
 import { LogInComponent } from '../pocetna-strana/log-in/log-in.component';
 
+import { HTMLEditorComponent } from '../htmleditor/htmleditor.component';
+
 import { UserResolve } from './user-resolve.service';
 import { NjiveResolve } from './njive-resolve.service';
 import { AkcijeResolve } from './akcije-resolve.service';
@@ -54,12 +55,13 @@ const routes: Routes = [
     { path: 'njiva-prikaz/:id', component: NjivaComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
     { path: 'dodaj-njivu', component: DodajNjivuComponent, outlet: 'njive', resolve: {njive: NjiveResolve} },
     { path: 'masine-prikaz', component: MasineComponent, outlet: 'masine', resolve: {masine: MasineResolve, tipoviMasina: TipoviMasinaResolve} },
-    { path: 'dodaj-masinu', component: DodajMasinuComponent, outlet: 'masine', resolve: {tipoviMasina: TipoviMasinaResolve} },
+    { path: 'dodaj-masinu', component: DodajMasinuComponent, outlet: 'masine', resolve: {tipoviMasina: TipoviMasinaResolve} },    
     ]
  	 },
    { path: 'akcije', component: AkcijePogledComponent, children: [
     { path: 'akcije-meni-njive', component: AkcijeNjiveComponent, outlet: 'akcije-njive' },
     { path: 'sejanje', component: PosejComponent, outlet: 'akcije-njive', resolve: {njive: NjiveResolve, vrsteUseva: VrsteUsevaResolve} },   
+    { path: 'dodaj-info-akcije-njive', component: HTMLEditorComponent, outlet: 'akcije-njive' },
     { path: 'akcije-meni-masine', component: AkcijeMasineComponent, outlet: 'akcije-masine' },
     { path: 'akcije-lista', component: AkcijeListaComponent, resolve: {aktivnosti: AkcijeResolve} },
     ]
