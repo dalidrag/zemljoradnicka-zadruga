@@ -11,6 +11,8 @@ import { TipMasine } from './tipovi-podataka/tip-masine';
 import { Njiva } from './tipovi-podataka/njiva';
 import { Aktivnost } from './tipovi-podataka/aktivnost';
 import { Masina } from './tipovi-podataka/masina';
+import { Info } from './tipovi-podataka/info-tema';
+
 
 class DataCache {
 	data = null;
@@ -263,6 +265,13 @@ export class DataService {
 	vratiHTMLTeme(id): Promise<string> {
 		return this.http
 			.get(this.infoUrl + '/getHTML/' + id)
+			.toPromise()
+			.then(response => response.json().data)
+			.catch(this.handleError);
+	}
+	dodajTemu(novaTema): Promise<Info> {
+		return this.http
+			.post(this.infoUrl + '/novaTema', JSON.stringify(novaTema), {headers: this.headers})
 			.toPromise()
 			.then(response => response.json().data)
 			.catch(this.handleError);

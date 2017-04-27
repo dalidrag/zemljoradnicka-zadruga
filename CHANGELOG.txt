@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ###Added
+- Snimanje novih tema, bez slika i videa.
 - Froala HTML editor.
 - Front-end prikaz info pages-a (samo tekstualni).
 - Osnovna struktura info pages-a.

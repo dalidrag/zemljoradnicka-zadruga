@@ -3,7 +3,7 @@
 		<div class="aktivnost-slika" id="slika-oranje">
 			<span class="aktivnost-tekst">Орање</span>
 		</div>
-		<button *ngIf="oranjeTeme"><i>i</i></button>
+		<button *ngIf="oranjeTeme" (click)="oranjeInfoTeme()" id="oranje-info-button"><i>i</i></button>
 		<button *ngIf="!oranjeTeme" (click)="oranjeDodajInfo()"><b>+</b></button>
 	</div>
 	<div>

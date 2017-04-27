@@ -1,3 +1,4 @@
+
 /**************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -53,6 +54,12 @@ export class AkcijeNjiveComponent implements OnInit {
     this.infoThemesActionCreators.ukloniInfoPages();
     this.infoThemesActionCreators.prikaziInfoPages(this.sejanjeTeme, coords);
   }
+  oranjeInfoTeme() {
+    let coords = this.vratiBoundingRect('oranje-info-button');
+    this.infoThemesActionCreators.ukloniInfoPages();
+    this.infoThemesActionCreators.prikaziInfoPages(this.oranjeTeme, coords);
+  }
+
   zetvaInfoTeme() {
     let coords = this.vratiBoundingRect('zetva-info-button');
     this.infoThemesActionCreators.ukloniInfoPages();

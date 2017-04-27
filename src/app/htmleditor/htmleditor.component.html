@@ -1,5 +1,7 @@
 <p>
   htmleditor works!
 </p>
+<label for="naslov-teme">Наслов чланка: </label>
+<input id="naslov-teme" type="text" />
 <div [froalaEditor] [(froalaModel)]="editorContent">Hello, Froala!</div>
 <button (click)="process()" >Show HTML</button>
