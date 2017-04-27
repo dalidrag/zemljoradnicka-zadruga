@@ -1,4 +1,3 @@
-
 /**************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -43,6 +42,11 @@ export class AkcijeNjiveComponent implements OnInit {
     {
       if (infoTeme.length > 0) this.zetvaTeme = infoTeme;
     });
+    this.dataService.vratiTeme({tipAktivnosti: 'Navodnjavanje'}).then(infoTeme =>
+    {
+      if (infoTeme.length > 0) this.navodnjavanjeTeme = infoTeme;
+    });
+    
   }
 
   sejanje() {
@@ -52,24 +56,33 @@ export class AkcijeNjiveComponent implements OnInit {
   sejanjeInfoTeme() {
     let coords = this.vratiBoundingRect('sejanje-info-button');
     this.infoThemesActionCreators.ukloniInfoPages();
-    this.infoThemesActionCreators.prikaziInfoPages(this.sejanjeTeme, coords);
+    this.infoThemesActionCreators.prikaziInfoPages(this.sejanjeTeme, coords, {tipAktivnosti: 'Sejanje'});
   }
   oranjeInfoTeme() {
     let coords = this.vratiBoundingRect('oranje-info-button');
     this.infoThemesActionCreators.ukloniInfoPages();
-    this.infoThemesActionCreators.prikaziInfoPages(this.oranjeTeme, coords);
+    this.infoThemesActionCreators.prikaziInfoPages(this.oranjeTeme, coords, {tipAktivnosti: 'Oranje'});
+  }
+  navodnjavanjeInfoTeme() {
+    let coords = this.vratiBoundingRect('navodnjavanje-info-button');
+    this.infoThemesActionCreators.ukloniInfoPages();
+    this.infoThemesActionCreators.prikaziInfoPages(this.navodnjavanjeTeme, coords, {tipAktivnosti: 'Navodnjavanje'});
   }
 
   zetvaInfoTeme() {
     let coords = this.vratiBoundingRect('zetva-info-button');
     this.infoThemesActionCreators.ukloniInfoPages();
-    this.infoThemesActionCreators.prikaziInfoPages(this.zetvaTeme, coords);
+    this.infoThemesActionCreators.prikaziInfoPages(this.zetvaTeme, coords, {tipAktivnosti: 'Zetva'});
   }
 
   oranjeDodajInfo() {
+    this.infoThemesActionCreators.ukloniInfoPages();
+    this.infoThemesActionCreators.dodajTemu({tipAktivnosti: 'Oranje'});
     this.router.navigate(['kontrolna-tabla', 'akcije', { outlets: {'akcije-njive': ['dodaj-info-akcije-njive']}}]);
   }
   navodnjavanjeDodajInfo() {
+    this.infoThemesActionCreators.ukloniInfoPages();
+    this.infoThemesActionCreators.dodajTemu({tipAktivnosti: 'Navodnjavanje'});
     this.router.navigate(['kontrolna-tabla', 'akcije', { outlets: {'akcije-njive': ['dodaj-info-akcije-njive']}}]);
   }
 

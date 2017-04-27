@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { InfoThemesActionCreators} from '../../Redux/action-creators/info-themes.action-creators';
 
 import { DataService } from '../../deljeno/data.service';
+import { StateService } from '../../deljeno/state.service';
 import { ModalPopupService } from '../../deljeno/modal-popup.service';
 
 @Component({
@@ -14,7 +18,7 @@ export class PopUpComponent implements OnInit, OnChanges {
   @Input()
   coords; 
 
-  constructor(private dataService: DataService, private modalPopupService: ModalPopupService) { }
+  constructor(private dataService: DataService, private stateService: StateService, private infoThemesActionCreators: InfoThemesActionCreators, private modalPopupService: ModalPopupService, private router: Router) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.coords) {
@@ -42,5 +46,11 @@ export class PopUpComponent implements OnInit, OnChanges {
       this.modalPopupService.open();
       this.modalPopupService.insertHTML(HTMLstring);
     });
+  }
+
+  dodajTemu() {
+    this.infoThemesActionCreators.ukloniInfoPages();
+    this.infoThemesActionCreators.dodajTemu(this.stateService.state.infoThemes.query);
+    this.router.navigate(['kontrolna-tabla', 'akcije', { outlets: {'akcije-njive': ['dodaj-info-akcije-njive']}}]);
   }
 }

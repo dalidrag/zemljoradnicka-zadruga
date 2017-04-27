@@ -7,17 +7,25 @@ export class InfoThemesActionCreators {
 
 	static PRIKAZI_INFO = 'PRIKAZI_INFO';
 	static UKLONI_INFO = 'UKLONI_INFO';
+	static DODAJ_TEMU = 'DODAJ_TEMU';
 
-	prikaziInfoPages(infoThemes: Array<any>, coords: ClientRect) {
+	prikaziInfoPages(infoThemes: Array<any>, coords: ClientRect, query: any) {
 		this.appStore.dispatch({
 			type: InfoThemesActionCreators.PRIKAZI_INFO,
 			infoThemes: infoThemes,
-			coords: coords
+			coords: coords,
+			query: query
 		});
 	}
 	ukloniInfoPages() {
 		this.appStore.dispatch({
 			type: InfoThemesActionCreators.UKLONI_INFO
+		});
+	}
+	dodajTemu(query: any) {
+		this.appStore.dispatch({
+			type: InfoThemesActionCreators.DODAJ_TEMU,
+			query: query
 		});
 	}
 }

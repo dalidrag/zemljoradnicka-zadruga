@@ -25,6 +25,7 @@
     "cors": "^2.8.3",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
+    "formidable": "^1.1.1",
     "google-maps": "^3.2.1",
     "mongoose": "^4.9.5",
     "redux": "^3.6.0",

@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ###Added
+- Info clanci arhitektura zavrsena, sa snimanjem slika (video i fajlovi mogu slicno biti dodati).
 - Snimanje novih tema, bez slika i videa.
 - Froala HTML editor.
 - Front-end prikaz info pages-a (samo tekstualni).

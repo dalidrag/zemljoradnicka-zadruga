@@ -2,6 +2,8 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var formidable = require('formidable');
 var cors = require('cors');
 var session = require('express-session');
 
@@ -9,6 +11,9 @@ var mongoose = require( 'mongoose' );
 
 var mongoDBTestConfig = require('./server/MongoDBTestConfig');
 var DBLink = require('./server/DBLink.js');
+
+var InfoImageSchema = require("./server/MongoInfoSlika");
+var InfoImageModel = mongoose.model('InfoImage', InfoImageSchema);
 
 var app = express();
 
@@ -194,6 +199,7 @@ app.get('/api/info/getHTML/:id', (req, res) => {
 	.then(clanak => res.send({ok: true, data: clanak}))
 	.catch(err => handleError(err, res));
 });
+// Dodaj novi info clanak
 app.post('/api/info/novaTema', (req, res) => {
 	let noviClanak = {
 		naslov: req.body.naslov,
@@ -206,7 +212,31 @@ app.post('/api/info/novaTema', (req, res) => {
 
 		res.send({ok: true, data: oClanak});
 	})
-	console.log(noviClanak);
+});
+// Upload info slike
+app.post('/api/info/upload-image', (req, res) => {
+	var form = new formidable.IncomingForm();
+	form.parse(req, function(err, fields, files){
+		if(err) handleError(err, res);
+
+		var newImageModel = new InfoImageModel;
+		newImageModel.data = fs.readFileSync(files.file.path);
+		newImageModel.contentType = files.file.type;
+		newImageModel.save((err, savedImage) => {
+			if (err) handleError(err, res);
+
+			res.send({link: 'http://localhost:3000/api/info/get-image/' + savedImage._id});
+		});
+	});
+});
+// Vrati info sliku
+app.get('/api/info/get-image/:id', (req, res) => {
+	InfoImageModel.findById(req.params.id, (err, img) => {
+		if(err) handleError(err, res);
+
+		res.contentType(img.contentType);
+		res.send(img.data);
+	});
 });
 
 var handleError = function (err, res) {
