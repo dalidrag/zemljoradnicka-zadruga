@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 
 import { Info } from '../deljeno/tipovi-podataka/info-tema';
@@ -13,29 +14,26 @@ import { UtilitiesService } from '../deljeno/utilities.service';
 export class HTMLEditorComponent implements OnInit {
 	public editorContent: string = 'Наслов';
 
+	// toolbar buttons to show; will include images, video and file uploads in the future
+	// The list of buttons that appear in the rich text editor's toolbar on small devices (≥ 768px).
+	public toolbarButtonsSM = ['bold', 'italic', 'underline', 'fontFamily', 'fontSize', 'insertLink', 'formatOL', 'formatUL', 'insertTable', 'undo', 'redo'];
+	// The list of buttons that appear in the rich text editor's toolbar on medium devices (≥ 992px).
+	public toolbarButtonsMD = ['bold', 'italic', 'underline', 'fontFamily', 'fontSize', 'color', 'paragraphStyle', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertHR', 'insertLink', 'insertTable', 'undo', 'redo', 'clearFormatting'];
+	// The list of buttons that appear in the rich text editor's toolbar on large devices (≥ 1200px).
+	public toolbarButtons = ['print', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 'fontFamily', 'fontSize', '|', 'specialCharacters', 'color', 'emoticons', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertHR', '-', 'insertLink', 'insertTable', 'undo', 'redo', 'clearFormatting', 'selectAll', 'html'];
+	
+	public froalaOptions = {
+		toolbarButtonsSM: this.toolbarButtonsSM,
+		toolbarButtonsMD: this.toolbarButtonsMD,
+		toolbarButtons: this.toolbarButtons
+	}
+
   constructor(private dataService: DataService, private utilitiesService: UtilitiesService) { }
 
   ngOnInit() {
   }
 
   process() {
-  	/* let parser = new DOMParser();
-  	let doc = parser.parseFromString(this.editorContent, "text/xml");
-  	let imgEl = doc.getElementsByTagName('img')[0] as HTMLImageElement;
-  	console.log('imgEl: ' + imgEl);
-  	let url = imgEl.src;
-  	
-  	let xhr = new XMLHttpRequest();
-  	xhr.open('get', url);
-  	xhr.responseType = 'blob';
-  	xhr.onload = () => {
-  		let fr = new FileReader();
-  		fr.onload = function() {
-  			console.log(this.result);
-  		}
-  		fr.readAsDataURL(xhr.response);
-  	}
-  	xhr.send(); */
   	let infoClanak = new Info();
   	let inputEl = document.getElementById('naslov-teme') as HTMLInputElement;
   	infoClanak.naslov = inputEl.value;

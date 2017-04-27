@@ -16,7 +16,7 @@
 		<div class="aktivnost-slika" id="slika-navodnjavanje">
 			<span class="aktivnost-tekst-mali">Наводњавање</span>
 		</div>
-		<button *ngIf="!navodnjavanjeTeme"><b>+</b></button>
+		<button *ngIf="!navodnjavanjeTeme"(click)="navodnjavanjeDodajInfo()"><b>+</b></button>
 	</div>
 	<div>
 		<div class="aktivnost-slika" id="slika-djubrenje">

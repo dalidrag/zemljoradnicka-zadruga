@@ -69,6 +69,9 @@ export class AkcijeNjiveComponent implements OnInit {
   oranjeDodajInfo() {
     this.router.navigate(['kontrolna-tabla', 'akcije', { outlets: {'akcije-njive': ['dodaj-info-akcije-njive']}}]);
   }
+  navodnjavanjeDodajInfo() {
+    this.router.navigate(['kontrolna-tabla', 'akcije', { outlets: {'akcije-njive': ['dodaj-info-akcije-njive']}}]);
+  }
 
   vratiBoundingRect(cssId) {
     let element = document.getElementById(cssId) as HTMLElement;
