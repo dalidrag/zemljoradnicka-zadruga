@@ -266,6 +266,15 @@ var DBLink = {
 				resolve('<h1>' + infoPage.naslov + '</h1>' + infoPage.clanak);
 			})
 		});
+	},
+	addNewInfo(noviClanak) {
+		return new Promise((resolve, reject) => {
+			let clanakToSave = new InfoModel(noviClanak);
+			clanakToSave.save(clanakToSave, (err, snimljeniClanak) => {
+				if (err) reject(err);
+				resolve(snimljeniClanak);
+			});	
+		});
 	}
 }
 module.exports = DBLink;

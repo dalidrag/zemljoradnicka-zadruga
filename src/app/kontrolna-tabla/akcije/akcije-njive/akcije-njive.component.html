@@ -3,7 +3,8 @@
 		<div class="aktivnost-slika" id="slika-oranje">
 			<span class="aktivnost-tekst">Орање</span>
 		</div>
-		<button *ngIf="oranjeTeme"><i>i</i></button>
+		<button *ngIf="oranjeTeme" (click)="oranjeInfoTeme()" id="oranje-info-button"><i>i</i></button>
+		<button *ngIf="!oranjeTeme" (click)="oranjeDodajInfo()"><b>+</b></button>
 	</div>
 	<div>
 		<div (click)="sejanje()" class="aktivnost-slika" id="slika-sejanje">
@@ -11,11 +12,16 @@
 		</div>
 		<button *ngIf="sejanjeTeme" (click)="sejanjeInfoTeme()" id="sejanje-info-button"><i>i</i></button>
 	</div>
-	<div class="aktivnost-slika" id="slika-navodnjavanje">
-		<span class="aktivnost-tekst-mali">Наводњавање</span>
+	<div>
+		<div class="aktivnost-slika" id="slika-navodnjavanje">
+			<span class="aktivnost-tekst-mali">Наводњавање</span>
+		</div>
+		<button *ngIf="!navodnjavanjeTeme"(click)="navodnjavanjeDodajInfo()"><b>+</b></button>
 	</div>
-	<div class="aktivnost-slika" id="slika-djubrenje">
-		<span class="aktivnost-tekst">Ђубрење</span>
+	<div>
+		<div class="aktivnost-slika" id="slika-djubrenje">
+			<span class="aktivnost-tekst">Ђубрење</span>
+		</div>
 	</div>
 	<div class="aktivnost-slika" id="slika-prskanje">
 		<span class="aktivnost-tekst">Прскање</span>

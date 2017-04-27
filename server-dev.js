@@ -194,6 +194,20 @@ app.get('/api/info/getHTML/:id', (req, res) => {
 	.then(clanak => res.send({ok: true, data: clanak}))
 	.catch(err => handleError(err, res));
 });
+app.post('/api/info/novaTema', (req, res) => {
+	let noviClanak = {
+		naslov: req.body.naslov,
+		clanak: req.body.HTML,
+		tipAktivnosti: req.body.tipAktivnosti
+	}
+	DBLink.addNewInfo(noviClanak).then(clanak => {
+		let oClanak = clanak.toObject();
+		oClanak.id = oClanak._id;
+
+		res.send({ok: true, data: oClanak});
+	})
+	console.log(noviClanak);
+});
 
 var handleError = function (err, res) {
 	console.log("Error: " + err);	// TODO: log error server-side

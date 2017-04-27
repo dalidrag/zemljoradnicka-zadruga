@@ -13,6 +13,8 @@ import { MasineActionCreators } from './Redux/action-creators/masine.action-crea
 import { InfoThemesActionCreators } from './Redux/action-creators/info-themes.action-creators';
 const appStore = createStore(rootReducer);
 
+import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './routing/app-routing.module';
@@ -43,6 +45,7 @@ import { BrojAriComponent } from './vodic/broj-ari/broj-ari.component';
 import { PrvaNjivaComponent } from './vodic/prva-njiva/prva-njiva.component';
 import { LogInComponent } from './pocetna-strana/log-in/log-in.component';
 import { PopUpComponent } from './kontrolna-tabla/pop-up/pop-up.component';
+import { HTMLEditorComponent } from './htmleditor/htmleditor.component';
 
 
 
@@ -62,13 +65,15 @@ import { PopUpComponent } from './kontrolna-tabla/pop-up/pop-up.component';
     BrojAriComponent,
     PrvaNjivaComponent,
     LogInComponent,
-    PopUpComponent
+    PopUpComponent,
+    HTMLEditorComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
 //    InMemoryWebApiModule.forRoot(InMemoryDataService),
     FormsModule,
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     AppRoutingModule,
     ImovinaModule,
     AkcijeModule,
