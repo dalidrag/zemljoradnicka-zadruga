@@ -30,7 +30,8 @@ export class AkcijeNjiveComponent implements OnInit {
   constructor(private infoThemesActionCreators: InfoThemesActionCreators, private stateService: StateService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
-  	this.dataService.vratiTeme({tipAktivnosti: 'Sejanje'}).then(infoTeme =>
+  	// Ucitaj dostupne informacione clanke o aktivnostima
+    this.dataService.vratiTeme({tipAktivnosti: 'Sejanje'}).then(infoTeme =>
   	{
   		if (infoTeme.length > 0) this.sejanjeTeme = infoTeme;
   	});
@@ -53,37 +54,20 @@ export class AkcijeNjiveComponent implements OnInit {
     this.router.navigate(['kontrolna-tabla', 'akcije', {outlets: {'akcije-njive': ['sejanje']}}]);
   }
 
-  sejanjeInfoTeme() {
-    let coords = this.vratiBoundingRect('sejanje-info-button');
-    this.infoThemesActionCreators.ukloniInfoPages();
-    this.infoThemesActionCreators.prikaziInfoPages(this.sejanjeTeme, coords, {tipAktivnosti: 'Sejanje'});
-  }
-  oranjeInfoTeme() {
-    let coords = this.vratiBoundingRect('oranje-info-button');
-    this.infoThemesActionCreators.ukloniInfoPages();
-    this.infoThemesActionCreators.prikaziInfoPages(this.oranjeTeme, coords, {tipAktivnosti: 'Oranje'});
-  }
-  navodnjavanjeInfoTeme(e) {
+  prikaziInfoTeme(e, infoTeme, tipAktivnosti) {
     e.stopPropagation();
     if (this.stateService.state.infoThemes.infoThemes.length > 0) { // vec se prikazuje pop-up
       this.infoThemesActionCreators.ukloniInfoPages();
     }
     else {
-      let coords = this.vratiBoundingRect('navodnjavanje-info-button');
+      let coords = this.vratiBoundingRect(e.currentTarget.id); // pokupi ekranske koordinate dugmeta koje je pritisnuto
       this.infoThemesActionCreators.ukloniInfoPages();
-      this.infoThemesActionCreators.prikaziInfoPages(this.navodnjavanjeTeme, coords, {tipAktivnosti: 'Navodnjavanje'});
+      this.infoThemesActionCreators.prikaziInfoPages(infoTeme, coords, {tipAktivnosti: tipAktivnosti});
     }
-  }
-
-  zetvaInfoTeme() {
-    let coords = this.vratiBoundingRect('zetva-info-button');
-    this.infoThemesActionCreators.ukloniInfoPages();
-    this.infoThemesActionCreators.prikaziInfoPages(this.zetvaTeme, coords, {tipAktivnosti: 'Zetva'});
   }
 
   dodajInfo(e) {
     this.infoThemesActionCreators.ukloniInfoPages();
-    console.log(e.target.dataset.tipakcije);
     this.infoThemesActionCreators.dodajTemu({tipAktivnosti: e.target.dataset.tipakcije});
     this.router.navigate(['kontrolna-tabla', 'akcije', { outlets: {'akcije-njive': ['dodaj-info-akcije-njive']}}]);
   }

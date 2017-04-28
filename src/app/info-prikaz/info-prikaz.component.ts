@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { DataService } from '../deljeno/data.service';
 
+
 @Component({
   selector: 'app-info-prikaz',
   templateUrl: './info-prikaz.component.html',
