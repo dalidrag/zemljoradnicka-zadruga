@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { InfoThemesActionCreators} from '../../../Redux/action-creators/info-themes.action-creators';
 
 import { DataService } from '../../../deljeno/data.service';
+import { StateService } from '../../../deljeno/state.service';
 /**************************************************************/
-
 
 
 /**
@@ -27,7 +27,7 @@ export class AkcijeNjiveComponent implements OnInit {
 	private prskanjeTeme: Array<any>;
 	private zetvaTeme: Array<any>;
 
-  constructor(private infoThemesActionCreators: InfoThemesActionCreators, private dataService: DataService, private router: Router) { }
+  constructor(private infoThemesActionCreators: InfoThemesActionCreators, private stateService: StateService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
   	this.dataService.vratiTeme({tipAktivnosti: 'Sejanje'}).then(infoTeme =>
@@ -63,10 +63,16 @@ export class AkcijeNjiveComponent implements OnInit {
     this.infoThemesActionCreators.ukloniInfoPages();
     this.infoThemesActionCreators.prikaziInfoPages(this.oranjeTeme, coords, {tipAktivnosti: 'Oranje'});
   }
-  navodnjavanjeInfoTeme() {
-    let coords = this.vratiBoundingRect('navodnjavanje-info-button');
-    this.infoThemesActionCreators.ukloniInfoPages();
-    this.infoThemesActionCreators.prikaziInfoPages(this.navodnjavanjeTeme, coords, {tipAktivnosti: 'Navodnjavanje'});
+  navodnjavanjeInfoTeme(e) {
+    e.stopPropagation();
+    if (this.stateService.state.infoThemes.infoThemes.length > 0) { // vec se prikazuje pop-up
+      this.infoThemesActionCreators.ukloniInfoPages();
+    }
+    else {
+      let coords = this.vratiBoundingRect('navodnjavanje-info-button');
+      this.infoThemesActionCreators.ukloniInfoPages();
+      this.infoThemesActionCreators.prikaziInfoPages(this.navodnjavanjeTeme, coords, {tipAktivnosti: 'Navodnjavanje'});
+    }
   }
 
   zetvaInfoTeme() {
@@ -75,14 +81,10 @@ export class AkcijeNjiveComponent implements OnInit {
     this.infoThemesActionCreators.prikaziInfoPages(this.zetvaTeme, coords, {tipAktivnosti: 'Zetva'});
   }
 
-  oranjeDodajInfo() {
+  dodajInfo(e) {
     this.infoThemesActionCreators.ukloniInfoPages();
-    this.infoThemesActionCreators.dodajTemu({tipAktivnosti: 'Oranje'});
-    this.router.navigate(['kontrolna-tabla', 'akcije', { outlets: {'akcije-njive': ['dodaj-info-akcije-njive']}}]);
-  }
-  navodnjavanjeDodajInfo() {
-    this.infoThemesActionCreators.ukloniInfoPages();
-    this.infoThemesActionCreators.dodajTemu({tipAktivnosti: 'Navodnjavanje'});
+    console.log(e.target.dataset.tipakcije);
+    this.infoThemesActionCreators.dodajTemu({tipAktivnosti: e.target.dataset.tipakcije});
     this.router.navigate(['kontrolna-tabla', 'akcije', { outlets: {'akcije-njive': ['dodaj-info-akcije-njive']}}]);
   }
 

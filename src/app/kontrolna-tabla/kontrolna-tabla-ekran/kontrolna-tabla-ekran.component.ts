@@ -5,6 +5,7 @@ import { Router, ActivatedRoute }   from '@angular/router';
 import { Store } from 'redux';
 import { IAppState } from '../../Redux/index';
 import { VodicActionCreators } from '../../Redux/action-creators/vodic.action-creators';
+import { InfoThemesActionCreators } from '../../Redux/action-creators/info-themes.action-creators';
 
 import { User } from '../../deljeno/tipovi-podataka/user';
 /***********************************************************************************/
@@ -24,10 +25,11 @@ export class KontrolnaTablaEkranComponent implements OnInit {
   vodicFaza: number;  // sadrzi redni broj faze pomoc-vodica, 0 ako je deaktiviran
 	infoThemes: Array<any> = [];
   coords: ClientRect;
+  themeId: string;
   unsubscribe;
 	unsubsribeStore;
 
-  constructor(@Inject('AppStore') private appStore: Store<IAppState>, private vodicActionCreators: VodicActionCreators, private router: Router, private route: ActivatedRoute) { }
+  constructor(@Inject('AppStore') private appStore: Store<IAppState>, private infoThemesActionCreators: InfoThemesActionCreators, private vodicActionCreators: VodicActionCreators, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   	this.unsubsribeStore = this.appStore.subscribe(() => {
@@ -45,6 +47,18 @@ export class KontrolnaTablaEkranComponent implements OnInit {
 			this.vodicActionCreators.imanje();
 		  this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]);
 		}
+  }
+
+  infoPrikaz(themeId: string) {
+    this.themeId = themeId;
+  }
+
+  ukloniInfo() {
+    this.themeId = "";
+  }
+
+  skloniPopUp() {
+    this.infoThemesActionCreators.ukloniInfoPages();
   }
 
   vodicAktivnosti() {

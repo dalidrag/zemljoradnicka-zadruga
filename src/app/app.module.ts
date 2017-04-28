@@ -46,6 +46,7 @@ import { PrvaNjivaComponent } from './vodic/prva-njiva/prva-njiva.component';
 import { LogInComponent } from './pocetna-strana/log-in/log-in.component';
 import { PopUpComponent } from './kontrolna-tabla/pop-up/pop-up.component';
 import { HTMLEditorComponent } from './htmleditor/htmleditor.component';
+import { InfoPrikazComponent } from './info-prikaz/info-prikaz.component';
 
 
 
@@ -66,7 +67,8 @@ import { HTMLEditorComponent } from './htmleditor/htmleditor.component';
     PrvaNjivaComponent,
     LogInComponent,
     PopUpComponent,
-    HTMLEditorComponent
+    HTMLEditorComponent,
+    InfoPrikazComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+<div class="modal-backdrop">
+	<div class="modal-window">
+		<div class="modal-content" style="font-family: Gabriela; font-size: 0.8rem; padding: 0.5rem; max-width: 30rem;">
+			Учитавам...
+		</div>
+		<button *ngIf="themeIndex > 0" (click)="prethodniClanak()">претходни чланак</button>
+		<button *ngIf="themeIndex < (infoThemes.length - 1)" (click)="sledeciClanak()">следећи чланак</button>
+		<button (click)="zatvori()">Затвори</button>
+	</div>
+</div>

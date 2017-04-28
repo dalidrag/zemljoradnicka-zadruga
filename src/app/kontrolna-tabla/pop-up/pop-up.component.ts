@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { InfoThemesActionCreators} from '../../Redux/action-creators/info-themes.action-creators';
@@ -17,6 +17,8 @@ export class PopUpComponent implements OnInit, OnChanges {
 	infoThemes;
   @Input()
   coords; 
+  @Output()
+  infoPrikaz = new EventEmitter<string>();
 
   constructor(private dataService: DataService, private stateService: StateService, private infoThemesActionCreators: InfoThemesActionCreators, private modalPopupService: ModalPopupService, private router: Router) { }
 
@@ -42,10 +44,7 @@ export class PopUpComponent implements OnInit, OnChanges {
   }
 
   clicked(themeId) {
-  	this.dataService.vratiHTMLTeme(themeId).then(HTMLstring => {
-      this.modalPopupService.open();
-      this.modalPopupService.insertHTML(HTMLstring);
-    });
+    this.infoPrikaz.emit(themeId);
   }
 
   dodajTemu() {

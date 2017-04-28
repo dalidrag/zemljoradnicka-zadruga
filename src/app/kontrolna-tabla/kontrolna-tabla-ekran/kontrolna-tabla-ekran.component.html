@@ -1,32 +1,35 @@
-<div *ngIf="vodicFaza===1" class="tekst-balon tekst-balon-levi" style="left:0.5rem; top:2.8rem;">
-	<p style="font-family: Gabriela, serif; font-size:0.8rem;"> Њиву коју сте управо додали можете видети на овом екрану, на коме можете прегледати и изменити своју покретну и непокретну имовину. Кликом на било који објекат добијате детаљне информације о том објекту.</p>
-	<button (click)="vodicAktivnosti()">Даље</button>
+<div (click)="skloniPopUp()">
+	<div *ngIf="vodicFaza===1" class="tekst-balon tekst-balon-levi" style="left:0.5rem; top:2.8rem;">
+		<p style="font-family: Gabriela, serif; font-size:0.8rem;"> Њиву коју сте управо додали можете видети на овом екрану, на коме можете прегледати и изменити своју покретну и непокретну имовину. Кликом на било који објекат добијате детаљне информације о том објекту.</p>
+		<button (click)="vodicAktivnosti()">Даље</button>
+	</div>
+	<div *ngIf="vodicFaza===2" class="tekst-balon tekst-balon-levi" style="left:25vw; top:2.8rem;">
+		<p style="font-family: Gabriela, serif; font-size:0.8rem;">На екрану активности можете забележити своје активности на имању и задрузи и прегледати их.</p>
+		<button (click)="vodicGrafikoni()">Даље</button>
+	</div>
+	<div *ngIf="vodicFaza===3" class="tekst-balon tekst-balon-desni" style="left:35vw; top:2.8rem;">
+		<p style="font-family: Gabriela, serif; font-size:0.8rem;">Графикони садрже различите упоредне статистичке податке.</p>
+		<button (click)="vodicZabeleske()">Даље</button>
+	</div>
+	<div *ngIf="vodicFaza===4" class="tekst-balon tekst-balon-desni" style="right:0.5rem; top:2.8rem;">
+		<p style="font-family: Gabriela, serif; font-size:0.8rem;">Забелешке можете користити да запишете произвољне подсетнике.</p>
+		<button (click)="vodicZadruga()">Даље</button>
+	</div>
+	<div *ngIf="vodicFaza===5" class="tekst-balon tekst-balon-levi" style="left:0.5rem; top:1.7rem;">
+		<p style="font-family: Gabriela, serif; font-size:0.8rem;">Кликните на лого апликације да одете на уводни екран, на коме ћете пронаћи информације о ситуацији на пољопривредном тржишту, информације о повољним приликама за куповину сировина и машина, као и разне стручне савете из области земљорадње.</p>
+		<button (click)="vodicKorisnik()">Даље</button>
+	</div>
+	<div *ngIf="vodicFaza===6" class="tekst-balon tekst-balon-desni" style="right:0.5rem; top:1.6rem;">
+		<p style="font-family: Gabriela, serif; font-size:0.8rem;">Коначно, кликом на своје корисничко име можете отићи на своју личну страницу, где можете унети или погледати своје личне податке и подесити разне опције програма.</p>
+		<button (click)="vodicKraj()">Даље</button>
+	</div>
+	<div *ngIf="vodicFaza===7" class="tekst-balon" style="left:38vw; top:15rem;">
+		<p style="font-family: Gabriela, serif; font-size:0.8rem;">Желимо вам успешно пословање и рад на вашем имању!</p>
+		<button (click)="vodicZavrsi()">Заврши</button>
+	</div>
+	<app-statusna-tabla [username]="user.username"></app-statusna-tabla>
+	<app-meni-tabla></app-meni-tabla>
+	<router-outlet></router-outlet>
+	<app-pop-up *ngIf="infoThemes.length > 0" [infoThemes]=infoThemes [coords]=coords (infoPrikaz)="infoPrikaz($event)"></app-pop-up>
+	<app-info-prikaz *ngIf="themeId" [infoThemes]=infoThemes [themeId]=themeId (ukloni)="ukloniInfo()"></app-info-prikaz>
 </div>
-<div *ngIf="vodicFaza===2" class="tekst-balon tekst-balon-levi" style="left:25vw; top:2.8rem;">
-	<p style="font-family: Gabriela, serif; font-size:0.8rem;">На екрану активности можете забележити своје активности на имању и задрузи и прегледати их.</p>
-	<button (click)="vodicGrafikoni()">Даље</button>
-</div>
-<div *ngIf="vodicFaza===3" class="tekst-balon tekst-balon-desni" style="left:35vw; top:2.8rem;">
-	<p style="font-family: Gabriela, serif; font-size:0.8rem;">Графикони садрже различите упоредне статистичке податке.</p>
-	<button (click)="vodicZabeleske()">Даље</button>
-</div>
-<div *ngIf="vodicFaza===4" class="tekst-balon tekst-balon-desni" style="right:0.5rem; top:2.8rem;">
-	<p style="font-family: Gabriela, serif; font-size:0.8rem;">Забелешке можете користити да запишете произвољне подсетнике.</p>
-	<button (click)="vodicZadruga()">Даље</button>
-</div>
-<div *ngIf="vodicFaza===5" class="tekst-balon tekst-balon-levi" style="left:0.5rem; top:1.7rem;">
-	<p style="font-family: Gabriela, serif; font-size:0.8rem;">Кликните на лого апликације да одете на уводни екран, на коме ћете пронаћи информације о ситуацији на пољопривредном тржишту, информације о повољним приликама за куповину сировина и машина, као и разне стручне савете из области земљорадње.</p>
-	<button (click)="vodicKorisnik()">Даље</button>
-</div>
-<div *ngIf="vodicFaza===6" class="tekst-balon tekst-balon-desni" style="right:0.5rem; top:1.6rem;">
-	<p style="font-family: Gabriela, serif; font-size:0.8rem;">Коначно, кликом на своје корисничко име можете отићи на своју личну страницу, где можете унети или погледати своје личне податке и подесити разне опције програма.</p>
-	<button (click)="vodicKraj()">Даље</button>
-</div>
-<div *ngIf="vodicFaza===7" class="tekst-balon" style="left:38vw; top:15rem;">
-	<p style="font-family: Gabriela, serif; font-size:0.8rem;">Желимо вам успешно пословање и рад на вашем имању!</p>
-	<button (click)="vodicZavrsi()">Заврши</button>
-</div>
-<app-statusna-tabla [username]="user.username"></app-statusna-tabla>
-<app-meni-tabla></app-meni-tabla>
-<router-outlet></router-outlet>
-<app-pop-up *ngIf="infoThemes.length > 0" [infoThemes]=infoThemes [coords]=coords></app-pop-up>
