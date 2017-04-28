@@ -27,7 +27,7 @@ var UserSchema = require("./MongoUser");
 var TipMasineSchema = require("./MongoTipMasine");
 var MasinaSchema = require("./MongoMasina");
 var SlikaMasineSchema = require("./MongoSlikaMasine");
-
+var VrstaUsevaSchema = require("./MongoVrstaUseva");
 
 /*******************************************************************/
 
@@ -58,18 +58,35 @@ var tipoviMasinaData = [
 var tipoviMasina = tipoviMasinaData.map(tipMasine => {
 	return new TipMasineModel(tipMasine);
 });
-var brojSnimljenihMasina = 0;
 tipoviMasina.forEach(tipMasine => {
 	tipMasine.save(err => {
 		if (err) console.log(err);
-		brojSnimljenihMasina++;
+	});
+});
+
+var vrsteUsevaData = [
+    	{id: 1, ime: "Пшеница", srcSlike: 'vrste-useva/psenica.jpg' },
+    	{id: 2, ime: "Кукуруз", srcSlike: 'vrste-useva/kukuruz.jpg' },
+    	{id: 3, ime: "Соја", srcSlike: 'vrste-useva/soja.jpg' },
+    	{id: 4, ime: "Пасуљ", srcSlike: 'vrste-useva/pasulj.jpg' },
+    	{id: 5, ime: "Мак", srcSlike: 'vrste-useva/mak.jpg' },
+    	{id: 6, ime: "Сунцокрет", srcSlike: 'vrste-useva/suncokret.jpg' }
+    ];
+var VrstaUsevaModel = mongoose.model('VrstaUseva', VrstaUsevaSchema);
+var vrsteUseva = vrsteUsevaData.map(vrstaUseva => {
+	return new VrstaUsevaModel(vrstaUseva);
+});
+vrsteUseva.forEach(vrstaUseva => {
+	vrstaUseva.save(err => {
+		if (err) console.log(err);
 	});
 });
 
 var NjivaModel = mongoose.model('Njiva', NjivaSchema);
 var njivaModel = new NjivaModel({
 	ime: 'prva',
-	klasa_zemljista: 8
+	klasa_zemljista: 8,
+	usevi: []
 });
 
 var MasinaModel = mongoose.model('Masina', MasinaSchema);

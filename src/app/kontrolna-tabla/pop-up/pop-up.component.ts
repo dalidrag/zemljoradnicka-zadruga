@@ -22,13 +22,14 @@ export class PopUpComponent implements OnInit, OnChanges {
 
   constructor(private dataService: DataService, private stateService: StateService, private infoThemesActionCreators: InfoThemesActionCreators, private modalPopupService: ModalPopupService, private router: Router) { }
 
+  // pozicionira pop up prozor odmah ispod dugmeta koje ga je aktiviralo
   ngOnChanges(changes: SimpleChanges) {
     if (changes.coords) {
      let element = document.getElementsByClassName('info-pop-up')[0] as HTMLElement;
      let pageWidth = document.documentElement.offsetWidth;
 
      element.style.top = this.coords.bottom +'px';
-     if (pageWidth/2 > this.coords.left) {
+     if (pageWidth/2 > this.coords.left) {  // ako je dugme na levoj strani ekrana
        element.style.right = 'auto';
        element.style.left = this.coords.left +'px';
      }

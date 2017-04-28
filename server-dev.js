@@ -129,6 +129,32 @@ app.post('/api/njive', (req, res) => {
 	})
 	.catch(err => handleError(err, res));
 });
+// Azuriraj postojecu njivu
+
+// Vrati sve vrste useva
+app.get('/api/vrsteUseva', (req, res) => {
+	DBLink.getVrsteUseva().then((vrsteUseva) => {
+		var data = vrsteUseva.map((vrsteUseva) => {
+  	         			let oVrstaUseva = vrsteUseva.toObject();
+  	         			oVrstaUseva.id = oVrstaUseva._id;
+  	             	return oVrstaUseva;
+  	           });
+		res.send({ok: true, data: data});
+	})
+	.catch(err => handleError(err, res));
+});
+// Snimi novi usev //TODO
+app.post('/api/njive/noviUsev', (req, res) => {
+	var noviUsev = {
+		vrstaUseva: req.body.vrstaUseva
+	}
+	DBLink.noviUsev('sample1', req.body.njivaId, noviUsev).then(snimljeniUsev => {
+		var oSnimljeniUsev = snimljeniUsev.toObject();
+  	oSnimljeniUsev.id = oSnimljeniUsev._id;
+  	  	
+		res.send({ok: true, data: oSnimljeniUsev});
+	})
+});
 
 // Skini sliku tipa masine sa datim id-om
 app.get('/api/masine/:idTipMasine/slika', function (req, res) {
@@ -138,7 +164,7 @@ app.get('/api/masine/:idTipMasine/slika', function (req, res) {
 	})
 	.catch(err => handleError(err, res));
 });
-// Vrati sve tipove masine
+// Vrati sve tipove masina
 app.get('/api/masine/tipovi', function(req, res) {
 	DBLink.getTipoveMasina().then(tipoviMasina => {
 		var data = tipoviMasina.map((tipMasine) => {

@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ###Added
+- Sejanje, usevi, vrsta useva implementirano kroz MongoDB
+
+
+[0.8.0] - 2017-04-27
+###Added
 - Info clanci arhitektura zavrsena, sa snimanjem slika (video i fajlovi mogu slicno biti dodati).
 - Snimanje novih tema, bez slika i videa.
 - Froala HTML editor.
@@ -15,7 +20,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Osnovna struktura Node/MongoDB Back end-a postavljena.
 ### Changed
 - Model podataka obogacen, osim za zadrugu i zadrugara
-
 
 [0.7.0] - 2017-04-17
 ### Changed

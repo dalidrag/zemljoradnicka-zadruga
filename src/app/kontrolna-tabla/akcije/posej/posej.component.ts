@@ -15,6 +15,7 @@ import { UtilitiesService } from '../../../deljeno/utilities.service';
 import { NotificationHubService, HubNotificationType } from '../../../deljeno/event-hub.service';
 /************************************************************************/
 
+
 /**
  * Rukuje formom za sejanje novog useva na nekoj od njiva
  *
@@ -64,33 +65,24 @@ export class PosejComponent implements OnInit, OnDestroy {
 	 * @method onSubmit
 	 */
 	onSubmit(formValues: any): void { 
-		let izabrana_njiva: Njiva;
+		let noviUsev = new Usev();
+		noviUsev.vrstaUseva = formValues.usev;
 
-		for (let njiva of this.njive) {
-			if (njiva.id == formValues.njiva) {
-				izabrana_njiva = njiva;
-				break;
-			}
-		}
-		
-		let novi_usev = new Usev();
-		novi_usev.vrsta_useva = formValues.usev;
-		novi_usev.id = (izabrana_njiva.usevi.length + 1).toString();
-		izabrana_njiva.usevi.push(novi_usev);
+		this.dataService.dodajUsev(formValues.njiva, noviUsev).then((snimljeniUsev) => {
+			this.actionCreators.noviUsev(snimljeniUsev.id); // za fade-in efekat u komponenti njive
 
-		this.dataService.azurirajNjivu(izabrana_njiva).then(() => {
-			this.actionCreators.noviUsev(novi_usev.id); // za fade-in efekat u komponenti njive
-
-			let novaAktivnost = new Aktivnost();
-			novaAktivnost.tip = "посејано";
-			novaAktivnost.meta2 = formValues.usev;
-
-			this.dataService.dodajAktivnost(novaAktivnost);
-		})
-		.then((dodataAktivnost) => {
 			this.notificationHubService.emit(HubNotificationType.Success, 'Усев посејан');
 			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]);
+			// let novaAktivnost = new Aktivnost();
+			// novaAktivnost.tip = "посејано";
+			// novaAktivnost.meta2 = formValues.usev;
+
+			// this.dataService.dodajAktivnost(novaAktivnost);
 		})
+		// .then((dodataAktivnost) => {
+		// 	this.notificationHubService.emit(HubNotificationType.Success, 'Усев посејан');
+		// 	this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]);
+		// })
 		.catch(error => this.utilitiesService.handleError(error));
 	}
 

@@ -2,7 +2,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { DataService } from '../deljeno/data.service';
 
-
+/**
+ * Prikazuje info teme u modalnom prozoru
+ *
+ * @class InfoPrikazComponent
+ */
 @Component({
   selector: 'app-info-prikaz',
   templateUrl: './info-prikaz.component.html',
@@ -51,5 +55,4 @@ export class InfoPrikazComponent implements OnInit {
   zatvori() {
   	this.ukloni.emit(true);
   }
-
 }

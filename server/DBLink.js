@@ -14,6 +14,10 @@ var MasinaSchema = require("./MongoMasina");
 var MasinaModel = mongoose.model('Masina', MasinaSchema);
 var InfoSchema = require("./MongoInfo");
 var InfoModel = mongoose.model('Info', InfoSchema);
+var VrstaUsevaSchema = require("./MongoVrstaUseva");
+var VrstaUsevaModel = mongoose.model('VrstaUseva', VrstaUsevaSchema);
+var UsevSchema = require('./MongoUsev');
+var UsevModel = mongoose.model('Usev', UsevSchema);
 
 /**
 * This class marshals CRUD operations against MongoDB Database
@@ -160,6 +164,41 @@ var DBLink = {
 		});
 	},
 
+	/**
+  * Vraca sve tipove masina iz baze
+  *
+  * @method getTipoveMasina
+  * @return Array[]
+  */
+	getTipoveMasina: function() {
+		return new Promise((resolve, reject) => {
+			TipMasineModel.find({}, (err, tipoviMasina) => {
+				if (err) reject(err);
+				resolve(tipoviMasina);
+			});
+		});
+	},
+	noviUsev: function(username, njivaId, usev) {
+		return new Promise((resolve, reject) => {
+			var njivaIndex;
+			UserModel.findOne({'username': username}, (err, user) => {
+				for (var i = 0; i < user.njive.length; ++i) {
+					if (user.njive[i]._id.toString() === njivaId) {
+						njivaIndex = i;
+						break;
+					}
+				}
+				var noviUsev = UsevModel(usev);
+				user.njive[njivaIndex].usevi.push(noviUsev);
+				user.save(err => {
+					if (err) reject(err);
+			
+					resolve(noviUsev);
+				});
+			});
+		});
+	},
+
 	/* Provizorni metod */
 	getSlikaMasine: function(idTipMasine) {
 		return new Promise((resolve, reject) => {
@@ -177,17 +216,12 @@ var DBLink = {
 			});
 		});
 	},
- /**
-  * Vraca sve tipove masina iz baze
-  *
-  * @method getTipoveMasina
-  * @return Array[]
-  */
-	getTipoveMasina: function() {
+  // Vraca sve vrste useva
+	getVrsteUseva: function() {
 		return new Promise((resolve, reject) => {
-			TipMasineModel.find({}, (err, tipoviMasina) => {
+			VrstaUsevaModel.find({}, (err, vrsteUseva) => {
 				if (err) reject(err);
-				resolve(tipoviMasina);
+				resolve(vrsteUseva);
 			});
 		});
 	},

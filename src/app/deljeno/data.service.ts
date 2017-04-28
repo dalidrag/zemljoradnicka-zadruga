@@ -9,6 +9,7 @@ import { VrstaUseva} from './tipovi-podataka/vrsta-useva';
 import { TipMasine } from './tipovi-podataka/tip-masine';
 
 import { Njiva } from './tipovi-podataka/njiva';
+import { Usev } from './tipovi-podataka/usev';
 import { Aktivnost } from './tipovi-podataka/aktivnost';
 import { Masina } from './tipovi-podataka/masina';
 import { Info } from './tipovi-podataka/info-tema';
@@ -66,7 +67,6 @@ export class DataService {
 		  	             })
 		  	             .catch(this.handleError)
 	}
-
   /**
 	 * Update user
 	 *
@@ -103,6 +103,25 @@ export class DataService {
 		  	             })
 		  	             .catch(this.handleError)
 	}
+	/**
+	 * Dodaje usev njivi
+	 *
+	 * @method dodajUsev
+	 * @param njivaId
+	 * @param noviUsev
+	 * @return {Promise<Usev[]>} Vraca novosnimljeni usev kao Promise
+	 */
+	 dodajUsev(njivaId, noviUsev) {
+	 	noviUsev.njivaId = njivaId;
+	 	return this.http
+	 		.post(this.njiveUrl + '/noviUsev', JSON.stringify(noviUsev), {headers: this.headers})
+	 		.toPromise()
+	 		.then(response => {
+	 			this.njiveCache.dirty = true;
+	 			return response.json().data as Usev;
+	 		})
+	 		.catch(this.handleError)
+	 }
 
 	/**
 	 * Preuzima tipove masina
@@ -143,7 +162,6 @@ export class DataService {
 		  	             })
 		  	             .catch(this.handleError)
 	}
-
 	/**
 	 * Dodaje novu njivu
 	 *
@@ -161,7 +179,6 @@ export class DataService {
 			})
 			.catch(this.handleError);
 	}
-
 	/**
 	 * Azurira postojecu njivu
 	 *
@@ -236,7 +253,6 @@ export class DataService {
 	 	  	             })
 	 	  	             .catch(this.handleError)
 	 }
-
 	 /**
 	 * Dodaje aktivnost
 	 *
@@ -255,6 +271,7 @@ export class DataService {
 			.catch(this.handleError);
 	}
 
+	// Metodi za info clankove
 	vratiTeme(query): Promise<any> {
 		return this.http
 			.post(this.infoUrl + '/getTopics', JSON.stringify(query), {headers: this.headers})

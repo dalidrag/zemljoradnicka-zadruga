@@ -1,5 +1,5 @@
 /***********************************************************************************/
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Router, ActivatedRoute }   from '@angular/router';
 
 import { Store } from 'redux';
@@ -11,7 +11,7 @@ import { User } from '../../deljeno/tipovi-podataka/user';
 /***********************************************************************************/
 
 /**
- * Sadrzi ceo ekran kontrolna tabla
+ * Sadrzi ceo ekran kontrolne table
  *
  * @class KontrolnaTablaEkranComponent
  */
@@ -20,7 +20,7 @@ import { User } from '../../deljeno/tipovi-podataka/user';
   templateUrl: './kontrolna-tabla-ekran.component.html',
   styleUrls: ['./kontrolna-tabla-ekran.component.css']
 })
-export class KontrolnaTablaEkranComponent implements OnInit {
+export class KontrolnaTablaEkranComponent implements OnInit, OnDestroy {
   user: User;
   vodicFaza: number;  // sadrzi redni broj faze pomoc-vodica, 0 ako je deaktiviran
 	infoThemes: Array<any> = [];
@@ -34,9 +34,9 @@ export class KontrolnaTablaEkranComponent implements OnInit {
   ngOnInit() {
   	this.unsubsribeStore = this.appStore.subscribe(() => {
   	  let state = this.appStore.getState();
-  	  this.vodicFaza = state.vodic.faza;
       this.infoThemes = state.infoThemes.infoThemes;
       this.coords = state.infoThemes.coords;
+  	  this.vodicFaza = state.vodic.faza;
   	});
 
     this.unsubscribe = this.route.data.subscribe((data: { user: User }) => {
@@ -94,6 +94,8 @@ export class KontrolnaTablaEkranComponent implements OnInit {
     this.vodicActionCreators.zavrsi();
   }
 
-  //TODO
-  // ngOnDestroy
+  ngOnDestroy() {
+    this.unsubscribe.unsubscribe();
+    this.unsubsribeStore();
+  }
 }

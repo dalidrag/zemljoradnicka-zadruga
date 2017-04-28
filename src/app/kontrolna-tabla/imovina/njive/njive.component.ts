@@ -32,12 +32,12 @@ export class NjiveComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private router: Router, private stateService: StateService, private actionCreators: NjiveActionCreators, private modalPopupService: ModalPopupService) { }
 
   ngOnInit() {
-    this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[] /*, vrsteUseva: VrstaUseva[] */ }) => {
+    this.unsubscribe = this.route.data.subscribe((data: { njive: Njiva[], vrsteUseva: VrstaUseva[] }) => {
   		this.njive = data.njive;
-/*      this.vrsteUseva = data.vrsteUseva;
+      this.vrsteUseva = data.vrsteUseva;
       for (let vrstaUseva of this.vrsteUseva) {
         this.vrsteUsevaPoId[vrstaUseva.id] = vrstaUseva;
-      } */
+      }
   	});
     if (this.stateService.state.vodic.faza === 1) {
       this.modalPopupService.open();
@@ -51,7 +51,7 @@ export class NjiveComponent implements OnInit, OnDestroy {
       this.novaNjivaId = this.stateService.state.njive.novaNjivaId;
       this.actionCreators.novaNjivaPrikazana();
     }
-    if (this.stateService.state.njive.noviUsevId !== '0') {  // ako je upravo dodata nova njiva
+    if (this.stateService.state.njive.noviUsevId !== '0') {  // ako je upravo dodat novi usev
       this.noviUsevId = this.stateService.state.njive.noviUsevId;
       this.actionCreators.noviUsevPrikazan();
     }

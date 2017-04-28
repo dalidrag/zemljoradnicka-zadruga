@@ -4,10 +4,10 @@
 		<p class="ime-njive">{{njiva.ime}}</p>
 	</div>
 	<div class="usevi">
-		<div *ngFor="let usev of njiva.usevi" [class.novi-usev]="noviUsevId && noviUsevId===usev.id" class="usev">
+		<div *ngFor="let usev of njiva.usevi" [class.novi-usev]="noviUsevId && noviUsevId===usev._id" class="usev">
 			<div class="okvir-useva" title="кликните да видите детаље о овом засаду">
-				<img src="/assets/images/{{vrsteUsevaPoId[usev.vrsta_useva].srcSlike}}" class="slika-useva"/>
-				<p>{{vrsteUsevaPoId[usev.vrsta_useva].ime}}</p>
+				<img src="/assets/images/{{vrsteUsevaPoId[usev.vrstaUseva].srcSlike}}" class="slika-useva"/>
+				<p>{{vrsteUsevaPoId[usev.vrstaUseva].ime}}</p>
 			</div>
 		</div>
 	</div>
