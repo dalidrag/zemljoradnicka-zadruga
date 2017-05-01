@@ -4,7 +4,7 @@
  * @class VrstaUseva
  */
 export class VrstaUseva {
-	id: string;
+	_id: string;
 	ime: string;
 	srcSlike: string;
 }

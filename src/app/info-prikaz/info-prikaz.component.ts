@@ -31,7 +31,7 @@ export class InfoPrikazComponent implements OnInit {
       this.infoContentElement.innerHTML = HTMLstring;
     });
   	for (let i = 0; i < this.infoThemes.length; ++i) {
-  		if (this.infoThemes[i].id === this.themeId) {
+  		if (this.infoThemes[i]._id === this.themeId) {
   			this.themeIndex = i;
   			break;
   		}
@@ -40,14 +40,14 @@ export class InfoPrikazComponent implements OnInit {
 
   sledeciClanak() {
   	++this.themeIndex;
-  	this.dataService.vratiHTMLTeme(this.infoThemes[this.themeIndex].id).then(HTMLstring => {
+  	this.dataService.vratiHTMLTeme(this.infoThemes[this.themeIndex]._id).then(HTMLstring => {
   		this.infoContentElement.innerHTML = HTMLstring;
     });
   }
 
   prethodniClanak() {
   	--this.themeIndex;
-  	this.dataService.vratiHTMLTeme(this.infoThemes[this.themeIndex].id).then(HTMLstring => {
+  	this.dataService.vratiHTMLTeme(this.infoThemes[this.themeIndex]._id).then(HTMLstring => {
   		this.infoContentElement.innerHTML = HTMLstring;
     });
   }

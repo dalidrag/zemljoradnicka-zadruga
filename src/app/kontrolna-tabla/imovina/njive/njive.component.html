@@ -1,5 +1,5 @@
-<div *ngFor="let njiva of njive" [class.nova-njiva]="novaNjivaId && novaNjivaId===njiva.id" class="njiva">
-	<div (click)="prikaziNjivu(njiva.id)" class="okvir-njive" title="кликните да видите детаље о овој њиви">
+<div *ngFor="let njiva of njive" [class.nova-njiva]="novaNjivaId && novaNjivaId===njiva._id" class="njiva">
+	<div (click)="prikaziNjivu(njiva._id)" class="okvir-njive" title="кликните да видите детаље о овој њиви">
 		<div class="slika-njive"></div>
 		<p class="ime-njive">{{njiva.ime}}</p>
 	</div>

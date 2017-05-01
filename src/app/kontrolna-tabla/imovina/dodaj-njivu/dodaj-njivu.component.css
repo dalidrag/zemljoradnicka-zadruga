@@ -3,25 +3,6 @@
 	justify-content: space-around;
 	align-items: center;
 }
-/* Na malim ekranima, rasporedi pomocni tekst i mapu vertikalno */
-/* i gurni sav pomocni tekst ispod mape */
-@media screen and (max-width: 480px) {
-	.map-container {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-		align-items: center;
-	}
-	#g-map {
-		order: 1;
-	}
-	#text1 {
-		order: 2;	
-	}
-	#text2 {
-		order: 3;	
-	}
-}
 .google-map {
 	width: 26rem;
 	min-width: 18rem;
@@ -51,4 +32,10 @@ form {
 	width: 20rem;
 	margin-left: auto;
 	margin-right: auto;
+}
+.povrsina {
+	display: flex;
+}
+.jedinica-povrsine {
+	width: 4rem;
 }

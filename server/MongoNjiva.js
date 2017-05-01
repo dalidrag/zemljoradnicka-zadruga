@@ -7,26 +7,18 @@ var NjivaSchema = new mongoose.Schema({
 	ime: String,
 	oblikNaMapi: Array,
 	katOpstina: String,
-	osnovkoriscenja: Number,
+	katBroj: String,
+	osnovKoriscenja: Number, // 1-vlasnistvo, 2-zakup zemljista
+	povrsina: Number,
 	tipZemljista: String,
 	klasaZemljista: Number, // (1-8);
-/*	analiza_zemljista: {
-		Datum: date,
-		pH-KCI_dubina: number,	// cm
-		pH-KCI: number,		// %
-		pH-H20_dubina: number,
-		pH-H20: number,
-		Humus_dubina: number,
-		Humus: number,
-		CaCO3_dubina: number,
-		CaCO3: number,
-		N_dubina: number,
-		N: number,
-		AI-P2O5_dubina: number,
-		AI-P2O5: number,
-		AI-K20_dubina: number,
-		AI-K20: number,
-	}, */
+	pH_KCI: Number,		// %
+	pH_H20: Number,
+	humus: Number,
+	CaCO3: Number,
+	N: Number,
+	AI_P2O5: Number,
+	AI_K20: Number,
 	usevi: [UsevSchema]
 });
 module.exports = NjivaSchema;

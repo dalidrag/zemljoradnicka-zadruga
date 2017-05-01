@@ -16,7 +16,7 @@
 	Svaka od meni opcija vodi ka posebnom ekranu sa daljim opcijama. Sva ceitri ekrana se skroluju gore-dole i podeljena su po sekcijama.
 
 - Sekcije za ekran Imovina, odozgo na dole:
-	- Njive;
+	- Njive; ovde se prikazuje podatak o ukupnoj povrsini imanja
 	- Masine: traktori, kombajni, motokultivatori, prskalice za navodnjavanje, sejac, drugo; mogu biti posedovane ili iznajmljene, ili dobijene od zadruge na koriscenje u odredjenom periodu
 	- Skladista; mogu biti posedovana ili iznajmljena, ili dobijena od zadruge na koriscenje u odredjenom periodu. Ako su iznajmljena, kapacitet moze da se ne unese.
 	- Djubrivo;
@@ -26,6 +26,7 @@
 	Klikom na neku od imovina ide se na detaljni prikaz, u slucaju njive na mapu. Na detaljima je prikaz njive na mapi, kolicina padavina u poslednjih x meseci, lista aktivnosti nad ovom njivom itd.
 	- Na detaljnom prikazu se moze editovati ili izbrisati imovina.
 	- Moze se selektovati da li da se prikazuje i zadruzna imovina na ekranima clana zadruge.
+	Na ekranu 'imovina' prikazuje se ukupna vrednost imovine korisnika kao i cele zadruge
 
 - Sekcije za ekran Aktivnosti su:
 	- Njive: navodnjavanje, oranje, sejanje, prskanje, zetva ili djubrenje, kupovina, iznajmljivanje, prodaja;
@@ -34,23 +35,22 @@
 	- Ostala imovina: kupi/prodaj;
 	- Ostale aktivnosti?
 	Svaka aktivnost moze da ima cenu, dobit, vreme trajanja, upotrebljene masine i sirovine i datum. Kupi/prodaj jos ima kupca ili prodavca.
-	- Prikaz aktivnosti. Moze se stiklirati koje vrste aktivnosti da se prikazuju (inicijalno sve), podesiti u kom vremenskom periodu, izabrati za koje zasade/njive, vrste zasada, masine, vrste masina, skladista, kupce.
+	- Prikaz aktivnosti. Moze se stiklirati koje vrste aktivnosti da se prikazuju (inicijalno sve), podesiti u kom vremenskom periodu, izabrati za koje zasade/njive, vrste zasada, masine, vrste masina, skladista, kupce. Moze se izabrati i da se prikazuju aktivnosti cele zadruge. Posebne dve opcije daju tabele:
+		- Ulozena sredstva po aktivnostima,  ostvarena dobit po aktivnostima, prelom
+		- Ulozeni rad po aktivnostima
 
 - Grafikoni vode na ekran sa velikim dugmadima koja vode ka razlicitim vizuelizacijama podataka:
-	- Procenta iskoriscenosti masina koje poseduje zadruga ili ja licno;
 	- Komparativni prikaz prinosa po aru odredjene vrste zasada na mojim njivama i njivama ostalih clanova zadruge;
+	- Ocekivani ukupni prinos, i prinos po vrsti useva
+	- Procenta iskoriscenosti masina koje poseduje zadruga ili ja licno;	
 	- Komparativni prikaz ukupnog profita koji ostvarujem ja i ostali clanovi zadruge;
 	- Uporedni prikaz mog profita, troskova i dobiti kroz vreme;
 	- Grafikon utrosenog vremena u radu na imanju (ili njivi ponaosob) kroz vreme;
 	- Komparativni prikaz vremena koje sam potrosio u radu na imanju ja i ostali clanovi zadruge.
 	- Komparativni prikaz investicija u zadrugu mojih i ostalih clanova zadruge.
+	- Ulozeni rad po clanovima	
 	Prisutne su i cetiri tabele vezane za celu zadrugu:
-		- Ulozena sredstva po aktivnostima,  ostvarena dobit po aktivnostima, prelom
-		- Ulozeni rad po aktivnostima
-		- Ulozeni rad po clanovima
-		- Ocekivani ukupni prinos, i prinos po vrsti useva
-		- Ukupna imovina zadruge, ukupna vrednost imovine zadruge
-
+	
 - Zabeleske vode na ekran sa ikonama unetih belezaka i ikonom za novu belesku. Klik na ikonu vodi na ekran sa tekst
  editorom. Zabeleska ima naslov i sadrzaj, kao i eventualni datum. Moze se izabrati da se naslov zabeleske prikazuje na kalendaru, na tom datumu. Zabeleska se moze asocirati sa: odredjenom njivom/odredjenim zasadom, odredjenom vrstom zasada, odredjenom aktivnoscu, odredjenom masinom, odredjenim skladistem, odredjenim kupcem.
 

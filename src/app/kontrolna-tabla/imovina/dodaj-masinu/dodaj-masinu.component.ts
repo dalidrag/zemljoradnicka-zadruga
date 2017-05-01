@@ -73,7 +73,7 @@ export class DodajMasinuComponent implements OnInit, OnDestroy {
     .then((dodataMasina: Masina) => {
       this.notificationHubService.emit(HubNotificationType.AppState, 'logo');
       this.notificationHubService.emit(HubNotificationType.Success, 'Додата нова машина');
-      this.actionCreators.novaMasina(dodataMasina.id);
+      this.actionCreators.novaMasina(dodataMasina._id);
       this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'masine': ['masine-prikaz']}}]);
     })
     .catch(error => this.utilitiesService.handleError(error));

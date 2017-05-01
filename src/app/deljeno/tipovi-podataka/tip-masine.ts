@@ -4,7 +4,7 @@
  * @class TipMasine
  */
 export class TipMasine {
-	id: string;
+	_id: string;
 	naziv: string;
 	srcSlike: string;
 }

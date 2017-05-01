@@ -4,7 +4,7 @@
  * @class Aktivnost
  */
 export class Aktivnost {
-	id: string;
+	_id: string;
 	tip: string;
 	// Mete su reference prema imovini koja je deo aktivnosti
 	// Najivse pet; ako to nije dovoljno onda je aktivnost isuvise slozena

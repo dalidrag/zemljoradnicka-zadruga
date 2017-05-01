@@ -34,29 +34,50 @@ export class KontrolnaTablaEkranComponent implements OnInit, OnDestroy {
   ngOnInit() {
   	this.unsubsribeStore = this.appStore.subscribe(() => {
   	  let state = this.appStore.getState();
+      
+      // Za pop up koji prikazuje listu naslova clanaka
       this.infoThemes = state.infoThemes.infoThemes;
       this.coords = state.infoThemes.coords;
+
+      // Za vodic koji se prikazuje kada se korisnik prvi put susrece sa aplikacijom
   	  this.vodicFaza = state.vodic.faza;
   	});
 
+    // Ucitaj sve podatke o korisniku
     this.unsubscribe = this.route.data.subscribe((data: { user: User }) => {
       this.user = data.user;
 		});
 
+    // Ako ruta sardzi "?vodic=true" parametar, zapocni sa vodicem kroz kontrolnu tablu
 		if (this.route.snapshot.queryParams['vodic'] === 'true') {
 			this.vodicActionCreators.imanje();
 		  this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]);
 		}
   }
 
+ /**
+  * Prikazuje modalni prozor sa prikazanom izabranom temom
+  *
+  * @method infoPrikaz
+  * @param themeId String koji identifikuje temu za prikaz
+  */
   infoPrikaz(themeId: string) {
     this.themeId = themeId;
   }
-
+/**
+  * Sklanja prikazanu info temu
+  *
+  * @method ukloniInfo
+  */
   ukloniInfo() {
     this.themeId = "";
   }
 
+/**
+  * Uklanja pop up sa listom naslova tema
+  *
+  * @method skloniPopUp
+  */
   skloniPopUp() {
     this.infoThemesActionCreators.ukloniInfoPages();
   }

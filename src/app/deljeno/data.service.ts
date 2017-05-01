@@ -188,7 +188,7 @@ export class DataService {
 	 */
 	azurirajNjivu(azuriranaNjiva: Njiva): Promise<any> {
 		return this.http
-			.put(this.njiveUrl + '/' + azuriranaNjiva.id, JSON.stringify(azuriranaNjiva), {headers: this.headers})
+			.put(this.njiveUrl + '/' + azuriranaNjiva._id, JSON.stringify(azuriranaNjiva), {headers: this.headers})
 			.toPromise()
 			.then(response => {
 				this.njiveCache.dirty = true;

@@ -27,6 +27,9 @@ export class AkcijeNjiveComponent implements OnInit {
 	private prskanjeTeme: Array<any>;
 	private zetvaTeme: Array<any>;
 
+  private otvorenaAktivnost: number; // 1 - 6
+  private novootvorenaAktivnost: number; // 1 - 6
+
   constructor(private infoThemesActionCreators: InfoThemesActionCreators, private stateService: StateService, private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
@@ -50,6 +53,10 @@ export class AkcijeNjiveComponent implements OnInit {
     
   }
 
+  otvori(index) {
+    this.otvorenaAktivnost = index;
+  }
+
   sejanje() {
     this.router.navigate(['kontrolna-tabla', 'akcije', {outlets: {'akcije-njive': ['sejanje']}}]);
   }
@@ -60,20 +67,16 @@ export class AkcijeNjiveComponent implements OnInit {
       this.infoThemesActionCreators.ukloniInfoPages();
     }
     else {
-      let coords = this.vratiBoundingRect(e.currentTarget.id); // pokupi ekranske koordinate dugmeta koje je pritisnuto
+      let coords = e.currentTarget.getBoundingClientRect(); // pokupi ekranske koordinate dugmeta koje je pritisnuto
       this.infoThemesActionCreators.ukloniInfoPages();
       this.infoThemesActionCreators.prikaziInfoPages(infoTeme, coords, {tipAktivnosti: tipAktivnosti});
     }
   }
 
   dodajInfo(e) {
+    e.stopPropagation();
     this.infoThemesActionCreators.ukloniInfoPages();
     this.infoThemesActionCreators.dodajTemu({tipAktivnosti: e.target.dataset.tipakcije});
     this.router.navigate(['kontrolna-tabla', 'akcije', { outlets: {'akcije-njive': ['dodaj-info-akcije-njive']}}]);
-  }
-
-  vratiBoundingRect(cssId) {
-    let element = document.getElementById(cssId) as HTMLElement;
-    return element.getBoundingClientRect();
   }
 }

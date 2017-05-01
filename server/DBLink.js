@@ -287,7 +287,7 @@ var DBLink = {
 			InfoModel.find(queryObject, (err, infoPages) => {
 				if (err) reject(err);
 				var infoPagesTopics = infoPages.map(infoPage => {
-					return {id: infoPage._id, naslov: infoPage.naslov}
+					return {_id: infoPage._id, naslov: infoPage.naslov}
 				});
 				resolve(infoPagesTopics);
 			});

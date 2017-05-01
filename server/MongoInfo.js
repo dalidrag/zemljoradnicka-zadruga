@@ -16,11 +16,11 @@ var InfoSchema = new mongoose.Schema({
 	podTip3: String,
 	tipAktivnosti: String,
 	podTip: String,
-	metaAktivnosti1: String,
-	metaAktivnosti2: String,
-	metaAktivnosti3: String,
-	metaAktivnosti4: String,
-	metaAktivnosti5: String,
+	metaAktivnosti1: String, // imena njiva (Array)
+	metaAktivnosti2: String, // ime sirovine (vrsta useva, vrsta djubriva, vrsta hemikalije)
+	metaAktivnosti3: String, // ime masine
+	metaAktivnosti4: String, // ime dodatka za masinu
+	metaAktivnosti5: String, // imena skladista (Array)
 	vrstaUseva: String,	// TODO: bice referenca
 	vrstaZemljista: String 
 });

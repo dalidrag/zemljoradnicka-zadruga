@@ -12,9 +12,9 @@ export class InfoThemesActionCreators {
 	prikaziInfoPages(infoThemes: Array<any>, coords: ClientRect, query: any) {
 		this.appStore.dispatch({
 			type: InfoThemesActionCreators.PRIKAZI_INFO,
-			infoThemes: infoThemes,
-			coords: coords,
-			query: query
+			infoThemes: infoThemes,	// teme clanaka
+			coords: coords,					// ekranske koordinate gde ce pop up biti prikazan
+			query: query	// DB query je potreban jer pop up komponenta sadzri opciju za dodavanje nove teme
 		});
 	}
 	ukloniInfoPages() {

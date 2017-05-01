@@ -51,26 +51,18 @@ Njiva  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne pos
 	Ime;
 	Geografske koordinate njive;
 	Katastarska opstina:
+	Katastarski broj polja: 
+	Povrsina;
 	Osnov koriscenja: vlasnistvo/zakup zemljista;
 	Tip zemljista:
 	Klasa: (1-8);
-	Analiza_zemljista: {
-		Datum;
-		pH-KCI_dubina;
-		pH-KCI;
-		pH-H20_dubina;
-		pH-H20;
-		Humus_dubina;
-		Humus;
-		CaCO3_dubina;
-		CaCO3;
-		N_dubina;
-		N;
-		AI-P2O5_dubina;
-		AI-P2O5;
-		AI-K20_dubina;
-		AI-K20;
-	}
+	pH-KCI;
+	pH-H20;
+	Humus;
+	CaCO3;
+	N;
+	AI-P2O5;
+	AI-K20;
 	Usevi: Array[Usev];
 
 Vrsta useva (2)
@@ -106,6 +98,23 @@ Aktivnost - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne 
 	Dobit;
 	Radnici: korisnik | korisnici | sezonski radnici | ostalo
 	Zabeleska;
+	Podaci: objekat - razlicit za svaku aktivnost. Za analizu zemljista:
+	{
+		pH-KCI_dubina;
+		pH-KCI;
+		pH-H20_dubina;
+		pH-H20;
+		Humus_dubina;
+		Humus;
+		CaCO3_dubina;
+		CaCO3;
+		N_dubina;
+		N;
+		AI-P2O5_dubina;
+		AI-P2O5;
+		AI-K20_dubina;
+		AI-K20;
+	}
 
 Tip masine:
 	Tip: Traktor, Kombajn, Motokultivator, dodatak za Traktor, adapter za Kombajn, prikljucak za Motokultivator;

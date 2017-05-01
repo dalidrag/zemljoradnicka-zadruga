@@ -12,7 +12,7 @@
 
 	<label for="tip-masine">Тип машине</label>
 	<select [formControl]="dodajMasinuForma.controls['tipMasine']" id="tip-masine">
-		<option *ngFor="let tipMasine of tipoviMasina" label="{{tipMasine.naziv}}" value="{{tipMasine.id}}">
+		<option *ngFor="let tipMasine of tipoviMasina" label="{{tipMasine.naziv}}" value="{{tipMasine._id}}">
 		</option>
 	</select>
 	<div class="form-input-error" *ngIf="dodajMasinuForma.controls['tipMasine'].hasError('required') && dodajMasinuForma.controls['tipMasine'].touched">Морате изабрати тип машине</div>

@@ -6,7 +6,7 @@
 			</td>
 			<td>
 				<select [formControl]="posejForma.controls['usev']" id="usev">
-					<option *ngFor="let vrstaUseva of vrsteUseva" label="{{vrstaUseva.ime}}" value="{{vrstaUseva.id}}">
+					<option *ngFor="let vrstaUseva of vrsteUseva" label="{{vrstaUseva.ime}}" value="{{vrstaUseva._id}}">
 					</option>
 				</select>
 			</td>
@@ -22,7 +22,7 @@
 			</td>
 			<td>
 				<select [formControl]="posejForma.controls['njiva']" id="njiva">
-					<option *ngFor="let njiva of njive" label="{{njiva.ime}}" value="{{njiva.id}}">
+					<option *ngFor="let njiva of njive" label="{{njiva.ime}}" value="{{njiva._id}}">
 					</option>
 				</select>
 			</td>

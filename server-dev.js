@@ -62,24 +62,14 @@ app.get('/api/logout', (req, res) => {
 });
 // Vrati datog korisnika
 app.get('/api/users', (req, res) => {
-	DBLink.getUser('sample1').then((user) => {
-		let oUser = user.toObject();
-		oUser.id = oUser._id;
-
-		res.send({ok: true, data: oUser});
-	})
+	DBLink.getUser('sample1')
+	.then(user => res.send({ok: true, data: user}))
 	.catch(err => handleError(err, res));
 });
 // Vrati sve korisnike
 app.get('/api/users/all', (req, res) => {
-	DBLink.getAllUsers().then((users) => {
-		var data = users.map((user) => {
-  	         			let oUser = user.toObject();
-  	         			oUser.id = oUser._id;
-  	             	return oUser;
-  	           });
-		res.send({ok: true, data: data});
-	})
+	DBLink.getAllUsers()
+	.then(users => res.send({ok: true, data: users}))
 	.catch(err => handleError(err, res));
 });
 // Dodaj korisnika
@@ -104,14 +94,8 @@ app.put('/api/users', (req, res) => {
 
 // Vrati sve njive datog korisnika
 app.get('/api/njive', (req, res) => {
-	DBLink.getNjive('sample1').then((njive) => {
-		var data = njive.map((njiva) => {
-  	         			let oNjiva = njiva.toObject();
-  	         			oNjiva.id = oNjiva._id;
-  	             	return oNjiva;
-  	           });
-		res.send({ok: true, data: data});
-	})
+	DBLink.getNjive('sample1')
+	.then(njive => res.send({ok: true, data: njive}))
 	.catch(err => handleError(err, res));
 });
 // Dodaj novu njivu datom korisniku
@@ -119,28 +103,34 @@ app.post('/api/njive', (req, res) => {
 	var novaNjiva = {
 		ime: req.body.ime,
 		oblikNaMapi: req.body.oblikNaMapi,
-		klasaZemljista: req.body.klasaZemljista
+		katOpstina: req.body.katOpstina,
+		katBroj: req.body.katBroj,
+		osnovKoriscenja: req.body.osnovKoriscenja,
+		povrsina: req.body.povrsina,
+		tipZemljista: req.body.tipZemljista,
+		klasaZemljista: req.body.klasaZemljista,
+		pH_KCI: req.body.pH_KCI,		// %
+		pH_H20: req.body.pH_H20,
+		humus: req.body.humus,
+		CaCO3: req.body.CaCO3,
+		N: req.body.N,
+		AI_P2O5: req.body.AI_P2O5,
+		AI_K20: req.body.AI_K20,
+		usevi: []
 	}
-	DBLink.addNjiva('sample1', novaNjiva).then(savedNjiva => {
-		let oSavedNjiva = savedNjiva.toObject();
-		oSavedNjiva.id = oSavedNjiva._id;
 
-		res.send({ok: true, data: oSavedNjiva});
-	})
+	ukloniUndefinedVrednosti(novaNjiva);
+
+	DBLink.addNjiva('sample1', novaNjiva)
+	.then(savedNjiva => res.send({ok: true, data: savedNjiva}))
 	.catch(err => handleError(err, res));
 });
 // Azuriraj postojecu njivu
 
 // Vrati sve vrste useva
 app.get('/api/vrsteUseva', (req, res) => {
-	DBLink.getVrsteUseva().then((vrsteUseva) => {
-		var data = vrsteUseva.map((vrsteUseva) => {
-  	         			let oVrstaUseva = vrsteUseva.toObject();
-  	         			oVrstaUseva.id = oVrstaUseva._id;
-  	             	return oVrstaUseva;
-  	           });
-		res.send({ok: true, data: data});
-	})
+	DBLink.getVrsteUseva()
+	.then(vrsteUseva => res.send({ok: true, data: vrsteUseva}))
 	.catch(err => handleError(err, res));
 });
 // Snimi novi usev //TODO
@@ -148,12 +138,9 @@ app.post('/api/njive/noviUsev', (req, res) => {
 	var noviUsev = {
 		vrstaUseva: req.body.vrstaUseva
 	}
-	DBLink.noviUsev('sample1', req.body.njivaId, noviUsev).then(snimljeniUsev => {
-		var oSnimljeniUsev = snimljeniUsev.toObject();
-  	oSnimljeniUsev.id = oSnimljeniUsev._id;
-  	  	
-		res.send({ok: true, data: oSnimljeniUsev});
-	})
+	DBLink.noviUsev('sample1', req.body.njivaId, noviUsev)
+	.then(snimljeniUsev => res.send({ok: true, data: snimljeniUsev}))
+	.catch(err => handleError(err, res));
 });
 
 // Skini sliku tipa masine sa datim id-om
@@ -166,26 +153,14 @@ app.get('/api/masine/:idTipMasine/slika', function (req, res) {
 });
 // Vrati sve tipove masina
 app.get('/api/masine/tipovi', function(req, res) {
-	DBLink.getTipoveMasina().then(tipoviMasina => {
-		var data = tipoviMasina.map((tipMasine) => {
-  	         			let otipMasine = tipMasine.toObject();
-  	         			otipMasine.id = otipMasine._id;
-  	             	return otipMasine;
-							});
-  	res.send({ok: true, data: data});
-	})
+	DBLink.getTipoveMasina()
+	.then(tipoviMasina => res.send({ok: true, data: tipoviMasina}))
 	.catch(err => handleError(err, res));
 });
 // Vrati sve masine ulogovanog korisnika //TODO
 app.get('/api/masine', (req, res) => {
-	DBLink.getMasine('sample1').then(masine => {
-		var data = masine.map((masina) => {
-  	         			let oMasina = masina.toObject();
-  	         			oMasina.id = oMasina._id;
-  	             	return oMasina;
-  	           });
-		res.send({ok: true, data: data});
-	})
+	DBLink.getMasine('sample1')
+	.then(masine => res.send({ok: true, data: masine}))
 	.catch(err => handleError(err, res));
 });
 // Dodaj masinu ulogovanom korisniku //TODO
@@ -194,29 +169,23 @@ app.post('/api/masine', (req, res) => {
 		ime: req.body.ime,
 		tipMasine: req.body.tipMasine
 	}
-	DBLink.dodajMasinu('sample1', novaMasina).then(savedMasina => {
-		let oSavedMasina = savedMasina.toObject();
-		oSavedMasina.id = oSavedMasina._id;
-
-		res.send({ok: true, data: oSavedMasina});
-	})
+	DBLink.dodajMasinu('sample1', novaMasina)
+	.then(savedMasina => res.send({ok: true, data: savedMasina}))
 	.catch(err => handleError(err, res));
 });
 
-// Vrati array HTML stranica o datoj temi
+// Vrati array naslova HTML stranica o datoj temi
 app.post('/api/info/getTopics', (req, res) => {
 	var query = {
 		tipMasine: req.body.tipMasine,
 		marka: req.body.marka,
 		tipAktivnosti: req.body.tipAktivnosti
 	}
-	for (var key of Object.keys(query)) {
-		if (query[key] === undefined) delete query[key];
-	}
+
+	ukloniUndefinedVrednosti(query);
+
 	DBLink.getInfoTopics(query)
-	.then(infoPages => {
-		res.send({ok: true, data: infoPages});
-	})
+	.then(infoPages => res.send({ok: true, data: infoPages}))
 	.catch(err => handleError(err, res));
 });
 // Vrati sadrzaj clanka
@@ -232,12 +201,9 @@ app.post('/api/info/novaTema', (req, res) => {
 		clanak: req.body.HTML,
 		tipAktivnosti: req.body.tipAktivnosti
 	}
-	DBLink.addNewInfo(noviClanak).then(clanak => {
-		let oClanak = clanak.toObject();
-		oClanak.id = oClanak._id;
-
-		res.send({ok: true, data: oClanak});
-	})
+	DBLink.addNewInfo(noviClanak)
+	.then(clanak => res.send({ok: true, data: clanak}))
+	.catch(err => handleError(err, res));
 });
 // Upload info slike
 app.post('/api/info/upload-image', (req, res) => {
@@ -265,6 +231,23 @@ app.get('/api/info/get-image/:id', (req, res) => {
 	});
 });
 
+/**
+ 	* Uklanja object properties sa vrednoscu undefined
+ 	*
+ 	* @method ukloniUndefined
+ 	* @param object
+ 	*/
+ var ukloniUndefinedVrednosti = function(object) {
+ 		for (let key of Object.keys(object)) {
+			if (object[key] === undefined) delete object[key];
+		}
+  }
+
+/**
+ * Rukuje nastalom greskom
+ *
+ * @method handleError
+ */
 var handleError = function (err, res) {
 	console.log("Error: " + err);	// TODO: log error server-side
 	res.sendStatus(500);

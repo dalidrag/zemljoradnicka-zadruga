@@ -34,7 +34,7 @@ export class MasineComponent implements OnInit, OnDestroy {
 			this.masine = data.masine;
 	    this.tipoviMasina = data.tipoviMasina;
 	    for (let tipMasine of this.tipoviMasina) {
-	      this.tipoviMasinaPoId[tipMasine.id] = tipMasine;
+	      this.tipoviMasinaPoId[tipMasine._id] = tipMasine;
 	    }
 		});
 		if (this.stateService.state.masine.novaMasinaId !== '0') {  // ako je upravo dodata nova masina

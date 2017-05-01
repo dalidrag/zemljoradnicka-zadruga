@@ -4,7 +4,7 @@
  * @class Masina
  */
 export class Masina {
-	id: string;
+	_id: string;
 	ime: string;
 	tipMasine: string; // referenca na tip masine (id)
 }

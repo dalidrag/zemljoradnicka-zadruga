@@ -7,7 +7,7 @@ import { Masina } from './masina';
  * @class User
  */
 export class User {
-	id: string;
+	_id: string;
 	username: string;
 	imeIPrezime: string;
 	njive: Array<Njiva>;

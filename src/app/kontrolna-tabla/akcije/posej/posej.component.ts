@@ -69,7 +69,7 @@ export class PosejComponent implements OnInit, OnDestroy {
 		noviUsev.vrstaUseva = formValues.usev;
 
 		this.dataService.dodajUsev(formValues.njiva, noviUsev).then((snimljeniUsev) => {
-			this.actionCreators.noviUsev(snimljeniUsev.id); // za fade-in efekat u komponenti njive
+			this.actionCreators.noviUsev(snimljeniUsev._id); // za fade-in efekat u komponenti njive
 
 			this.notificationHubService.emit(HubNotificationType.Success, 'Усев посејан');
 			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njive-prikaz'], 'masine': ['masine-prikaz']}}]);

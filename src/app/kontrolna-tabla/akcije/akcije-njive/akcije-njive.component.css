@@ -29,6 +29,10 @@
 	color: white;
 	text-shadow: 1px 1px black;
 }
+.pod-aktivnosti {
+	width: 20rem;
+	margin: auto;
+}
 button {
 	background-color: green;
 	width: 1rem;

@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ###Added
+- Dodaj polje komponenta kompletirana
 - Sejanje, usevi, vrsta useva implementirano kroz MongoDB
 
 

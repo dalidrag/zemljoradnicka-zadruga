@@ -231,7 +231,11 @@ select {
 option {
   font-family: 'Gabriela', serif;
 }
-
+legend {
+  font-family: Gabriela, sans-serif;
+  color: yellow;
+  text-shadow: 1px 1px black;
+}
 /*    Stilovi za 'Sae' input polja  */
 /************************************/
 .input {

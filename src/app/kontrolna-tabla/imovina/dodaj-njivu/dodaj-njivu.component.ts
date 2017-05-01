@@ -32,8 +32,8 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
 	dodajNjivuForma: FormGroup;
   @Output() onNjivaDodata = new EventEmitter<boolean>();
   njivaCoords = [];
-
   njive: Njiva[];
+
   vodicFaza = 0;
   unsubscribe;
 
@@ -55,8 +55,20 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
     this.dodajNjivuForma = this.fb.group({  
   		'ime': ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
   		'katOpstina': ['',  Validators.compose([Validators.required, Validators.maxLength(30)])],
-  		'klasaZemljista': [''] // TODO: Write custom validator for number range 1-7
+      'katBroj': [''],
+      'osnovKoriscenja': [''],
+      'ha': [0], 'ar': [0], 'm2': [0],
+  		'tipZemljista': [''],
+      'klasaZemljista': [''], // TODO: Write custom validator for number range 1-8
+      'pH_KCI': [''],
+      'pH_H20': [''],
+      'humus': [''],
+      'CaCO3': [''],
+      'N': [''],
+      'AI_P2O5': [''],
+      'AI_K20': ['']
     });
+    // TODO: dodaj katastarski broj polja
 
     // Dodaje svakom input elementu logiku koja preko CSS klase
     // cuva podatak o tome da li polje sadrzi neki tekst
@@ -89,7 +101,21 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
   			this.njivaCoords.push([element.lat(), element.lng()]);
   		});
 
-  		// prikazi formu
+  		// Popuni input polja za povrsinu polja
+      let povrsinaUHa = this.utilitiesService.m2toha(nacrtanaNjiva.area);
+      let haEl = document.getElementById('ha') as HTMLInputElement;
+      haEl.value = povrsinaUHa.ha;
+      haEl.classList.add('input--filled');
+      haEl.dispatchEvent(new Event('input'));
+      let arEl = document.getElementById('ar') as HTMLInputElement;
+      arEl.value = povrsinaUHa.ar;
+      arEl.classList.add('input--filled');
+      arEl.dispatchEvent(new Event('input'));
+      let m2El = document.getElementById('m2') as HTMLInputElement;
+      m2El.value = povrsinaUHa.m2;
+      m2El.classList.add('input--filled');
+      m2El.dispatchEvent(new Event('input'));
+      // prikazi formu
       let forma = document.getElementsByTagName('form')[0] as HTMLElement;
   		forma.style.display = 'block';  
 
@@ -108,16 +134,26 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
 	onSubmit(formValues: any): void { 
 		let novaNjiva = new Njiva();
 		novaNjiva.ime = formValues.ime;
-		novaNjiva.katOpstina = formValues.katOpstina;
-		novaNjiva.klasaZemljista = formValues.klasaZemljista;
+    novaNjiva.katOpstina = formValues.katOpstina;
+    novaNjiva.katBroj = formValues.katBroj;
+    novaNjiva.osnovKoriscenja = formValues.osnovKoriscenja;
+    novaNjiva.povrsina = formValues.ha * 10000 + formValues.ar * 100 + formValues.m2;
+    novaNjiva.tipZemljista = formValues.tipZemljista;
+    novaNjiva.klasaZemljista = formValues.klasaZemljista;
+    novaNjiva.pH_KCI = formValues.pH_KCI;
+    novaNjiva.pH_H20 = formValues.pH_H20;
+    novaNjiva.humus = formValues.humus;
+    novaNjiva.CaCO3 = formValues.CaCO3;
+    novaNjiva.N = formValues.N;
+    novaNjiva.AI_P2O5 = formValues.AI_P2O5;
+    novaNjiva.AI_K20 = formValues.AI_K20;
     novaNjiva.oblikNaMapi = this.njivaCoords;
-    // novaNjiva.povrsina = this.povrsina;  // TODO
 
-		this.dataService.dodajNjivu(novaNjiva).then((dodataNjiva) => {
+    this.dataService.dodajNjivu(novaNjiva).then((dodataNjiva) => {
 			this.notificationHubService.emit(HubNotificationType.AppState, 'logo');
       this.notificationHubService.emit(HubNotificationType.Success, 'Додата нова њива');
-			this.actionCreators.novaNjiva(dodataNjiva.id);
-			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njiva-prikaz', dodataNjiva.id]}}]);
+			this.actionCreators.novaNjiva(dodataNjiva._id);
+			this.router.navigate(['/kontrolna-tabla', 'imovina', {outlets: {'njive': ['njiva-prikaz', dodataNjiva._id]}}]);
       this.onNjivaDodata.emit(true);
 		})
 		.catch(error => this.utilitiesService.handleError(error));

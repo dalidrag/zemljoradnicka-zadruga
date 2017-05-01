@@ -36,7 +36,7 @@ export class NjiveComponent implements OnInit, OnDestroy {
   		this.njive = data.njive;
       this.vrsteUseva = data.vrsteUseva;
       for (let vrstaUseva of this.vrsteUseva) {
-        this.vrsteUsevaPoId[vrstaUseva.id] = vrstaUseva;
+        this.vrsteUsevaPoId[vrstaUseva._id] = vrstaUseva;
       }
   	});
     if (this.stateService.state.vodic.faza === 1) {

@@ -4,7 +4,7 @@
  * @class Usev
  */
 export class Usev {
-	id: string;
+	_id: string;
 	vrstaUseva: string; // referenca na vrstu useva (id)
 	kolicinaUseva: number; // kg po aru
 	datumSejanja: Date;

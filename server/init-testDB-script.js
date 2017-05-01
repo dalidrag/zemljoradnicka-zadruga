@@ -31,6 +31,7 @@ var VrstaUsevaSchema = require("./MongoVrstaUseva");
 
 /*******************************************************************/
 
+// Ubaci u bazu osnovne slike masina
 var SlikaMasineModel = mongoose.model('SlikaMasine', SlikaMasineSchema);
 var slikeMasina = [];
 let slikeLokacija = ['../src/assets/images/masine/traktor.jpg', '../src/assets/images/masine/kombajn.jpg', '../src/assets/images/masine/motokultivator.jpg'];
@@ -46,6 +47,7 @@ slikeLokacija.forEach((lokacijaSlike) => {
 	});
 });
 
+// Ubaci u bazu osnovne tipove masina
 var TipMasineModel = mongoose.model('TipMasine', TipMasineSchema);
 var tipoviMasinaData = [
       {id: 1, naziv: "Трактор", slikaMasine: slikeMasina[0] },
@@ -64,6 +66,7 @@ tipoviMasina.forEach(tipMasine => {
 	});
 });
 
+// Ubaci u bazu vrste useva
 var vrsteUsevaData = [
     	{id: 1, ime: "Пшеница", srcSlike: 'vrste-useva/psenica.jpg' },
     	{id: 2, ime: "Кукуруз", srcSlike: 'vrste-useva/kukuruz.jpg' },
@@ -82,20 +85,12 @@ vrsteUseva.forEach(vrstaUseva => {
 	});
 });
 
-var NjivaModel = mongoose.model('Njiva', NjivaSchema);
-var njivaModel = new NjivaModel({
-	ime: 'prva',
-	klasa_zemljista: 8,
-	usevi: []
-});
-
-var MasinaModel = mongoose.model('Masina', MasinaSchema);
-
+// Ubaci u bazu osnovnog user-a ciji je username 'sample1'
 var UserModel = mongoose.model('User', UserSchema);
 var userModel = new UserModel({
 	username: 'sample1',
 	prebivaliste: 'Dobrica',
-	njive:[njivaModel], 
+	njive:[], 
 	masine: []
 });
 
@@ -104,7 +99,7 @@ userModel.save(function (err) {
 		console.log(err);
 	}
 	else {
-		console.log('User uspesno snimljen.');
+		console.log('User "sample1" uspesno snimljen.');
 	}
 });
 

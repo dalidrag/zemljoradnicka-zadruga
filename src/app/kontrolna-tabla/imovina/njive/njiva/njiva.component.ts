@@ -26,11 +26,12 @@ export class NjivaComponent implements OnInit, OnDestroy {
   	});
   	let njivaId = this.route.snapshot.params['id'];
     for (let njiva of this.njive) {
-      if (njiva.id === njivaId) {
+      if (njiva._id === njivaId) {
         this.njiva = njiva;
         break;
       }
     }
+    console.log(JSON.stringify(this.njiva));
   }
 
   ngOnDestroy() {

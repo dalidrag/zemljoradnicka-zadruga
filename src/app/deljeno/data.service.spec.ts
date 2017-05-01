@@ -41,9 +41,9 @@ describe('DataService', () => {
 				done();
 			})
   	});
-  	it('should return Njiva[0].id with value of 1', (done) => {
+  	it('should return Njiva[0]._id with value of 1', (done) => {
 			service.preuzmiNjive().then((njive) => {
-				expect(njive[0].id.toString()).toBe('1');
+				expect(njive[0]._id.toString()).toBe('1');
 				done();
 			})
   	});
@@ -62,7 +62,7 @@ describe('DataService', () => {
     });
     it('should return id as a part of return value', (done) => {
       service.dodajNjivu(novaNjiva).then((dodataNjiva) => {
-        expect(dodataNjiva.id).toBeDefined();
+        expect(dodataNjiva._id).toBeDefined();
         done();
       })
     });
@@ -82,14 +82,14 @@ describe('DataService', () => {
   describe('azurirajNjivu() method', () => {
     it('should return a Promise', () => {
       let azuriranaNjiva = new Njiva();
-      azuriranaNjiva.id="1";
+      azuriranaNjiva._id="1";
       expect(service.azurirajNjivu(azuriranaNjiva) instanceof Promise).toBeTruthy();
     });
     it('should update njiva', (done) => {
       service.preuzmiNjive()
       .then((njive) => {
         let azuriranaNjiva = new Njiva();
-        azuriranaNjiva.id = njive[0].id;
+        azuriranaNjiva._id = njive[0]._id;
         azuriranaNjiva.ime = "Novo ime";
         service.azurirajNjivu(azuriranaNjiva);
       })
@@ -117,9 +117,9 @@ describe('DataService', () => {
         done();
       })
     });
-    it('should return Njiva[0].id with value of 1', (done) => {
+    it('should return Njiva[0]._id with value of 1', (done) => {
       service.preuzmiNjive().then((njive) => {
-        expect(njive[0].id.toString()).toBe('1');
+        expect(njive[0]._id.toString()).toBe('1');
         done();
       })
     });
@@ -136,7 +136,7 @@ describe('DataService', () => {
     });
     it('should return id as a part of return value', (done) => {
       service.dodajAktivnost(novaAktivnost).then((dodataAktivnost) => {
-        expect(dodataAktivnost.id).toBeDefined();
+        expect(dodataAktivnost._id).toBeDefined();
         done();
       })
     });

@@ -19,11 +19,11 @@
 		<input #imeNjive type="text" id="ime-njive" [formControl]="dodajNjivuForma.controls['ime']" class="input__field input__field--sae" autofocus />
 		<label class="input__label input__label--sae" for="ime-njive">
 			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
-			<span class="input__label-content input__label-content--sae ilcs">Име њиве</span>
+			<span class="input__label-content input__label-content--sae ilcs">Име поља</span>
 		</label>
 	</span>
-	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['ime'].hasError('required') && dodajNjivuForma.controls['ime'].touched">Морате дати име њиви</div>
-	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['ime'].hasError('maxlength') && dodajNjivuForma.controls['ime'].touched">Име њиве може бити дугачко највише 30 слова</div>
+	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['ime'].hasError('required') && dodajNjivuForma.controls['ime'].touched">Морате дати име пољу</div>
+	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['ime'].hasError('maxlength') && dodajNjivuForma.controls['ime'].touched">Име поља може бити дугачко највише 30 слова</div>
 
 	<span class="input input--sae">
 		<input #katOpstina type="text" id="katOpstina" [formControl]="dodajNjivuForma.controls['katOpstina']" class="input__field input__field--sae"/>
@@ -32,9 +32,53 @@
 			<span class="input__label-content input__label-content--sae ilcs">Катастарска општина</span>
 		</label>
 	</span>
-	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('required') && dodajNjivuForma.controls['katOpstina'].touched">Морате унети катастарску општину којој њива припада</div>
+	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('required') && dodajNjivuForma.controls['katOpstina'].touched">Морате унети катастарску општину којој поље припада</div>
 	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('maxlength') && dodajNjivuForma.controls['katOpstina'].touched">Име катастарске општине може имати највише 30 слова</div>
 
+	<span class="input input--sae">
+		<input type="text" id="katBroj" [formControl]="dodajNjivuForma.controls['katBroj']" class="input__field input__field--sae"/>
+		<label class="input__label input__label--sae" for="katBroj">
+			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+			<span class="input__label-content input__label-content--sae ilcs">Катастарски број поља</span>
+		</label>
+	</span>
+
+	<div class="povrsina">
+		<div class="jedinica-povrsine">
+			<span class="input input--sae">
+				<input type="number" id="ha" [formControl]="dodajNjivuForma.controls['ha']" class="input__field input__field--sae" />
+				<label class="input__label input__label--sae" for="ha">
+					<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+					<span class="input__label-content input__label-content--sae ilcs">ha</span>
+				</label>
+			</span>
+		</div>
+		<div class="jedinica-povrsine">
+			<span class="input input--sae">
+				<input type="number" id="ar" [formControl]="dodajNjivuForma.controls['ar']" class="input__field input__field--sae" />
+				<label class="input__label input__label--sae" for="ar">
+					<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+					<span class="input__label-content input__label-content--sae ilcs">ar</span>
+				</label>
+			</span>
+		</div>
+		<div class="jedinica-povrsine">
+			<span class="input input--sae">
+				<input type="number" id="m2" [formControl]="dodajNjivuForma.controls['m2']" class="input__field input__field--sae" />
+				<label class="input__label input__label--sae" for="m2">
+					<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+					<span class="input__label-content input__label-content--sae ilcs">m2</span>
+				</label>
+			</span>
+		</div>
+	</div>
+
+	<label for="osnovKoriscenja">Основ коришћења</label>
+	<select [formControl]="dodajNjivuForma.controls['osnovKoriscenja']" id="osnovKoriscenja">
+		<option label="Власништво" value="1"></option>
+		<option label="Закуп" value="2"></option>
+	</select>
+	
 	<span class="input input--sae">
 		<input #klasaZemljista type="text" id="klasaZemljista" [formControl]="dodajNjivuForma.controls['klasaZemljista']" class="input__field input__field--sae" />
 		<label class="input__label input__label--sae" for="klasaZemljista">
@@ -42,8 +86,68 @@
 			<span class="input__label-content input__label-content--sae ilcs">Класа земљишта</span>
 		</label>
 	</span>
+
+	<fieldset>
+		<legend>Анализа земљишта</legend>
+
+		<span class="input input--sae">
+			<input type="text" id="pH_KCI" [formControl]="dodajNjivuForma.controls['pH_KCI']" class="input__field input__field--sae" />
+			<label class="input__label input__label--sae" for="pH_KCI">
+				<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+				<span class="input__label-content input__label-content--sae ilcs">pH_KCI</span>
+			</label>
+		</span>
+
+		<span class="input input--sae">
+			<input type="text" id="pH_H20" [formControl]="dodajNjivuForma.controls['pH_H20']" class="input__field input__field--sae" />
+			<label class="input__label input__label--sae" for="pH_H20">
+				<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+				<span class="input__label-content input__label-content--sae ilcs">pH_H20</span>
+			</label>
+		</span>
+
+		<span class="input input--sae">
+			<input type="text" id="humus" [formControl]="dodajNjivuForma.controls['humus']" class="input__field input__field--sae" />
+			<label class="input__label input__label--sae" for="humus">
+				<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+				<span class="input__label-content input__label-content--sae ilcs">Хумус</span>
+			</label>
+		</span>
+
+		<span class="input input--sae">
+			<input type="text" id="CaCO3" [formControl]="dodajNjivuForma.controls['CaCO3']" class="input__field input__field--sae" />
+			<label class="input__label input__label--sae" for="CaCO3">
+				<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+				<span class="input__label-content input__label-content--sae ilcs">CaCO3</span>
+			</label>
+		</span>
+
+		<span class="input input--sae">
+			<input type="text" id="N" [formControl]="dodajNjivuForma.controls['N']" class="input__field input__field--sae" />
+			<label class="input__label input__label--sae" for="N">
+				<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+				<span class="input__label-content input__label-content--sae ilcs">N</span>
+			</label>
+		</span>
+
+		<span class="input input--sae">
+			<input type="text" id="AI_P2O5" [formControl]="dodajNjivuForma.controls['AI_P2O5']" class="input__field input__field--sae" />
+			<label class="input__label input__label--sae" for="AI_P2O5">
+				<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+				<span class="input__label-content input__label-content--sae ilcs">AI_P2O5</span>
+			</label>
+		</span>
+
+		<span class="input input--sae">
+			<input type="text" id="AI_K20" [formControl]="dodajNjivuForma.controls['AI_K20']" class="input__field input__field--sae" />
+			<label class="input__label input__label--sae" for="AI_K20">
+				<i class="fa fa-fw fa-pencil icon icon--sae"></i>
+				<span class="input__label-content input__label-content--sae ilcs">AI_K20</span>
+			</label>
+		</span>
+	</fieldset>
 	
-	<button type="submit" [disabled]="!dodajNjivuForma.valid" id="submit-button">Убележи ову њиву</button>
+	<button type="submit" [disabled]="!dodajNjivuForma.valid" id="submit-button">Убележи ово поље</button>
 
 	<div class="form-background"></div>
 </form>
