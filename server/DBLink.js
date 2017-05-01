@@ -236,7 +236,10 @@ var DBLink = {
   	return new Promise((resolve, reject) => {
   		UserModel.findOne({'username': userName}, (err, user) => {
   			if (err) reject(err);
-  			resolve(user.masine);
+  			MasinaModel.find({user: user}, (err, masine) => {
+  				if (err) reject(err);
+  				resolve(masine);
+  			})
   		});
   	});
   },
@@ -258,14 +261,16 @@ var DBLink = {
 					.exec((err, foundUser) => {
 						if (err) reject(err);
 						else {
+							novaMasinaModel.user = foundUser;
+
 							TipMasineModel.findById(novaMasinaModel.tipMasine, (err, tipMasine) => {
 								if (err) reject(err);
 
 								novaMasinaModel.tipMasine = tipMasine;
-								foundUser.masine.push(novaMasinaModel);
-								foundUser.save((err, updatedUser) => {
+								
+								novaMasinaModel.save((err, savedMasina) => {
 									if (err) reject(err);
-									resolve(updatedUser.masine[updatedUser.masine.length-1]);
+									resolve(savedMasina);
 								})
 							})
 						}

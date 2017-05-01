@@ -39,3 +39,8 @@ form {
 .jedinica-povrsine {
 	width: 4rem;
 }
+a {
+	font-family: Gabriela, serif;
+  font-size: 0.7rem;
+  color: yellow;
+}

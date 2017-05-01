@@ -32,6 +32,18 @@ export class UtilitiesService {
   	return result;
   }
 
+  /**
+     * Uklanja object properties sa falsy vrednoscu (undefined, null, '')
+     *
+     * @method ukloniUndefined
+     * @param object
+     */
+   ukloniFalsyVrednosti(object) {
+     for (let key of Object.keys(object)) {
+      if (!object[key]) delete object[key];
+    }
+  }
+
  /**
  	* Prikazuje poruku o gresci 
  	*

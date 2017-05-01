@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ###Added
 - Dodaj polje komponenta kompletirana
 - Sejanje, usevi, vrsta useva implementirano kroz MongoDB
-
+###Changed
+- Masine su sada posebna kolekcija sa ref prema useru ili zadruzi
 
 [0.8.0] - 2017-04-27
 ###Added

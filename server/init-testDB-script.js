@@ -22,11 +22,10 @@ process.on('SIGINT', () => {
 	});
 });
 
-var NjivaSchema = require("./MongoNjiva");
 var UserSchema = require("./MongoUser");
 var TipMasineSchema = require("./MongoTipMasine");
-var MasinaSchema = require("./MongoMasina");
 var SlikaMasineSchema = require("./MongoSlikaMasine");
+var NjivaSchema = require("./MongoNjiva");
 var VrstaUsevaSchema = require("./MongoVrstaUseva");
 
 /*******************************************************************/
@@ -90,8 +89,7 @@ var UserModel = mongoose.model('User', UserSchema);
 var userModel = new UserModel({
 	username: 'sample1',
 	prebivaliste: 'Dobrica',
-	njive:[], 
-	masine: []
+	njive:[]
 });
 
 userModel.save(function (err) {

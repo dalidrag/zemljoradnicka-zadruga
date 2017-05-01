@@ -19,7 +19,7 @@
 		<input #imeNjive type="text" id="ime-njive" [formControl]="dodajNjivuForma.controls['ime']" class="input__field input__field--sae" autofocus />
 		<label class="input__label input__label--sae" for="ime-njive">
 			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
-			<span class="input__label-content input__label-content--sae ilcs">Име поља</span>
+			<span class="input__label-content input__label-content--sae ilcs">* Име поља</span>
 		</label>
 	</span>
 	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['ime'].hasError('required') && dodajNjivuForma.controls['ime'].touched">Морате дати име пољу</div>
@@ -29,11 +29,12 @@
 		<input #katOpstina type="text" id="katOpstina" [formControl]="dodajNjivuForma.controls['katOpstina']" class="input__field input__field--sae"/>
 		<label class="input__label input__label--sae" for="katOpstina">
 			<i class="fa fa-fw fa-pencil icon icon--sae"></i>
-			<span class="input__label-content input__label-content--sae ilcs">Катастарска општина</span>
+			<span class="input__label-content input__label-content--sae ilcs">* Катастарска општина</span>
 		</label>
 	</span>
 	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('required') && dodajNjivuForma.controls['katOpstina'].touched">Морате унети катастарску општину којој поље припада</div>
 	<div class="form-input-error" *ngIf="dodajNjivuForma.controls['katOpstina'].hasError('maxlength') && dodajNjivuForma.controls['katOpstina'].touched">Име катастарске општине може имати највише 30 слова</div>
+	<a href="http://katastar.rgz.gov.rs/KnWebPublic/PublicAccess.aspx" target="_blank">Кликните овде да проверите катастарксе општине унутар ваше општине <i class="fa fa-external-link" aria-hidden="true"></i></a>
 
 	<span class="input input--sae">
 		<input type="text" id="katBroj" [formControl]="dodajNjivuForma.controls['katBroj']" class="input__field input__field--sae"/>
@@ -79,6 +80,8 @@
 		<option label="Закуп" value="2"></option>
 	</select>
 	
+	<!-- Tip zemljista TODO -->
+
 	<span class="input input--sae">
 		<input #klasaZemljista type="text" id="klasaZemljista" [formControl]="dodajNjivuForma.controls['klasaZemljista']" class="input__field input__field--sae" />
 		<label class="input__label input__label--sae" for="klasaZemljista">

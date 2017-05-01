@@ -149,6 +149,8 @@ export class DodajNjivuComponent implements OnInit, OnDestroy {
     novaNjiva.AI_K20 = formValues.AI_K20;
     novaNjiva.oblikNaMapi = this.njivaCoords;
 
+    this.utilitiesService.ukloniFalsyVrednosti(novaNjiva);
+
     this.dataService.dodajNjivu(novaNjiva).then((dodataNjiva) => {
 			this.notificationHubService.emit(HubNotificationType.AppState, 'logo');
       this.notificationHubService.emit(HubNotificationType.Success, 'Додата нова њива');

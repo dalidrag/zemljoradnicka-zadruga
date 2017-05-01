@@ -119,7 +119,7 @@ app.post('/api/njive', (req, res) => {
 		usevi: []
 	}
 
-	ukloniUndefinedVrednosti(novaNjiva);
+	ukloniFalsyVrednosti(novaNjiva);
 
 	DBLink.addNjiva('sample1', novaNjiva)
 	.then(savedNjiva => res.send({ok: true, data: savedNjiva}))
@@ -174,6 +174,7 @@ app.post('/api/masine', (req, res) => {
 	.catch(err => handleError(err, res));
 });
 
+
 // Vrati array naslova HTML stranica o datoj temi
 app.post('/api/info/getTopics', (req, res) => {
 	var query = {
@@ -181,9 +182,7 @@ app.post('/api/info/getTopics', (req, res) => {
 		marka: req.body.marka,
 		tipAktivnosti: req.body.tipAktivnosti
 	}
-
-	ukloniUndefinedVrednosti(query);
-
+	ukloniFalsyVrednosti(query);
 	DBLink.getInfoTopics(query)
 	.then(infoPages => res.send({ok: true, data: infoPages}))
 	.catch(err => handleError(err, res));
@@ -237,9 +236,9 @@ app.get('/api/info/get-image/:id', (req, res) => {
  	* @method ukloniUndefined
  	* @param object
  	*/
- var ukloniUndefinedVrednosti = function(object) {
+ var ukloniFalsyVrednosti = function(object) {
  		for (let key of Object.keys(object)) {
-			if (object[key] === undefined) delete object[key];
+			if (!object[key]) delete object[key];
 		}
   }
 

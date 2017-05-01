@@ -47,7 +47,7 @@ Clan_zadruge
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Njiva  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
+Njiva  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija
 	Ime;
 	Geografske koordinate njive;
 	Katastarska opstina:
@@ -118,23 +118,18 @@ Aktivnost - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne 
 
 Tip masine:
 	Tip: Traktor, Kombajn, Motokultivator, dodatak za Traktor, adapter za Kombajn, prikljucak za Motokultivator;
+	Pod_tip1; namena taktora: Standardni | univerzalni | nosač orudja, samohodna šasija, uski – voćarsko–vinogradarski traktor, traktori sa specijalno visokim klirensom, mali zglobni dvoosovinski traktor, jednoosovinski traktor, mobilni most, traktor kamion.
+	Pod_tip2; (vrsta sasije)
+	Pod_tip3; (dizel/benzinac)
+	Slika: ref: SlikaMasine;
+
+Masinе - posebna kolekcija sa ref prema user-u ili zadruzi
+	Ime;
+	TipMasine: ref: TipMasine
 	Marka;
 	Model;
-	Slike: Array[ref: SlikaMasine]
-	Pod_tip1; namena taktora: Standardni | univerzalni | nosač orudja, samohodna šasija, uski – voćarsko –
-vinogradarski traktor, traktori sa specijalno visokim klirensom, mali zglobni dvoosovinski traktor, jednoosovinski traktor, mobilni most, traktor kamion.
-	Pod_tip2; (dizel/benzinac)
-	Pod_tip3; (vrsta sasije)
 	Konjske snage;
 	Kapacitet goriva;
-
-Masina  - niz ovih struktura je sadrzan unutar korisnika ili same zadruge; ne postoji kao posebna kolekcija?
-	Ime;
-	Pod_tip1;  namena taktora (prebisava istovetni podatak iz tipa masine)
-	Pod_tip2; (dizel/benzinac) (prebisava istovetni podatak iz tipa masine)
-	Pod_tip3; (sasija) (prebisava istovetni podatak iz tipa masine)
-	Konjske snage; (prebisava istovetni podatak iz tipa masine)
-	Kapacitet goriva (prebisava istovetni podatak iz tipa masine);
 	Godina proizvodnje;	
 	Posedovan ili iznajmljivan;
 	Slika: ref: SlikaMasine;
